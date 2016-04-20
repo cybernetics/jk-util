@@ -17,12 +17,19 @@ package com.jk.util;
 
 import java.util.Date;
 
+/**
+ * The Class ConversionUtil.
+ *
+ * @author Jalal Kiswani
+ */
 public class ConversionUtil {
 
 	/**
+	 * To boolean.
 	 *
 	 * @param value
-	 * @return
+	 *            the value
+	 * @return true, if successful
 	 */
 	public static boolean toBoolean(final Object value) {
 		boolean result = false;
@@ -40,9 +47,11 @@ public class ConversionUtil {
 	}
 
 	/**
+	 * To date.
 	 *
 	 * @param value
-	 * @return
+	 *            the value
+	 * @return the date
 	 */
 	public static Date toDate(final Object value) {
 		if (value instanceof Date) {
@@ -59,9 +68,11 @@ public class ConversionUtil {
 	}
 
 	/**
+	 * To double.
 	 *
 	 * @param value
-	 * @return
+	 *            the value
+	 * @return the double
 	 */
 	public static double toDouble(final Object value) {
 		if (value == null) {
@@ -71,9 +82,11 @@ public class ConversionUtil {
 	}
 
 	/**
+	 * To float.
 	 *
 	 * @param value
-	 * @return
+	 *            the value
+	 * @return the float
 	 */
 	public static float toFloat(final Object value) {
 		if (value == null) {
@@ -83,27 +96,33 @@ public class ConversionUtil {
 	}
 
 	/**
+	 * To integer.
 	 *
 	 * @param value
-	 * @return
+	 *            the value
+	 * @return the integer
 	 */
 	public static Integer toInteger(final Object value) {
 		return (int) ConversionUtil.toDouble(value);
 	}
 
 	/**
+	 * To string.
 	 *
 	 * @param value
-	 * @return
+	 *            the value
+	 * @return the string
 	 */
 	public static String toString(final Object value) {
 		return value == null ? null : value.toString();
 	}
 
 	/**
+	 * To time.
 	 *
 	 * @param value
-	 * @return
+	 *            the value
+	 * @return the java.sql. time
 	 */
 	public static java.sql.Time toTime(final Object value) {
 		if (value == null) {

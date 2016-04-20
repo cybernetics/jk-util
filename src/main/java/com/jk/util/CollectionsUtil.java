@@ -15,6 +15,11 @@
  */
 package com.jk.util;
 
+/**
+ * The Class CollectionsUtil.
+ *
+ * @author Jalal Kiswani
+ */
 public class CollectionsUtil {
 
 }

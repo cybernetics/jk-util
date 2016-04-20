@@ -17,12 +17,21 @@ package com.jk.util;
 
 import java.util.logging.Logger;
 
+/**
+ * The Class DebugUtil.
+ *
+ * @author Jalal Kiswani
+ */
 public class DebugUtil {
+	
+	/** The logger. */
 	static Logger logger = Logger.getLogger(DebugUtil.class.getName());
 
 	/**
+	 * Prints the current time.
 	 *
 	 * @param label
+	 *            the label
 	 */
 	public static void printCurrentTime(final Object label) {
 		System.err.println(DateTimeUtil.getCurrentTime() + "  :" + label);

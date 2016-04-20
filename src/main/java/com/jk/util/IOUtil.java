@@ -23,13 +23,22 @@ import java.io.InputStream;
 import java.util.Properties;
 import java.util.logging.Logger;
 
+/**
+ * The Class IOUtil.
+ *
+ * @author Jalal Kiswani
+ */
 public class IOUtil {
+	
+	/** The logger. */
 	static Logger logger = Logger.getLogger(IOUtil.class.getName());
 
 	/**
+	 * Read properties file.
 	 *
 	 * @param file
-	 * @return
+	 *            the file
+	 * @return the properties
 	 */
 	public static Properties readPropertiesFile(final File file) {
 		if (!file.exists()) {
@@ -46,9 +55,11 @@ public class IOUtil {
 	}
 
 	/**
+	 * Read stream.
 	 *
 	 * @param inStream
-	 * @return
+	 *            the in stream
+	 * @return the byte[]
 	 */
 	public static byte[] readStream(final InputStream inStream) {
 		try {

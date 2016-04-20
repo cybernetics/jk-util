@@ -22,12 +22,21 @@ import java.util.Properties;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 
+/**
+ * The Class StringUtil.
+ *
+ * @author Jalal Kiswani
+ */
 public class StringUtil {
 
 	/**
+	 * Compile.
+	 *
 	 * @param sql
+	 *            the sql
 	 * @param param
-	 * @return
+	 *            the param
+	 * @return the string
 	 */
 	public static String compile(String sql, final Object... param) {
 		for (final Object element : param) {
@@ -37,9 +46,11 @@ public class StringUtil {
 	}
 
 	/**
+	 * To string.
 	 *
 	 * @param list
-	 * @return
+	 *            the list
+	 * @return the string
 	 */
 	public static String toString(final List list) {
 		final StringBuffer buf = new StringBuffer("[");
@@ -57,9 +68,11 @@ public class StringUtil {
 	}
 
 	/**
+	 * To string.
 	 *
 	 * @param object
-	 * @return
+	 *            the object
+	 * @return the object
 	 */
 	public static Object toString(final Object object) {
 		return "[".concat(ToStringBuilder.reflectionToString(object, ToStringStyle.SIMPLE_STYLE)).concat("]");
@@ -67,10 +80,11 @@ public class StringUtil {
 
 	/**
 	 * This method create nre properties from the origianl one and remove any
-	 * key with the password , then call toString method on this prperties
+	 * key with the password , then call toString method on this prperties.
 	 *
 	 * @param properties
-	 * @return
+	 *            the properties
+	 * @return the string
 	 */
 	public static String toString(final Properties properties) {
 		final Properties newProperties = new Properties();

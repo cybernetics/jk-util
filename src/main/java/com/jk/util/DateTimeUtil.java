@@ -19,13 +19,21 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
+/**
+ * The Class DateTimeUtil.
+ *
+ * @author Jalal Kiswani
+ */
 public class DateTimeUtil {
 
 	/**
+	 * Format date.
 	 *
 	 * @param date
+	 *            the date
 	 * @param pattren
-	 * @return
+	 *            the pattren
+	 * @return the string
 	 */
 	public static String formatDate(final Date date, final String pattren) {
 		final SimpleDateFormat formatter = new SimpleDateFormat(pattren, new Locale("en", "US"));
@@ -36,18 +44,20 @@ public class DateTimeUtil {
 	}
 
 	/**
+	 * Format full time.
 	 *
 	 * @param date
-	 * @return
+	 *            the date
+	 * @return the string
 	 */
 	public static String formatFullTime(final Date date) {
 		return DateTimeUtil.formatDate(date, "hh:mm:ss SSS");
 	}
 
 	/**
+	 * Gets the current time.
 	 *
-	 * @param label
-	 * @return
+	 * @return the current time
 	 */
 	public static String getCurrentTime() {
 		return DateTimeUtil.formatFullTime(new Date());

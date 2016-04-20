@@ -15,30 +15,68 @@
  */
 package com.jk.util.exceptions;
 
+/**
+ * The Class JKException.
+ *
+ * @author Jalal Kiswani
+ */
 public class JKException extends RuntimeException {
 
-	/**
-	 *
-	 */
+	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = -432528857361517859L;
 
+	/**
+	 * Instantiates a new JK exception.
+	 */
 	public JKException() {
 		super();
 	}
 
+	/**
+	 * Instantiates a new JK exception.
+	 *
+	 * @param message
+	 *            the message
+	 */
 	public JKException(final String message) {
 		super(message);
 	}
 
+	/**
+	 * Instantiates a new JK exception.
+	 *
+	 * @param message
+	 *            the message
+	 * @param cause
+	 *            the cause
+	 */
 	public JKException(final String message, final Throwable cause) {
 		super(message, cause);
 	}
 
+	/**
+	 * Instantiates a new JK exception.
+	 *
+	 * @param message
+	 *            the message
+	 * @param cause
+	 *            the cause
+	 * @param enableSuppression
+	 *            the enable suppression
+	 * @param writableStackTrace
+	 *            the writable stack trace
+	 */
 	public JKException(final String message, final Throwable cause, final boolean enableSuppression,
 			final boolean writableStackTrace) {
 		super(message, cause, enableSuppression, writableStackTrace);
 	}
 
+	/**
+	 * Instantiates a new JK exception.
+	 *
+	 * @param cause
+	 *            the cause
+	 */
 	public JKException(final Throwable cause) {
 		super(cause);
 	}
