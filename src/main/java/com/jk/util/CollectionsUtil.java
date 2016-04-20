@@ -15,11 +15,37 @@
  */
 package com.jk.util;
 
+import java.util.Enumeration;
+import java.util.List;
+import java.util.Properties;
+
 /**
  * The Class CollectionsUtil.
  *
  * @author Jalal Kiswani
  */
 public class CollectionsUtil {
+	public static String toString(final List<?> list) {
+		final StringBuffer buf = new StringBuffer("[");
+		for (final Object object : list) {
+			buf.append(object == null ? "null" : ObjectUtil.toString(object));
+			buf.append(",");
+		}
+		buf.append("]");
+		return buf.toString();
+	}
+
+	public static String toString(final Properties properties) {
+		final Properties newProperties = new Properties();
+		final Enumeration<Object> keys = properties.keys();
+		while (keys.hasMoreElements()) {
+			final String key = keys.nextElement().toString();
+			if (key.toLowerCase().contains("password")) {
+				continue;
+			}
+			newProperties.setProperty(key, properties.getProperty(key));
+		}
+		return newProperties.toString();
+	}
 
 }

@@ -15,6 +15,7 @@
  */
 package com.jk.util;
 
+import java.util.Arrays;
 import java.util.logging.Logger;
 
 /**
@@ -36,4 +37,17 @@ public class DebugUtil {
 	public static void printCurrentTime(final Object label) {
 		System.err.println(DateTimeUtil.getCurrentTime() + "  :" + label);
 	}
+	
+	public static void printStackTrace() {
+		System.err.println(Arrays.toString(Thread.currentThread().getStackTrace()).replaceAll(",", "\\\n"));
+	}
+
+	public static Class<?> getExceptionCallerClass(Throwable t) {
+		StackTraceElement[] stackTrace = t.getStackTrace();
+		for (StackTraceElement stackTraceElement : stackTrace) {
+			System.out.println(stackTraceElement.getClassName().concat(".").concat(stackTraceElement.getMethodName()));
+		}
+		return null;
+	}
+
 }

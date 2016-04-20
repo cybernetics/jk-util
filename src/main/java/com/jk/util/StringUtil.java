@@ -15,19 +15,36 @@
  */
 package com.jk.util;
 
-import java.util.Enumeration;
-import java.util.List;
-import java.util.Properties;
-
-import org.apache.commons.lang3.builder.ToStringBuilder;
-import org.apache.commons.lang3.builder.ToStringStyle;
-
 /**
  * The Class StringUtil.
  *
  * @author Jalal Kiswani
  */
 public class StringUtil {
+
+	/**
+	 * replace under score with space
+	 * replace \n char with platform indepent line.separator
+	 * @param value
+	 * @return
+	 */
+	public static String fixValue(String value) {
+		if (value != null && !value.equals("")) {
+			String[] words = value.toLowerCase().split("_");
+			value = "";
+			for (String word : words) {
+				if (word.length() > 1) {
+					value += word.substring(0, 1).toUpperCase() + word.substring(1) + " ";
+				} else {
+					value = word;
+				}
+			}
+		}
+		if (value.contains("\\n")) {
+			value = value.replace("\\n", System.getProperty("line.separator"));
+		}
+		return value;
+	}
 
 	/**
 	 * Compile.
@@ -44,39 +61,23 @@ public class StringUtil {
 		}
 		return sql;
 	}
-
+	
 	/**
-	 * To string.
-	 *
-	 * @param list
-	 *            the list
-	 * @return the string
+	 * replace params in string with the using index , for example "Hello {1} {2}" with Jalal , Kiswani as aparamters
+	 * will generate Hello Jalal Kiswani  
+	 * @param value
+	 * @param params
+	 * @return
 	 */
-	public static String toString(final List list) {
-		final StringBuffer buf = new StringBuffer("[");
-		for (final Object object : list) {
-			if (object != null && object.toString().contains("@")) {
-				// most likely toString not overriden
-				buf.append(StringUtil.toString(object));
-			} else {
-				buf.append(object == null ? "null" : object.toString());
+	public static String setParameters(String value, Object[] params) {
+		if (params != null) {
+			for (int i = 0; i < params.length; i++) {
+				value = value.replaceAll("\\{" + i + "\\}", params[i].toString());
 			}
-			buf.append(",");
 		}
-		buf.append("]");
-		return buf.toString();
+		return value;
 	}
 
-	/**
-	 * To string.
-	 *
-	 * @param object
-	 *            the object
-	 * @return the object
-	 */
-	public static Object toString(final Object object) {
-		return "[".concat(ToStringBuilder.reflectionToString(object, ToStringStyle.SIMPLE_STYLE)).concat("]");
-	}
 
 	/**
 	 * This method create nre properties from the origianl one and remove any
@@ -86,17 +87,5 @@ public class StringUtil {
 	 *            the properties
 	 * @return the string
 	 */
-	public static String toString(final Properties properties) {
-		final Properties newProperties = new Properties();
-		final Enumeration<Object> keys = properties.keys();
-		while (keys.hasMoreElements()) {
-			final String key = keys.nextElement().toString();
-			if (key.toLowerCase().contains("password")) {
-				continue;
-			}
-			newProperties.setProperty(key, properties.getProperty(key));
-		}
-		return newProperties.toString();
-	}
 
 }
