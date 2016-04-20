@@ -1,3 +1,18 @@
+/*
+ * Copyright 2002-2016 Jalal Kiswani.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package com.jk.util;
 
 import java.io.DataInputStream;
@@ -12,17 +27,36 @@ public class IOUtil {
 	static Logger logger = Logger.getLogger(IOUtil.class.getName());
 
 	/**
-	 * 
+	 *
+	 * @param file
+	 * @return
+	 */
+	public static Properties readPropertiesFile(final File file) {
+		if (!file.exists()) {
+			IOUtil.logger.info(String.format("File %s doesnot exists , return empty map", file.getName()));
+			return new Properties();
+		}
+		try (InputStream in = new FileInputStream(file)) {
+			final Properties prop = new Properties();
+			prop.load(in);
+			return prop;
+		} catch (final IOException e) {
+			throw new RuntimeException();
+		}
+	}
+
+	/**
+	 *
 	 * @param inStream
 	 * @return
 	 */
-	public static byte[] readStream(InputStream inStream) {
+	public static byte[] readStream(final InputStream inStream) {
 		try {
 			DataInputStream in = null;
 			try {
 				in = new DataInputStream(inStream);
-				int size = in.available();
-				byte arr[] = new byte[size];
+				final int size = in.available();
+				final byte arr[] = new byte[size];
 				in.readFully(arr);
 				return arr;
 			} finally {
@@ -30,27 +64,8 @@ public class IOUtil {
 					in.close();
 				}
 			}
-		} catch (IOException e) {
+		} catch (final IOException e) {
 			throw new RuntimeException(e);
-		}
-	}
-
-	/**
-	 * 
-	 * @param file
-	 * @return
-	 */
-	public static Properties readPropertiesFile(File file) {
-		if (!file.exists()) {
-			logger.info(String.format("File %s doesnot exists , return empty map", file.getName()));
-			return new Properties();
-		}
-		try (InputStream in = new FileInputStream(file)) {
-			Properties prop = new Properties();
-			prop.load(in);
-			return prop;
-		} catch (IOException e) {
-			throw new RuntimeException();
 		}
 	}
 
