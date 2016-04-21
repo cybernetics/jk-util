@@ -5,7 +5,7 @@ This is utility classes used by my other projects
 ![alt tag](https://github.com/kiswanij/jk-util/blob/master/design/context.PNG)
 
 ##Resource-Loaders API
-![alt tag](https://github.com/kiswanij/jk-util/blob/master/design/resource-loader)
+![alt tag](https://github.com/kiswanij/jk-util/blob/master/design/resource-loader.PNG)
 
 Enjoy!  
 Jalal   
