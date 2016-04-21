@@ -18,6 +18,8 @@ package com.jk.context;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.jk.resources.JKResourceLoader;
+import com.jk.resources.JKResourceLoaderFactory;
 import com.jk.thread.JKThreadLocal;
 
 /**
@@ -128,7 +130,6 @@ public abstract class JKAbstractContext implements JKContext {
 		JKThreadLocal.setValue(key, value);
 	}
 
-
 	/**
 	 * Sets the application map.
 	 *
@@ -209,4 +210,18 @@ public abstract class JKAbstractContext implements JKContext {
 		JKThreadLocal.setValue(JKContextConstants.USER, user);
 	}
 
+	@Override
+	public JKResourceLoader getResourceLoader() {
+		return JKResourceLoaderFactory.getResourceLoader();
+	}
+
+	@Override
+	public String getConfigPath() {
+		return JKThreadLocal.getValue(JKContextConstants.JK_CONFIG_PATH, JKContextConstants.JK_CONFIG_PATH_DEFAULT)
+				.toString();
+	}
+
+	public void setConfigPath(String configPath) {
+		JKThreadLocal.setValue(JKContextConstants.JK_CONFIG_PATH, configPath);
+	}
 }

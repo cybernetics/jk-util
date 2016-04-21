@@ -18,11 +18,11 @@ package com.jk.context.impl;
 import java.util.Map;
 
 import com.jk.context.JKAbstractContext;
-import com.jk.thread.JKThreadLocal;
 
 /**
  * The Class JKDefaultContext.
  *
+ * @since 30/12/2014
  */
 public class JKDesktopContext extends JKAbstractContext {
 

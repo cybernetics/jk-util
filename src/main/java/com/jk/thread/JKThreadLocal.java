@@ -52,6 +52,10 @@ public class JKThreadLocal {
 		return map;
 	}
 
+	public static Object getValue(final String name) {
+		return getValue(name, null);
+	}
+
 	/**
 	 * Gets the value.
 	 *
@@ -62,8 +66,12 @@ public class JKThreadLocal {
 	/*
 	 *
 	 */
-	public static Object getValue(final String name) {
-		return JKThreadLocal.get().get(name);
+	public static Object getValue(final String name, final Object defaultValue) {
+		Object value = JKThreadLocal.get().get(name);
+		if (value == null) {
+			value = defaultValue;
+		}
+		return value;
 	}
 
 	/**

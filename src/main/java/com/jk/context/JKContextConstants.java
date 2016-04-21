@@ -52,4 +52,8 @@ public class JKContextConstants {
 	/** The Constant JK_CONTEXT. */
 	public static final String JK_CONTEXT = "jk.context";
 
+	public static final String JK_CONFIG_PATH = "jk.config.path";
+	
+	public static final String JK_CONFIG_PATH_DEFAULT = "";
 }
+

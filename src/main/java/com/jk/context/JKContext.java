@@ -17,6 +17,9 @@ package com.jk.context;
 
 import java.util.HashMap;
 
+import com.jk.resources.JKResourceLoader;
+import com.jk.thread.JKThreadLocal;
+
 /**
  * The Interface JKContext.
  *
@@ -99,4 +102,7 @@ public interface JKContext {
 	 */
 	public void setAttribute(String key, Object value);
 
+	public JKResourceLoader getResourceLoader();
+	
+	public String getConfigPath();
 }

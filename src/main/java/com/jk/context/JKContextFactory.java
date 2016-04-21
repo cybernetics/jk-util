@@ -15,6 +15,10 @@
  */
 package com.jk.context;
 
+import com.jk.context.impl.JKDesktopContext;
+import com.jk.context.impl.JKJsfContext;
+import com.jk.context.impl.JKMobileContext;
+import com.jk.context.impl.JKServletContext;
 import com.jk.thread.JKThreadLocal;
 
 /**
@@ -22,6 +26,42 @@ import com.jk.thread.JKThreadLocal;
  *
  */
 public class JKContextFactory {
+	private static JKContextFactory factoryImpl;
+
+	/**
+	 * 
+	 * @return
+	 */
+	protected static JKContextFactory getInstance() {
+		if (factoryImpl == null) {
+			factoryImpl = new JKContextFactory();
+		}
+		return factoryImpl;
+	}
+
+	/**
+	 * 
+	 * @param instance
+	 */
+	public static void setInstance(JKContextFactory instance) {
+		JKContextFactory.factoryImpl = instance;
+	}
+
+	public JKContext createDesktopContext() {
+		return new JKDesktopContext();
+	}
+
+	public JKMobileContext createMobileContext() {
+		return new JKMobileContext();
+	}
+
+	public JKJsfContext createJsfContext() {
+		return new JKJsfContext();
+	}
+
+	public JKServletContext createJkServletContext() {
+		return new JKServletContext();
+	}
 
 	/**
 	 * Gets the current context.
@@ -29,7 +69,20 @@ public class JKContextFactory {
 	 * @return the current context
 	 */
 	public static JKContext getCurrentContext() {
-		return (JKContext) JKThreadLocal.getValue(JKContextConstants.JK_CONTEXT);
+		JKContext context = (JKContext) JKThreadLocal.getValue(JKContextConstants.JK_CONTEXT);
+		if (context == null) {
+			context = getInstance().createDesktopContext();
+			JKThreadLocal.setValue(JKContextConstants.JK_CONTEXT, context);
+		}
+		return context;
+	}
+
+	/**
+	 * 
+	 * @param context
+	 */
+	public static void setCurrentContext(JKContext context) {
+		JKThreadLocal.setValue(JKContextConstants.JK_CONTEXT, context);
 	}
 
 }
