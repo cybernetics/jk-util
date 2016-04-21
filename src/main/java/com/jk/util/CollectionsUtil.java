@@ -25,6 +25,14 @@ import java.util.Properties;
  * @author Jalal Kiswani
  */
 public class CollectionsUtil {
+
+	/**
+	 * To string.
+	 *
+	 * @param list
+	 *            the list
+	 * @return the string
+	 */
 	public static String toString(final List<?> list) {
 		final StringBuffer buf = new StringBuffer("[");
 		for (final Object object : list) {
@@ -35,6 +43,13 @@ public class CollectionsUtil {
 		return buf.toString();
 	}
 
+	/**
+	 * To string.
+	 *
+	 * @param properties
+	 *            the properties
+	 * @return the string
+	 */
 	public static String toString(final Properties properties) {
 		final Properties newProperties = new Properties();
 		final Enumeration<Object> keys = properties.keys();

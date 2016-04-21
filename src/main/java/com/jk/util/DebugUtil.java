@@ -24,9 +24,24 @@ import java.util.logging.Logger;
  * @author Jalal Kiswani
  */
 public class DebugUtil {
-	
+
 	/** The logger. */
 	static Logger logger = Logger.getLogger(DebugUtil.class.getName());
+
+	/**
+	 * Gets the exception caller class.
+	 *
+	 * @param t
+	 *            the t
+	 * @return the exception caller class
+	 */
+	public static Class<?> getExceptionCallerClass(final Throwable t) {
+		final StackTraceElement[] stackTrace = t.getStackTrace();
+		for (final StackTraceElement stackTraceElement : stackTrace) {
+			System.out.println(stackTraceElement.getClassName().concat(".").concat(stackTraceElement.getMethodName()));
+		}
+		return null;
+	}
 
 	/**
 	 * Prints the current time.
@@ -37,17 +52,12 @@ public class DebugUtil {
 	public static void printCurrentTime(final Object label) {
 		System.err.println(DateTimeUtil.getCurrentTime() + "  :" + label);
 	}
-	
+
+	/**
+	 * Prints the stack trace.
+	 */
 	public static void printStackTrace() {
 		System.err.println(Arrays.toString(Thread.currentThread().getStackTrace()).replaceAll(",", "\\\n"));
-	}
-
-	public static Class<?> getExceptionCallerClass(Throwable t) {
-		StackTraceElement[] stackTrace = t.getStackTrace();
-		for (StackTraceElement stackTraceElement : stackTrace) {
-			System.out.println(stackTraceElement.getClassName().concat(".").concat(stackTraceElement.getMethodName()));
-		}
-		return null;
 	}
 
 }

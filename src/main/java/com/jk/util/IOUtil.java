@@ -37,22 +37,56 @@ public class IOUtil {
 	static Logger logger = Logger.getLogger(IOUtil.class.getName());
 
 	/**
+	 * If the provided class has been loaded from a jar file that is on the
+	 * local file system, will find the absolute path to that jar file.
+	 *
+	 * @param clas
+	 *            the clas
+	 * @return the string
+	 * @throws IllegalStateException
+	 *             If the specified class was loaded from a directory or in some
+	 *             other way (such as via HTTP, from a database, or some other
+	 *             custom classloading device).
+	 */
+	public static String findPathJar(final Class clas) throws IllegalStateException {
+		URL url;
+		String extURL;
+		try {
+			url = clas.getProtectionDomain().getCodeSource().getLocation();
+		} catch (final SecurityException ex) {
+			url = clas.getResource(clas.getSimpleName() + ".class");
+		}
+		extURL = url.toExternalForm();
+		try {
+			url = new URL(extURL);
+		} catch (final MalformedURLException mux) {
+			// leave url unchanged; probably does not happen
+		}
+		try {
+			return new File(url.toURI()).toString();
+		} catch (final Exception ex) {
+			return new File(url.getPath()).toString();
+		}
+
+	}
+
+	/**
 	 * Gets the input stream.
 	 *
 	 * @param name
 	 *            the name
 	 * @return the input stream
 	 */
-	public static InputStream getInputStream(String name) {
+	public static InputStream getInputStream(final String name) {
 		InputStream in = Thread.currentThread().getContextClassLoader().getResourceAsStream(name);
 		if (in == null) {
 			in = ClassLoader.getSystemClassLoader().getResourceAsStream(name);
 			if (in == null) {
-				File file = new File(name);
+				final File file = new File(name);
 				if (file.exists()) {
 					try {
 						return new FileInputStream(file);
-					} catch (FileNotFoundException e) {
+					} catch (final FileNotFoundException e) {
 						// Eat the exception and return null , same behavior of
 						// getResourceAsStream, for consistency purpose
 					}
@@ -107,40 +141,6 @@ public class IOUtil {
 		} catch (final IOException e) {
 			throw new RuntimeException(e);
 		}
-	}
-	
-	/**
-	 * If the provided class has been loaded from a jar file that is on the
-	 * local file system, will find the absolute path to that jar file.
-	 *
-	 * @param clas
-	 *            the clas
-	 * @return the string
-	 * @throws IllegalStateException
-	 *             If the specified class was loaded from a directory or in some
-	 *             other way (such as via HTTP, from a database, or some other
-	 *             custom classloading device).
-	 */
-	public static String findPathJar(Class clas) throws IllegalStateException {
-		URL url;
-		String extURL;
-		try {
-			url = clas.getProtectionDomain().getCodeSource().getLocation();
-		} catch (SecurityException ex) {
-			url = clas.getResource(clas.getSimpleName() + ".class");
-		}
-		extURL = url.toExternalForm();
-		try {
-			url = new URL(extURL);
-		} catch (MalformedURLException mux) {
-			// leave url unchanged; probably does not happen
-		}
-		try {
-			return new File(url.toURI()).toString();
-		} catch (Exception ex) {
-			return new File(url.getPath()).toString();
-		}
-
 	}
 
 }

@@ -23,30 +23,6 @@ package com.jk.util;
 public class StringUtil {
 
 	/**
-	 * replace under score with space
-	 * replace \n char with platform indepent line.separator
-	 * @param value
-	 * @return
-	 */
-	public static String fixValue(String value) {
-		if (value != null && !value.equals("")) {
-			String[] words = value.toLowerCase().split("_");
-			value = "";
-			for (String word : words) {
-				if (word.length() > 1) {
-					value += word.substring(0, 1).toUpperCase() + word.substring(1) + " ";
-				} else {
-					value = word;
-				}
-			}
-		}
-		if (value.contains("\\n")) {
-			value = value.replace("\\n", System.getProperty("line.separator"));
-		}
-		return value;
-	}
-
-	/**
 	 * Compile.
 	 *
 	 * @param sql
@@ -61,15 +37,45 @@ public class StringUtil {
 		}
 		return sql;
 	}
-	
+
 	/**
-	 * replace params in string with the using index , for example "Hello {1} {2}" with Jalal , Kiswani as aparamters
-	 * will generate Hello Jalal Kiswani  
+	 * replace under score with space replace \n char with platform indepent
+	 * line.separator
+	 *
 	 * @param value
-	 * @param params
-	 * @return
+	 *            the value
+	 * @return the string
 	 */
-	public static String setParameters(String value, Object[] params) {
+	public static String fixValue(String value) {
+		if (value != null && !value.equals("")) {
+			final String[] words = value.toLowerCase().split("_");
+			value = "";
+			for (final String word : words) {
+				if (word.length() > 1) {
+					value += word.substring(0, 1).toUpperCase() + word.substring(1) + " ";
+				} else {
+					value = word;
+				}
+			}
+		}
+		if (value.contains("\\n")) {
+			value = value.replace("\\n", System.getProperty("line.separator"));
+		}
+		return value;
+	}
+
+	/**
+	 * replace params in string with the using index , for example
+	 * "Hello {1} {2}" with Jalal , Kiswani as aparamters will generate Hello
+	 * Jalal Kiswani .
+	 *
+	 * @param value
+	 *            the value
+	 * @param params
+	 *            the params
+	 * @return the string
+	 */
+	public static String setParameters(String value, final Object[] params) {
 		if (params != null) {
 			for (int i = 0; i < params.length; i++) {
 				value = value.replaceAll("\\{" + i + "\\}", params[i].toString());
@@ -77,7 +83,6 @@ public class StringUtil {
 		}
 		return value;
 	}
-
 
 	/**
 	 * This method create nre properties from the origianl one and remove any

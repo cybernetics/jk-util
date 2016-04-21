@@ -1,37 +1,102 @@
+/*
+ * Copyright 2002-2016 Jalal Kiswani.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package com.jk.exceptions;
 
+/**
+ * The Class ExceptionHandlerInfo.
+ *
+ * @author Jalal Kiswani
+ */
 public class ExceptionHandlerInfo {
+
+	/** The handler. */
 	ExceptionHandler handler;
+
+	/** The exception class. */
 	Class<? extends Throwable> exceptionClass;
+
+	/** The exception. */
 	Throwable exception;
 
+	/**
+	 * Instantiates a new exception handler info.
+	 */
 	public ExceptionHandlerInfo() {
 	}
 
-	public ExceptionHandler getHandler() {
-		return handler;
+	/**
+	 * Gets the exception.
+	 *
+	 * @return the exception
+	 */
+	public Throwable getException() {
+		return this.exception;
 	}
 
-	public ExceptionHandlerInfo setHandler(ExceptionHandler<?> handler) {
-		this.handler = handler;
+	/**
+	 * Gets the exception class.
+	 *
+	 * @return the exception class
+	 */
+	public Class<? extends Throwable> getExceptionClass() {
+		return this.exceptionClass;
+	}
+
+	/**
+	 * Gets the handler.
+	 *
+	 * @return the handler
+	 */
+	public ExceptionHandler getHandler() {
+		return this.handler;
+	}
+
+	/**
+	 * Sets the exception.
+	 *
+	 * @param exception
+	 *            the exception
+	 * @return the exception handler info
+	 */
+	public ExceptionHandlerInfo setException(final Throwable exception) {
+		this.exception = exception;
 		return this;
 	}
 
-	public Class<? extends Throwable> getExceptionClass() {
-		return exceptionClass;
-	}
-
-	public ExceptionHandlerInfo setExceptionClass(Class<? extends Throwable> exceptionClass) {
+	/**
+	 * Sets the exception class.
+	 *
+	 * @param exceptionClass
+	 *            the exception class
+	 * @return the exception handler info
+	 */
+	public ExceptionHandlerInfo setExceptionClass(final Class<? extends Throwable> exceptionClass) {
 		this.exceptionClass = exceptionClass;
-		return this;	
+		return this;
 	}
 
-	public Throwable getException() {
-		return exception;
-	}
-
-	public ExceptionHandlerInfo setException(Throwable exception) {
-		this.exception = exception;
+	/**
+	 * Sets the handler.
+	 *
+	 * @param handler
+	 *            the handler
+	 * @return the exception handler info
+	 */
+	public ExceptionHandlerInfo setHandler(final ExceptionHandler<?> handler) {
+		this.handler = handler;
 		return this;
 	}
 
