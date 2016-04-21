@@ -20,7 +20,7 @@ package com.jk.context;
  *
  * @author Jalal Kiswani
  */
-public class ContextParamKeys {
+public class JKContextConstants {
 
 	/** The Constant IP_ADDRESS. */
 	public static final String IP_ADDRESS = "jk.ipAddress";

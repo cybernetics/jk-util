@@ -13,23 +13,17 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.jk.context;
+package com.jk.context.impl;
 
+import java.util.Map;
+
+import com.jk.context.JKAbstractContext;
 import com.jk.thread.JKThreadLocal;
 
 /**
- * A factory for creating JKContext objects.
+ * The Class JKDefaultContext.
  *
  */
-public class JKContextFactory {
-
-	/**
-	 * Gets the current context.
-	 *
-	 * @return the current context
-	 */
-	public static JKContext getCurrentContext() {
-		return (JKContext) JKThreadLocal.getValue(JKContextConstants.JK_CONTEXT);
-	}
+public class JKJsfContext extends JKWebContext {
 
 }

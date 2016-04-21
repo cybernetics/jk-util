@@ -16,6 +16,7 @@
 package com.jk.context;
 
 import java.util.HashMap;
+import java.util.Map;
 
 import com.jk.thread.JKThreadLocal;
 
@@ -33,7 +34,7 @@ public abstract class JKAbstractContext implements JKContext {
 	 */
 	@Override
 	public HashMap<String, Object> getApplicationMap() {
-		return (HashMap<String, Object>) JKThreadLocal.getValue(ContextParamKeys.APPLICATION_MAP);
+		return (HashMap<String, Object>) JKThreadLocal.getValue(JKContextConstants.APPLICATION_MAP);
 	}
 
 	/*
@@ -53,7 +54,7 @@ public abstract class JKAbstractContext implements JKContext {
 	 */
 	@Override
 	public String getMachineName() {
-		return (String) JKThreadLocal.getValue(ContextParamKeys.MACHINE_NAME);
+		return (String) JKThreadLocal.getValue(JKContextConstants.MACHINE_NAME);
 	}
 
 	/*
@@ -63,7 +64,7 @@ public abstract class JKAbstractContext implements JKContext {
 	 */
 	@Override
 	public String getRemoteIP() {
-		return (String) JKThreadLocal.getValue(ContextParamKeys.IP_ADDRESS);
+		return (String) JKThreadLocal.getValue(JKContextConstants.IP_ADDRESS);
 	}
 
 	/*
@@ -73,7 +74,7 @@ public abstract class JKAbstractContext implements JKContext {
 	 */
 	@Override
 	public int getRemotPort() {
-		return (int) JKThreadLocal.getValue(ContextParamKeys.PORT_NUMBER);
+		return (int) JKThreadLocal.getValue(JKContextConstants.PORT_NUMBER);
 	}
 
 	/*
@@ -83,7 +84,7 @@ public abstract class JKAbstractContext implements JKContext {
 	 */
 	@Override
 	public HashMap<String, Object> getRequestMap() {
-		return (HashMap<String, Object>) JKThreadLocal.getValue(ContextParamKeys.HTTP_REQUEST_MAP);
+		return (HashMap<String, Object>) JKThreadLocal.getValue(JKContextConstants.HTTP_REQUEST_MAP);
 	}
 
 	/*
@@ -93,7 +94,7 @@ public abstract class JKAbstractContext implements JKContext {
 	 */
 	@Override
 	public String getSessionID() {
-		return (String) JKThreadLocal.getValue(ContextParamKeys.HTTP_SESSION_ID);
+		return (String) JKThreadLocal.getValue(JKContextConstants.HTTP_SESSION_ID);
 	}
 
 	/*
@@ -103,7 +104,7 @@ public abstract class JKAbstractContext implements JKContext {
 	 */
 	@Override
 	public HashMap<String, Object> getSessionMap() {
-		return (HashMap<String, Object>) JKThreadLocal.getValue(ContextParamKeys.HTTP_SESSION_MAP);
+		return (HashMap<String, Object>) JKThreadLocal.getValue(JKContextConstants.HTTP_SESSION_MAP);
 	}
 
 	/*
@@ -113,7 +114,7 @@ public abstract class JKAbstractContext implements JKContext {
 	 */
 	@Override
 	public Object getUser() {
-		return JKThreadLocal.getValue(ContextParamKeys.USER);
+		return JKThreadLocal.getValue(JKContextConstants.USER);
 	}
 
 	/*
@@ -125,6 +126,87 @@ public abstract class JKAbstractContext implements JKContext {
 	@Override
 	public void setAttribute(final String key, final Object value) {
 		JKThreadLocal.setValue(key, value);
+	}
+
+
+	/**
+	 * Sets the application map.
+	 *
+	 * @param applicationMap
+	 *            the application map
+	 */
+	public void setApplicationMap(final Map<String, Object> applicationMap) {
+		JKThreadLocal.setValue(JKContextConstants.APPLICATION_MAP, applicationMap);
+	}
+
+	/**
+	 * Sets the machine name.
+	 *
+	 * @param machineName
+	 *            the new machine name
+	 */
+	public void setMachineName(final String machineName) {
+		JKThreadLocal.setValue(JKContextConstants.MACHINE_NAME, machineName);
+	}
+
+	/**
+	 * Sets the remote ip.
+	 *
+	 * @param remoteIP
+	 *            the new remote ip
+	 */
+	public void setRemoteIP(final String remoteIP) {
+		JKThreadLocal.setValue(JKContextConstants.IP_ADDRESS, remoteIP);
+	}
+
+	/**
+	 * Sets the remot port.
+	 *
+	 * @param remotPort
+	 *            the new remot port
+	 */
+	public void setRemotPort(final int remotPort) {
+		JKThreadLocal.setValue(JKContextConstants.PORT_NUMBER, remotPort);
+	}
+
+	/**
+	 * Sets the request map.
+	 *
+	 * @param requestMap
+	 *            the request map
+	 */
+	public void setRequestMap(final Map<String, Object> requestMap) {
+		JKThreadLocal.setValue(JKContextConstants.HTTP_REQUEST_MAP, requestMap);
+	}
+
+	/**
+	 * Sets the session id.
+	 *
+	 * @param sessionID
+	 *            the new session id
+	 */
+	public void setSessionID(final String sessionID) {
+		JKThreadLocal.setValue(JKContextConstants.HTTP_SESSION_ID, sessionID);
+	}
+
+	/**
+	 * Sets the session map.
+	 *
+	 * @param sessionMap
+	 *            the session map
+	 */
+	public void setSessionMap(final Map<String, Object> sessionMap) {
+		JKThreadLocal.setValue(JKContextConstants.HTTP_SESSION_MAP, sessionMap);
+	}
+
+	/**
+	 * Sets the user.
+	 *
+	 * @param user
+	 *            the new user
+	 */
+	public void setUser(final Object user) {
+		JKThreadLocal.setValue(JKContextConstants.USER, user);
 	}
 
 }

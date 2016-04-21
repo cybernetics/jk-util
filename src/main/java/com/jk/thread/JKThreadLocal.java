@@ -34,7 +34,7 @@ public class JKThreadLocal {
 	 * @param map
 	 *            the map
 	 */
-	public static void addAll(final Map<? extends String, ? extends Object> map) {
+	public static void put(final Map<? extends String, ? extends Object> map) {
 		JKThreadLocal.get().putAll(map);
 	}
 
