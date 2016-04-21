@@ -2,7 +2,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.jalalkiswani</groupId>
 	<artifactId>jk-util</artifactId>
-	<version>0.0.2-SNAPSHOT</version>
+	<version>0.0.2</version>
 
 	<name>${project.groupId}:${project.artifactId}</name>
 	<url>https://github.com/kiswanij/jk-util</url>
