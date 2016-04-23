@@ -21,6 +21,7 @@ import java.lang.reflect.Modifier;
 import java.sql.Time;
 import java.sql.Timestamp;
 import java.util.Date;
+import java.util.List;
 
 import org.apache.commons.beanutils.BeanUtils;
 import org.apache.commons.beanutils.ConstructorUtils;
@@ -30,6 +31,7 @@ import org.apache.commons.lang3.builder.ToStringStyle;
 import org.junit.Assert;
 
 import com.jk.annotations.Author;
+import com.jk.exceptions.JKException;
 
 /**
  * The Class ObjectUtil.
@@ -51,8 +53,7 @@ public class ObjectUtil {
 	public static <T> T cloneBean(final Object bean) {
 		try {
 			return (T) BeanUtils.cloneBean(bean);
-		} catch (IllegalAccessException | InstantiationException | InvocationTargetException
-				| NoSuchMethodException e) {
+		} catch (IllegalAccessException | InstantiationException | InvocationTargetException | NoSuchMethodException e) {
 			throw new RuntimeException(e);
 		}
 	}
@@ -306,5 +307,15 @@ public class ObjectUtil {
 	public boolean equals(final Object source, final Object target) {
 		Assert.assertNotNull(source);
 		return ObjectUtil.toString(source).equals(ObjectUtil.toString(target));
+	}
+
+	public static <T> T getFieldValue(Class<?> clas, Object instance, String fieldName) {
+		try {
+			Field declaredField = clas.getDeclaredField(fieldName);
+			declaredField.setAccessible(true);
+			return (T) declaredField.get(instance);
+		} catch (NoSuchFieldException | IllegalArgumentException | IllegalAccessException e) {
+			throw new JKException(e);
+		}
 	}
 }

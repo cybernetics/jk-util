@@ -16,6 +16,7 @@
 package com.jk.util;
 
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.text.WordUtils;
 
 /**
  * The Class StringUtil.
@@ -88,6 +89,10 @@ public class StringUtil {
 
 	public static String trim(String str) {
 		return StringUtils.trim(str);
+	}
+
+	public static String capitalizeFully(String label) {
+		return WordUtils.capitalizeFully(label);
 	}
 
 	/**
