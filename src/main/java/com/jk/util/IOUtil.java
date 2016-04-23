@@ -26,6 +26,8 @@ import java.net.URL;
 import java.util.Properties;
 import java.util.logging.Logger;
 
+import com.jk.resources.JKResourceLoaderFactory;
+
 /**
  * The Class IOUtil.
  *
@@ -78,22 +80,23 @@ public class IOUtil {
 	 * @return the input stream
 	 */
 	public static InputStream getInputStream(final String name) {
-		InputStream in = Thread.currentThread().getContextClassLoader().getResourceAsStream(name);
-		if (in == null) {
-			in = ClassLoader.getSystemClassLoader().getResourceAsStream(name);
-			if (in == null) {
-				final File file = new File(name);
-				if (file.exists()) {
-					try {
-						return new FileInputStream(file);
-					} catch (final FileNotFoundException e) {
-						// Eat the exception and return null , same behavior of
-						// getResourceAsStream, for consistency purpose
-					}
-				}
-			}
-		}
-		return in;
+		return JKResourceLoaderFactory.getResourceLoader().getResourceAsStream(name);
+//		InputStream in = Thread.currentThread().getContextClassLoader().getResourceAsStream(name);
+//		if (in == null) {
+//			in = ClassLoader.getSystemClassLoader().getResourceAsStream(name);
+//			if (in == null) {
+//				final File file = new File(name);
+//				if (file.exists()) {
+//					try {
+//						return new FileInputStream(file);
+//					} catch (final FileNotFoundException e) {
+//						// Eat the exception and return null , same behavior of
+//						// getResourceAsStream, for consistency purpose
+//					}
+//				}
+//			}
+//		}
+//		return in;
 	}
 
 	/**

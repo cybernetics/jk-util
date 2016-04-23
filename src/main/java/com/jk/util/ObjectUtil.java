@@ -291,7 +291,7 @@ public class ObjectUtil {
 	 * @return the string
 	 */
 	public static String toString(final Object object) {
-		return ToStringBuilder.reflectionToString(object, ToStringStyle.NO_CLASS_NAME_STYLE);
+		return ToStringBuilder.reflectionToString(object, ToStringStyle.SHORT_PREFIX_STYLE);
 	}
 
 	/**

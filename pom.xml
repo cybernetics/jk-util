@@ -3,7 +3,7 @@
 	<parent>
 		<groupId>com.jalalkiswani</groupId>
 		<artifactId>jk-os-parent</artifactId>
-		<version>0.0.3</version>
+		<version>0.0.5-SNAPSHOT</version>
 	</parent>
 	<artifactId>jk-util</artifactId>
 
@@ -29,12 +29,6 @@
 			<groupId>org.apache.commons</groupId>
 			<artifactId>commons-lang3</artifactId>
 			<version>3.4</version>
-		</dependency>
-
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-context</artifactId>
-			<version>4.2.5.RELEASE</version>
 		</dependency>
 
 		<dependency>

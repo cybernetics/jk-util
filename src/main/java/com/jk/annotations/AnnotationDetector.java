@@ -18,10 +18,6 @@ package com.jk.annotations;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.springframework.beans.factory.config.BeanDefinition;
-import org.springframework.context.annotation.ClassPathScanningCandidateComponentProvider;
-import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
-import org.springframework.core.type.filter.AnnotationTypeFilter;
 
 /**
  * The Class AnnotationDetector.
@@ -43,14 +39,15 @@ public class AnnotationDetector {
 	 *            the handler
 	 */
 	public static void scan(final Class clas, final String[] basePackage, final AnnotationHandler handler) {
-		final ClassPathScanningCandidateComponentProvider scanner = new ClassPathScanningCandidateComponentProvider(false);
-		scanner.setResourceLoader(new PathMatchingResourcePatternResolver(Thread.currentThread().getContextClassLoader()));
-		scanner.addIncludeFilter(new AnnotationTypeFilter(clas));
-		for (final String pck : basePackage) {
-			for (final BeanDefinition bd : scanner.findCandidateComponents(pck)) {
-				handler.handleAnnotationFound(bd.getBeanClassName());
-			}
-		}
+		throw new IllegalStateException("Fix me");
+//		final ClassPathScanningCandidateComponentProvider scanner = new ClassPathScanningCandidateComponentProvider(false);
+//		scanner.setResourceLoader(new PathMatchingResourcePatternResolver(Thread.currentThread().getContextClassLoader()));
+//		scanner.addIncludeFilter(new AnnotationTypeFilter(clas));
+//		for (final String pck : basePackage) {
+//			for (final BeanDefinition bd : scanner.findCandidateComponents(pck)) {
+//				handler.handleAnnotationFound(bd.getBeanClassName());
+//			}
+//		}
 	}
 
 	public static List<String> scanAsList(final Class clas, final String[] basePackage) {

@@ -15,6 +15,8 @@
  */
 package com.jk.util;
 
+import org.apache.commons.lang3.StringUtils;
+
 /**
  * The Class StringUtil.
  *
@@ -82,6 +84,10 @@ public class StringUtil {
 			}
 		}
 		return value;
+	}
+
+	public static String trim(String str) {
+		return StringUtils.trim(str);
 	}
 
 	/**
