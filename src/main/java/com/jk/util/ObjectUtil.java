@@ -15,8 +15,13 @@
  */
 package com.jk.util;
 
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
 import java.sql.Time;
 import java.sql.Timestamp;
@@ -318,4 +323,35 @@ public class ObjectUtil {
 			throw new JKException(e);
 		}
 	}
+	
+	///////////////////////////////////////////////////////////////////
+	public static Object callStaticMethod(Class clas, String methodName, Object... params) {
+		try {
+			Class[] paramsTypes = new Class[params.length];
+			for (int i = 0; i < params.length; i++) {
+				paramsTypes[i] = Object.class;
+			}
+			Method method = clas.getMethod(methodName, paramsTypes);
+			Object o = method.invoke(null, params);
+			return o;
+		} catch (Exception e) {
+			throw new JKException(e);
+		}
+	}
+
+	// /////////////////////////////////////////////////////////////////
+	public static Object copy(Object source) {
+		try {
+			ByteArrayOutputStream baos = new ByteArrayOutputStream();
+			ObjectOutputStream oos = new ObjectOutputStream(baos);
+			oos.writeObject(source);
+			ByteArrayInputStream bais = new ByteArrayInputStream(baos.toByteArray());
+			ObjectInputStream ois = new ObjectInputStream(bais);
+			Object deepCopy = ois.readObject();
+			return deepCopy;
+		} catch (Exception e) {
+			throw new JKException(e); 
+		}
+	}
+
 }

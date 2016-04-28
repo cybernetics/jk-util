@@ -60,4 +60,8 @@ public class DebugUtil {
 		System.err.println(Arrays.toString(Thread.currentThread().getStackTrace()).replaceAll(",", "\\\n"));
 	}
 
+	public static String getCaller() {
+		return Thread.currentThread().getStackTrace()[2].toString();
+	}
+
 }
