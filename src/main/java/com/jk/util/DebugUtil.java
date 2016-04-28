@@ -18,6 +18,9 @@ package com.jk.util;
 import java.util.Arrays;
 import java.util.logging.Logger;
 
+import com.jk.logging.JKLogger;
+import com.jk.logging.JKLoggerFactory;
+
 /**
  * The Class DebugUtil.
  *
@@ -26,7 +29,7 @@ import java.util.logging.Logger;
 public class DebugUtil {
 
 	/** The logger. */
-	static Logger logger = Logger.getLogger(DebugUtil.class.getName());
+	static JKLogger logger = JKLoggerFactory.getLogger(DebugUtil.class);
 
 	/**
 	 * Gets the exception caller class.
@@ -38,7 +41,7 @@ public class DebugUtil {
 	public static Class<?> getExceptionCallerClass(final Throwable t) {
 		final StackTraceElement[] stackTrace = t.getStackTrace();
 		for (final StackTraceElement stackTraceElement : stackTrace) {
-			System.out.println(stackTraceElement.getClassName().concat(".").concat(stackTraceElement.getMethodName()));
+			logger.debug(stackTraceElement.getClassName().concat(".").concat(stackTraceElement.getMethodName()));
 		}
 		return null;
 	}
@@ -50,14 +53,14 @@ public class DebugUtil {
 	 *            the label
 	 */
 	public static void printCurrentTime(final Object label) {
-		System.err.println(DateTimeUtil.getCurrentTime() + "  :" + label);
+		logger.debug(DateTimeUtil.getCurrentTime() + "  :" + label);
 	}
 
 	/**
 	 * Prints the stack trace.
 	 */
 	public static void printStackTrace() {
-		System.err.println(Arrays.toString(Thread.currentThread().getStackTrace()).replaceAll(",", "\\\n"));
+		logger.debug(Arrays.toString(Thread.currentThread().getStackTrace()).replaceAll(",", "\\\n"));
 	}
 
 }
