@@ -13,32 +13,28 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.jk.cache;
+package com.jk.cache.simple;
+
+import java.util.Arrays;
 
 /**
- * A factory for creating Cache objects.
+ * The Class CacheUtil.
+ *
+ * @author Jalal Kiswani
  */
-public class CacheFactory {
-
-	/** The default cache manager. */
-	private static CacheManager defaultCacheManager;
+public class JKCacheUtil {
 
 	/**
-	 * Gets the default cache manager.
+	 * Builds the dynamic key.
 	 *
-	 * @return the default cache manager
+	 * @param paramNames
+	 *            the param names
+	 * @param paramValues
+	 *            the param values
+	 * @return the string
 	 */
-	public static CacheManager getDefaultCacheManager() {
-		if (CacheFactory.defaultCacheManager == null) {
-			CacheFactory.init();
-		}
-		return CacheFactory.defaultCacheManager;
+	public static String buildDynamicKey(final Object[] paramNames, final Object[] paramValues) {
+		return Arrays.toString(paramNames).concat(Arrays.toString(paramValues));
 	}
 
-	/**
-	 * Inits the.
-	 */
-	private static void init() {
-		CacheFactory.defaultCacheManager = new DefaultCacheManager();
-	}
 }
