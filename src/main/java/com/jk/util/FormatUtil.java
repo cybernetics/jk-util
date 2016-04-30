@@ -180,7 +180,7 @@ public class FormatUtil {
 		return format;
 	}
 
-	public static String formatNumber(int count) {
+	public static String formatNumber(Number count) {
 		Format numberFormatter = getNumberFormatter(DEFAULT_NUMBER_FORMAT);
 		return numberFormatter.format(count);
 	}

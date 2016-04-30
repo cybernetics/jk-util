@@ -24,6 +24,7 @@ import java.util.Date;
 import java.util.Locale;
 
 import com.jk.exceptions.JKException;
+import com.jk.time.JKTimeObject;
 
 /**
  * The Class DateTimeUtil.
@@ -190,13 +191,17 @@ public class DateTimeUtil {
 	 * @return
 	 * @throws DateParseException
 	 */
-	public static long getDifference(Time timeFrom, Time timeTo) throws ParseException {
-		DateFormat format = new SimpleDateFormat("HH:mm:ss");
-		// the a means am/pm marker
-		Date date = format.parse(timeFrom.toString());
-		Date date2 = format.parse(timeTo.toString());
-		long difference = (date2.getTime() - date.getTime()) / 1000 / 60;
-		return difference;
+	public static long getDifference(Time timeFrom, Time timeTo) {
+		try {
+			DateFormat format = new SimpleDateFormat("HH:mm:ss");
+			// the a means am/pm marker
+			Date date = format.parse(timeFrom.toString());
+			Date date2 = format.parse(timeTo.toString());
+			long difference = (date2.getTime() - date.getTime()) / 1000 / 60;
+			return difference;
+		} catch (Exception e) {
+			throw new RuntimeException(e);
+		}
 	}
 
 	/**
@@ -242,6 +247,51 @@ public class DateTimeUtil {
 		}
 
 		return false;
+	}
+
+	public static int getHour(Date timeFrom) {
+		Calendar instance = Calendar.getInstance();
+		instance.setTime(timeFrom);
+		int hour = instance.get(Calendar.HOUR);
+		return hour;
+
+	}
+
+	public static boolean equals(Date date1, Date date2) {
+		if ((date1 == null && date2 != null) || (date1 != null && date2 == null)) {
+			return false;
+		}
+		return formatDate(date1, FormatUtil.MYSQL_DATE_DB_PATTERN).equals(formatDate(date2, FormatUtil.MYSQL_DATE_DB_PATTERN));
+
+	}
+
+	public static boolean isCurrentTimeBetweenTowTimes(Date fromDate, Date fromTime, Date toDate, Date timeTo) {
+		JKTimeObject currntTime = getCurrntTime();
+		JKTimeObject fromTimeObject = new JKTimeObject();
+		JKTimeObject toTimeObject = new JKTimeObject();
+		if (currntTime.after(fromTimeObject.toTimeObject(fromDate, fromTime)) && currntTime.before(toTimeObject.toTimeObject(toDate, timeTo))) {
+			return true;
+		}
+		return false;
+	}
+
+	public static JKTimeObject getCurrntTime() {
+		JKTimeObject fsTimeObject = new JKTimeObject();
+		Calendar instance = Calendar.getInstance();
+		fsTimeObject.setYear(instance.get(Calendar.YEAR));
+		fsTimeObject.setMonth(instance.get(Calendar.MONTH));
+		fsTimeObject.setDay(instance.get(Calendar.DAY_OF_MONTH));
+		fsTimeObject.setHour(instance.get(Calendar.HOUR_OF_DAY));
+		fsTimeObject.setMunite(instance.get(Calendar.MINUTE));
+		return fsTimeObject;
+	}
+	
+	public static long getDayDifference(Date startDate, Date endDate) {
+		long startTime = startDate.getTime();
+		long endTime = endDate.getTime();
+		long diffTime = endTime - startTime;
+		long diffDays = diffTime / (1000 * 60 * 60 * 24);
+		return diffDays;
 	}
 
 }
