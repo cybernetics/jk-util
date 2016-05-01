@@ -13,27 +13,29 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.jk.cache;
+package com.jk.cache.simple;
 
 import java.util.HashMap;
 import java.util.Map;
 import java.util.logging.Logger;
+
+import com.jk.cache.JKCacheManager;
 
 /**
  * The Class AbstractCacheManager.
  *
  * @author Jalal Kiswani
  */
-public abstract class AbstractCacheManager implements CacheManager {
+public abstract class JKAbstractCacheManager implements JKCacheManager {
 
 	/** The Constant NULLABLE_MAP_CLASS. */
-	private static final Class<Cacheable> NULLABLE_MAP_CLASS = Cacheable.class;
+	private static final Class<Object> NULLABLE_MAP_CLASS = Object.class;
 
 	/** The logger. */
 	protected Logger logger = Logger.getLogger(getClass().getName());
 
 	/** The cachables maps. */
-	private final Map<Class<Cacheable>, Map<Object, Cacheable>> cachablesMaps = new HashMap<>();
+	private final Map<Class<?>, Map<Object, Object>> cachablesMaps = new HashMap<>();
 
 	/** The allow nullable. */
 	private boolean allowNullable = true;
@@ -42,10 +44,10 @@ public abstract class AbstractCacheManager implements CacheManager {
 	 * (non-Javadoc)
 	 * 
 	 * @see com.jk.cache.CacheManager#cache(java.lang.Object,
-	 * com.jk.cache.Cacheable)
+	 * com.jk.cache.Object)
 	 */
 	@Override
-	public void cache(final Object key, final Cacheable object) {
+	public void cache(final Object key, final Object object) {
 		this.logger.fine("@cache ");
 
 		if (object == null) {
@@ -53,11 +55,11 @@ public abstract class AbstractCacheManager implements CacheManager {
 				return;
 			}
 			this.logger.fine("logging key :".concat(key.toString()).concat(" with null"));
-			getCachableMap(AbstractCacheManager.NULLABLE_MAP_CLASS).put(key, null);
+			getCachableMap(JKAbstractCacheManager.NULLABLE_MAP_CLASS).put(key, null);
 		} else {
 			this.logger
 					.fine("logging key :".concat(key.toString()).concat(" with object : ".concat(object.toString())));
-			getCachableMap((Class<Cacheable>) object.getClass()).put(key, object);
+			getCachableMap((Class<Object>) object.getClass()).put(key, object);
 		}
 
 	}
@@ -68,10 +70,11 @@ public abstract class AbstractCacheManager implements CacheManager {
 	 * @see com.jk.cache.CacheManager#clear(java.lang.Class)
 	 */
 	@Override
-	public void clear(final Class<Cacheable> clas) {
+	public void clear(final Class<?> clas) {
 		this.logger.fine("@clear:".concat(clas.getName()));
 		getCachableMap(clas).clear();
 	}
+
 
 	/*
 	 * (non-Javadoc)
@@ -79,10 +82,10 @@ public abstract class AbstractCacheManager implements CacheManager {
 	 * @see com.jk.cache.CacheManager#get(java.lang.Object, java.lang.Class)
 	 */
 	@Override
-	public Cacheable get(final Object key, final Class<Cacheable> clas) {
+	public <T> T get(final Object key, final Class<T> clas) {
 		this.logger.fine("@get :".concat(key.toString()).concat(" with class : ".concat(clas.getName())));
-		final Cacheable cacheable = getCachableMap(clas).get(key);
-		return cacheable;
+		final T Object = (T) getCachableMap(clas).get(key);
+		return Object;
 	}
 
 	/*
@@ -91,12 +94,12 @@ public abstract class AbstractCacheManager implements CacheManager {
 	 * @see com.jk.cache.CacheManager#getCachableMap(java.lang.Class)
 	 */
 	@Override
-	public Map<Object, Cacheable> getCachableMap(final Class<Cacheable> clas) {
+	public Map<Object, Object> getCachableMap(final Class<?> clas) {
 		this.logger.fine("@getCachableMap for class ".concat(clas.getName()));
-		Map<Object, Cacheable> map = this.cachablesMaps.get(clas);
+		Map<Object, Object> map = this.cachablesMaps.get(clas);
 		if (map == null) {
 			this.logger.fine("Cachable map not found , create one");
-			map = new HashMap<Object, Cacheable>();
+			map = new HashMap<>();
 			this.cachablesMaps.put(clas, map);
 		} else {
 			// logger.fine("map found : ".concat(map.keySet().toString()));
@@ -120,17 +123,17 @@ public abstract class AbstractCacheManager implements CacheManager {
 	 * java.lang.Class)
 	 */
 	@Override
-	public boolean isAvailable(final String key, final Class<Cacheable> clas) {
+	public boolean isAvailable(final Object key, final Class<?> clas) {
 		this.logger.fine("@isAvailable :".concat(key.toString()).concat(" for class : ".concat(clas.toString())));
-		final Cacheable cacheable = getCachableMap(clas).get(key);
-		if (cacheable == null) {
+		final Object Object = getCachableMap(clas).get(key);
+		if (Object == null) {
 			this.logger.fine("try to find it on the nullable cache");
-			this.logger.fine(getCachableMap(AbstractCacheManager.NULLABLE_MAP_CLASS).keySet().toString());
-			return getCachableMap(AbstractCacheManager.NULLABLE_MAP_CLASS).containsKey(key);
+			this.logger.fine(getCachableMap(JKAbstractCacheManager.NULLABLE_MAP_CLASS).keySet().toString());
+			return getCachableMap(JKAbstractCacheManager.NULLABLE_MAP_CLASS).containsKey(key);
 		}
 		this.logger
-				.fine("key ".concat(key).concat(cacheable != null ? " is available in the cache" : "is not svailable"));
-		return cacheable != null;
+				.fine("key ".concat(key.toString()).concat(Object != null ? " is available in the cache" : "is not svailable"));
+		return Object != null;
 	}
 
 	/*
@@ -139,7 +142,7 @@ public abstract class AbstractCacheManager implements CacheManager {
 	 * @see com.jk.cache.CacheManager#remove(java.lang.Object, java.lang.Class)
 	 */
 	@Override
-	public void remove(final Object key, final Class<Cacheable> clas) {
+	public void remove(final Object key, final Class<?> clas) {
 		this.logger.fine("@remove :".concat(key.toString()).concat(" with class : ".concat(clas.getName())));
 		getCachableMap(clas).remove(key);
 	}

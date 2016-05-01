@@ -13,45 +13,38 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.jk.exceptions;
+package com.jk.exceptions.handler;
+
+import java.util.logging.Logger;
 
 import com.jk.annotations.Author;
 
 /**
- * The Class ExceptionUtil.
+ * The Class DefaultExceptionHandler.
  *
  * @author Jalal Kiswani
  */
 @Author(name = "Jalal H. Kiswani", date = "1/11/2014", version = "1.0")
-public class ExceptionUtil {
+public class DefaultExceptionHandler implements ExceptionHandler {
 
-	/**
-	 * Handle.
-	 *
-	 * @param t
-	 *            the t
-	 */
-	public static void handle(final Throwable t) {
-		ExceptionUtil.handle(t, true);
-	}
+	/** The logger. */
+	Logger logger = Logger.getLogger(getClass().getName());
 
-	/**
-	 * Handle.
-	 *
-	 * @param t
-	 *            the t
-	 * @param throwRuntimeException
-	 *            the throw runtime exception
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.jk.exceptions.ExceptionHandler#handle(java.lang.Throwable,
+	 * boolean)
 	 */
-	public static void handle(final Throwable t, final boolean throwRuntimeException) {
-		final ExceptionHandlerFactory factory = ExceptionHandlerFactory.getInstance();
-		final ExceptionHandlerInfo info = factory.getHandler(t);
-		if (info != null) {
-			info.getHandler().handle(info.getException(), throwRuntimeException);
-		} else {
-			factory.getDefaultHandler().handle(t, throwRuntimeException);
+	@Override
+	public void handle(final Throwable throwable, final boolean throwRuntimeException) {
+		this.logger.severe(throwable.getMessage());
+		if (throwRuntimeException) {
+			if (throwable instanceof RuntimeException) {
+				throw (RuntimeException) throwable;
+			}
+			throw new RuntimeException(throwable);
 		}
-
 	}
 
 }

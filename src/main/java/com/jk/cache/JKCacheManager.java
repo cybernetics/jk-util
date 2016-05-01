@@ -22,7 +22,7 @@ import java.util.Map;
  *
  * @author Jalal Kiswani
  */
-public interface CacheManager {
+public interface JKCacheManager {
 
 	/**
 	 * Cache.
@@ -32,7 +32,7 @@ public interface CacheManager {
 	 * @param cache
 	 *            the cache
 	 */
-	public void cache(Object key, Cacheable cache);
+	public void cache(Object key, Object cache);
 
 	/**
 	 * Clear.
@@ -40,7 +40,7 @@ public interface CacheManager {
 	 * @param clas
 	 *            the clas
 	 */
-	public void clear(Class<Cacheable> clas);
+	public void clear(Class<?> clas);
 
 	/**
 	 * Gets the.
@@ -51,7 +51,7 @@ public interface CacheManager {
 	 *            the clas
 	 * @return the cacheable
 	 */
-	public Cacheable get(Object key, Class<Cacheable> clas);
+	public <T> T get(Object key, Class<T> clas);
 
 	/**
 	 * Gets the cachable map.
@@ -60,7 +60,7 @@ public interface CacheManager {
 	 *            the clas
 	 * @return the cachable map
 	 */
-	public Map<Object, Cacheable> getCachableMap(Class<Cacheable> clas);
+	public  Map<Object, ?> getCachableMap(Class<?> clas);
 
 	/**
 	 * Checks if is available.
@@ -71,7 +71,7 @@ public interface CacheManager {
 	 *            the clas
 	 * @return true, if is available
 	 */
-	public boolean isAvailable(String id, Class<Cacheable> clas);
+	public boolean isAvailable(Object id, Class<?> clas);
 
 	/**
 	 * Removes the.
@@ -81,5 +81,5 @@ public interface CacheManager {
 	 * @param clas
 	 *            the clas
 	 */
-	public void remove(Object key, Class<Cacheable> clas);
+	public void remove(Object key, Class<?> clas);
 }

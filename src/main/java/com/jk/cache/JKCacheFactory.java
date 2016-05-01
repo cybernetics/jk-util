@@ -15,11 +15,33 @@
  */
 package com.jk.cache;
 
-/**
- * The Class DefaultCacheManager.
- *
- * @author Jalal Kiswani
- */
-public class DefaultCacheManager extends AbstractCacheManager {
+import com.jk.cache.simple.JKAbstractCacheManager;
 
+/**
+ * A factory for creating Cache objects.
+ */
+public class JKCacheFactory {
+
+	/** The default cache manager. */
+	private static JKCacheManager defaultCacheManager;
+
+	/**
+	 * Gets the default cache manager.
+	 *
+	 * @return the default cache manager
+	 */
+	public static JKCacheManager getCacheManager() {
+		if (JKCacheFactory.defaultCacheManager == null) {
+			JKCacheFactory.init();
+		}
+		return JKCacheFactory.defaultCacheManager;
+	}
+
+	/**
+	 * Inits the.
+	 */
+	private static void init() {
+		JKCacheFactory.defaultCacheManager = new JKAbstractCacheManager() {
+		};
+	}
 }

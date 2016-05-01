@@ -46,6 +46,10 @@ public class FormatUtil {
 	/** The Constant DEFAULT_DOUBLE_FORMAT. */
 	private static final String DEFAULT_DOUBLE_FORMAT = "###,###,##0.000";
 
+	private static final String DEFAULT_NUMBER_FORMAT = "###,###,##0";
+
+	public static final String MYSQL_DATE_DB_PATTERN = "yyyy-MM-dd";
+
 	/** The format map. */
 	private static Map<String, Format> formatMap = new LinkedHashMap<String, Format>();
 
@@ -174,6 +178,11 @@ public class FormatUtil {
 			FormatUtil.formatMap.put(pattern, format);
 		}
 		return format;
+	}
+
+	public static String formatNumber(Number count) {
+		Format numberFormatter = getNumberFormatter(DEFAULT_NUMBER_FORMAT);
+		return numberFormatter.format(count);
 	}
 
 }

@@ -15,17 +15,20 @@
  */
 package com.jk.util;
 
+import java.io.BufferedReader;
 import java.io.DataInputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Properties;
 import java.util.logging.Logger;
 
+import com.jk.exceptions.JKException;
 import com.jk.resources.JKResourceLoaderFactory;
 
 /**
@@ -143,6 +146,27 @@ public class IOUtil {
 			}
 		} catch (final IOException e) {
 			throw new RuntimeException(e);
+		}
+	}
+
+	public static String convertToString(InputStream input) throws IOException {
+		try {
+			if (input == null) {
+				throw new IOException("Input Stream Cannot be NULL");
+			}
+			StringBuilder sb1 = new StringBuilder();
+			String line;
+			try {
+				BufferedReader r1 = new BufferedReader(new InputStreamReader(input, "UTF-8"));
+				while ((line = r1.readLine()) != null) {
+					sb1.append(line);
+				}
+			} finally {
+				input.close();
+			}
+			return sb1.toString();
+		} catch (IOException e) {
+			throw new JKException(e);
 		}
 	}
 

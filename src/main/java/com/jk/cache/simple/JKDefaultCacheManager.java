@@ -13,13 +13,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.jk.cache;
+package com.jk.cache.simple;
 
 /**
- * The Interface Cacheable.
+ * The Class DefaultCacheManager.
  *
  * @author Jalal Kiswani
  */
-public interface Cacheable {
+public class JKDefaultCacheManager extends JKAbstractCacheManager {
 
 }

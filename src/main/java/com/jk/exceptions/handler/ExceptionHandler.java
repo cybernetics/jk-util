@@ -13,28 +13,27 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.jk.cache;
+package com.jk.exceptions.handler;
 
-import java.util.Arrays;
+import com.jk.annotations.Author;
 
 /**
- * The Class CacheUtil.
+ * The Interface ExceptionHandler.
  *
  * @author Jalal Kiswani
+ * @param <T>
+ *            the generic type
  */
-public class CacheUtil {
+@Author(name = "Jalal H. Kiswani", date = "1/11/2014", version = "1.0")
+public interface ExceptionHandler<T extends Throwable> {
 
 	/**
-	 * Builds the dynamic key.
+	 * Handle.
 	 *
-	 * @param paramNames
-	 *            the param names
-	 * @param paramValues
-	 *            the param values
-	 * @return the string
+	 * @param throwable
+	 *            the throwable
+	 * @param throwRuntimeException
+	 *            the throw runtime exception
 	 */
-	public static String buildDynamicKey(final Object[] paramNames, final Object[] paramValues) {
-		return Arrays.toString(paramNames).concat(Arrays.toString(paramValues));
-	}
-
+	public void handle(T throwable, boolean throwRuntimeException);
 }

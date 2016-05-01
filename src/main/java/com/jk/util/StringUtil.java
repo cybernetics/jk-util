@@ -104,4 +104,26 @@ public class StringUtil {
 	 * @return the string
 	 */
 
+	public static String removeLast(String original, String string) {
+		int lastIndexOf = original.lastIndexOf(string);
+		if(lastIndexOf == -1 ){
+			return original;
+		}
+		return original.substring(0, lastIndexOf);
+	}
+
+	// //////////////////////////////////////////////////////////////////
+	public static String escapeValue(String value) {
+		value = value.replaceAll("'", "\\\\'");
+		return "'" + value + "'";
+	}
+
+
+	public static boolean isEmpty(String str) {
+		return str == null || str.trim().equals("");
+	}
+
+
+
+
 }
