@@ -15,16 +15,17 @@
  */
 package com.jk.util;
 
-import java.sql.Date;
 import java.sql.Time;
 import java.sql.Timestamp;
 import java.text.DecimalFormat;
 import java.text.Format;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
 import com.jk.annotations.Author;
+import com.jk.exceptions.handler.ExceptionUtil;
 
 /**
  * The Class FormatUtil.
@@ -98,6 +99,10 @@ public class FormatUtil {
 			pattern = FormatUtil.DEFAULT_DATE_PATTERN;
 		}
 		return FormatUtil.getDateFormatter(pattern).format(object);
+	}
+
+	public synchronized static String formatDate(final java.util.Date object) {
+		return formatDate(object, FormatUtil.DEFAULT_DATE_PATTERN);
 	}
 
 	/**
@@ -183,6 +188,40 @@ public class FormatUtil {
 	public static String formatNumber(Number count) {
 		Format numberFormatter = getNumberFormatter(DEFAULT_NUMBER_FORMAT);
 		return numberFormatter.format(count);
+	}
+
+//	public static String formatCurrentDatabaseDate() {
+//		try {
+//			return FormatUtil.formatDate(DaoUtil.getSystemDate(), "yyyy-MM-dd");
+//		} catch (final JKDataAccessException e) {
+//			ExceptionUtil.handle(e);
+//			// unreachable
+//			return null;
+//		}
+//	}
+
+	public static String formatCurrentDate() {
+		return FormatUtil.formatDate(new Date(), "yyyy-MM-dd");
+	}
+
+	public static String formatFullTime(final Date date) {
+		return FormatUtil.formatDate(date, "hh:mm:ss SSS");
+	}
+
+	public static String formatTime(final Date date) {
+		return FormatUtil.formatDate(date, "hh:mm");
+	}
+
+	public static String getCurrentDate() {
+		return getFormatedDate(System.currentTimeMillis());
+	}
+
+	// ///////////////////////////////////////////////////////////////////////////////////////
+	// Mohamed Kiswani
+	//
+	// /////////////////////////////////////////////////////////////////////////////////////
+	public static String getFormatedDate(final long value) {
+		return FormatUtil.formatDate(new Date(value), FormatUtil.MYSQL_DATE_DB_PATTERN);
 	}
 
 }

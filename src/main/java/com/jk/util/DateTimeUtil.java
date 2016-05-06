@@ -15,6 +15,7 @@
  */
 package com.jk.util;
 
+
 import java.sql.Time;
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -285,13 +286,49 @@ public class DateTimeUtil {
 		fsTimeObject.setMunite(instance.get(Calendar.MINUTE));
 		return fsTimeObject;
 	}
-	
+
 	public static long getDayDifference(Date startDate, Date endDate) {
 		long startTime = startDate.getTime();
 		long endTime = endDate.getTime();
 		long diffTime = endTime - startTime;
 		long diffDays = diffTime / (1000 * 60 * 60 * 24);
 		return diffDays;
+	}
+
+	public static boolean isDateEqaualed(final java.util.Date date1, final java.util.Date date2) {
+		final String d1 = FormatUtil.formatDate(date1);
+		final String d2 = FormatUtil.formatDate(date2);
+		return d1.equalsIgnoreCase(d2);
+	}
+
+	/**
+	 *
+	 * @param startDate
+	 * @param endDate
+	 * @return
+	 * @throws JKDataAccessException
+	 */
+	public static boolean isPeriodActive(final Date startDate, final Date endDate)  {
+		if (startDate == null && endDate == null) {
+			return true;
+		}
+		if (startDate == null) {
+			throw new JKException("START_DATE_CAN_NOT_BE_NULL");
+		}
+		if (endDate == null) {
+			throw new JKException("END_DATE_CAN_NOT_BE_NULL");
+		}
+		if (compareTwoDates(startDate, endDate).equals(CompareDates.DATE1_GREATER_THAN_DATE2)) {
+			throw new JKException("START_DATE_MUST_BE_BEFORE_END_DATE");
+		}
+		final boolean startLessThanCurrent = compareTwoDates(startDate, getSystemDate()).equals(CompareDates.DATE1_LESS_THAN_DATE2);
+		final boolean endGreaterThanCurrent = compareTwoDates(endDate, getSystemDate()).equals(CompareDates.DATE1_GREATER_THAN_DATE2);
+		return startLessThanCurrent && endGreaterThanCurrent;
+	}
+
+	public static Date getSystemDate() {
+		//fix to get system db in reliable way
+		return new Date();
 	}
 
 }

@@ -11,9 +11,9 @@ public class JKLogger {
 		logger = LoggerFactory.getLogger(name);
 	}
 	
-	public void info(String msg){
-		logger.info(msg);
-	}
+//	public void info(String msg){
+//		logger.info(msg);
+//	}
 	
 	public void debug(String msg){
 		logger.debug(msg);
@@ -25,6 +25,14 @@ public class JKLogger {
 	
 	public void error(String msg){
 		logger.error(msg);
+	}
+	
+	public static void info(String str){
+		System.err.println(str);
+	}
+
+	public static void fatal(String string) {
+		System.out.println(string);
 	}
 	
 	

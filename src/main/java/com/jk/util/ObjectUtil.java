@@ -15,10 +15,15 @@
  */
 package com.jk.util;
 
+
+import java.beans.ExceptionListener;
+import java.beans.XMLEncoder;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
+import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.io.PrintStream;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -309,7 +314,7 @@ public class ObjectUtil {
 	 *            the target
 	 * @return true, if successful
 	 */
-	public boolean equals(final Object source, final Object target) {
+	public static boolean equals(final Object source, final Object target) {
 		Assert.assertNotNull(source);
 		return ObjectUtil.toString(source).equals(ObjectUtil.toString(target));
 	}
@@ -352,6 +357,41 @@ public class ObjectUtil {
 		} catch (Exception e) {
 			throw new JKException(e); 
 		}
+	}
+
+	// ////////////////////////////////////////////////////////////////////
+	public static String toXml(final Object obj) {
+		final ByteArrayOutputStream out = new ByteArrayOutputStream();
+
+		// XStream x = createXStream();
+		// String xml = x.toXML(obj);
+		// return xml;
+		final XMLEncoder e = new XMLEncoder(out);
+		e.setExceptionListener(new XmlEncoderExceptionListener());
+		// e.setPersistenceDelegate(Object.class, new MyPersistenceDelegate());
+		e.writeObject(obj);
+		e.close();
+		return out.toString();
+		// return null;
+	}
+
+}
+//////////////////////////////////////////////////////////////////////
+class XmlEncoderExceptionListener implements ExceptionListener {
+
+	PrintStream out;
+
+	public XmlEncoderExceptionListener() {
+		try {
+			this.out = new PrintStream(new FileOutputStream(IOUtil.getUserFolderPath(true) + "gui.log", true));
+		} catch (final Exception e) {
+			System.err.println("unable to creat gui.log file for encoder exceptions , default logging will be used");
+		}
+	}
+
+	@Override
+	public void exceptionThrown(final Exception e) {
+		e.printStackTrace(this.out == null ? System.err : this.out);
 	}
 
 }

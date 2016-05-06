@@ -15,7 +15,9 @@
  */
 package com.jk.util;
 
+import java.beans.XMLDecoder;
 import java.io.BufferedReader;
+import java.io.ByteArrayInputStream;
 import java.io.DataInputStream;
 import java.io.File;
 import java.io.FileInputStream;
@@ -37,7 +39,7 @@ import com.jk.resources.JKResourceLoaderFactory;
  * @author Jalal Kiswani
  */
 public class IOUtil {
-
+	private static final String USER_LOCAL_PATH = System.getProperty("user.home") + System.getProperty("file.separator") + "jk";
 	/** The logger. */
 	static Logger logger = Logger.getLogger(IOUtil.class.getName());
 
@@ -84,22 +86,23 @@ public class IOUtil {
 	 */
 	public static InputStream getInputStream(final String name) {
 		return JKResourceLoaderFactory.getResourceLoader().getResourceAsStream(name);
-//		InputStream in = Thread.currentThread().getContextClassLoader().getResourceAsStream(name);
-//		if (in == null) {
-//			in = ClassLoader.getSystemClassLoader().getResourceAsStream(name);
-//			if (in == null) {
-//				final File file = new File(name);
-//				if (file.exists()) {
-//					try {
-//						return new FileInputStream(file);
-//					} catch (final FileNotFoundException e) {
-//						// Eat the exception and return null , same behavior of
-//						// getResourceAsStream, for consistency purpose
-//					}
-//				}
-//			}
-//		}
-//		return in;
+		// InputStream in =
+		// Thread.currentThread().getContextClassLoader().getResourceAsStream(name);
+		// if (in == null) {
+		// in = ClassLoader.getSystemClassLoader().getResourceAsStream(name);
+		// if (in == null) {
+		// final File file = new File(name);
+		// if (file.exists()) {
+		// try {
+		// return new FileInputStream(file);
+		// } catch (final FileNotFoundException e) {
+		// // Eat the exception and return null , same behavior of
+		// // getResourceAsStream, for consistency purpose
+		// }
+		// }
+		// }
+		// }
+		// return in;
 	}
 
 	/**
@@ -168,6 +171,46 @@ public class IOUtil {
 		} catch (IOException e) {
 			throw new JKException(e);
 		}
+	}
+
+	// ////////////////////////////////////////////////////////////////////
+	public static String getUserFolderPath(final boolean appendFileSeprator) {
+		String path = USER_LOCAL_PATH;
+		checkFolderPath(path, true);// to create the folder if not exist
+		if (appendFileSeprator) {
+			path += System.getProperty("file.separator");
+		}
+		return path;
+	}
+
+	// ////////////////////////////////////////////////////////////////////
+	public static File checkFolderPath(final String path, final boolean create) {
+		final File file = new File(path);
+		if (!file.exists()) {
+			if (create) {
+				file.mkdir();
+			}
+			return null;
+		}
+		return file;
+	}
+
+	// ////////////////////////////////////////////////////////////////////
+	public static Object toObject(final String xml) {
+		// XStream x = createXStream();
+		// return x.fromXML(xml);
+		// try {
+		final ByteArrayInputStream out = new ByteArrayInputStream(xml.getBytes());
+		final XMLDecoder encoder = new XMLDecoder(out);
+		final Object object = encoder.readObject();
+		//
+		encoder.close();
+		return object;
+		// } catch (Exception e) {
+		// System.err.println("Failed to decode object : \n" + xml);
+		// return null;
+		// }
+		// return null;
 	}
 
 }
