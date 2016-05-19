@@ -20,10 +20,10 @@ package com.jk.exceptions.handler;
  *
  * @author Jalal Kiswani
  */
-public class ExceptionHandlerInfo {
+public class JKExceptionHandlerInfo {
 
 	/** The handler. */
-	ExceptionHandler handler;
+	JKExceptionHandler handler;
 
 	/** The exception class. */
 	Class<? extends Throwable> exceptionClass;
@@ -34,7 +34,7 @@ public class ExceptionHandlerInfo {
 	/**
 	 * Instantiates a new exception handler info.
 	 */
-	public ExceptionHandlerInfo() {
+	public JKExceptionHandlerInfo() {
 	}
 
 	/**
@@ -60,7 +60,7 @@ public class ExceptionHandlerInfo {
 	 *
 	 * @return the handler
 	 */
-	public ExceptionHandler getHandler() {
+	public JKExceptionHandler getHandler() {
 		return this.handler;
 	}
 
@@ -71,7 +71,7 @@ public class ExceptionHandlerInfo {
 	 *            the exception
 	 * @return the exception handler info
 	 */
-	public ExceptionHandlerInfo setException(final Throwable exception) {
+	public JKExceptionHandlerInfo setException(final Throwable exception) {
 		this.exception = exception;
 		return this;
 	}
@@ -83,7 +83,7 @@ public class ExceptionHandlerInfo {
 	 *            the exception class
 	 * @return the exception handler info
 	 */
-	public ExceptionHandlerInfo setExceptionClass(final Class<? extends Throwable> exceptionClass) {
+	public JKExceptionHandlerInfo setExceptionClass(final Class<? extends Throwable> exceptionClass) {
 		this.exceptionClass = exceptionClass;
 		return this;
 	}
@@ -95,7 +95,7 @@ public class ExceptionHandlerInfo {
 	 *            the handler
 	 * @return the exception handler info
 	 */
-	public ExceptionHandlerInfo setHandler(final ExceptionHandler<?> handler) {
+	public JKExceptionHandlerInfo setHandler(final JKExceptionHandler<?> handler) {
 		this.handler = handler;
 		return this;
 	}

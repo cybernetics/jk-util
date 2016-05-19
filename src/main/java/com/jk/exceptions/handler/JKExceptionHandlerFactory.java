@@ -23,35 +23,35 @@ import com.jk.annotations.Author;
  * A factory for creating ExceptionHandler objects.
  */
 @Author(name = "Jalal H. Kiswani", date = "1/11/2014", version = "1.0")
-public class ExceptionHandlerFactory {
+public class JKExceptionHandlerFactory {
 
 	/** The instance. */
-	private static ExceptionHandlerFactory instance;
+	private static JKExceptionHandlerFactory instance;
 
 	/**
 	 * Gets the single instance of ExceptionHandlerFactory.
 	 *
 	 * @return single instance of ExceptionHandlerFactory
 	 */
-	public static ExceptionHandlerFactory getInstance() {
-		if (ExceptionHandlerFactory.instance == null) {
-			ExceptionHandlerFactory.instance = new ExceptionHandlerFactory();
+	public static JKExceptionHandlerFactory getInstance() {
+		if (JKExceptionHandlerFactory.instance == null) {
+			JKExceptionHandlerFactory.instance = new JKExceptionHandlerFactory();
 		}
-		return ExceptionHandlerFactory.instance;
+		return JKExceptionHandlerFactory.instance;
 	}
 
 	/** The default exception handler. */
-	private ExceptionHandler defaultExceptionHandler = new DefaultExceptionHandler();
+	private JKExceptionHandler defaultExceptionHandler = new JKDefaultExceptionHandler();
 
 	/** The handlers. */
-	private final LinkedHashMap<Class<? extends Throwable>, ExceptionHandler> handlers = new LinkedHashMap<>();
+	private final LinkedHashMap<Class<? extends Throwable>, JKExceptionHandler> handlers = new LinkedHashMap<>();
 
 	/**
 	 * Gets the default handler.
 	 *
 	 * @return the default handler
 	 */
-	public ExceptionHandler getDefaultHandler() {
+	public JKExceptionHandler getDefaultHandler() {
 		return this.defaultExceptionHandler;
 	}
 
@@ -62,10 +62,10 @@ public class ExceptionHandlerFactory {
 	 *            the clas
 	 * @return the handler
 	 */
-	public ExceptionHandlerInfo getHandler(final Class<? extends Throwable> clas) {
-		final ExceptionHandler handler = this.handlers.get(clas);
+	public JKExceptionHandlerInfo getHandler(final Class<? extends Throwable> clas) {
+		final JKExceptionHandler handler = this.handlers.get(clas);
 		if (handler != null) {
-			final ExceptionHandlerInfo info = new ExceptionHandlerInfo();
+			final JKExceptionHandlerInfo info = new JKExceptionHandlerInfo();
 			info.setExceptionClass(clas).setHandler(handler);
 			return info;
 		}
@@ -81,8 +81,8 @@ public class ExceptionHandlerFactory {
 	 *            the t
 	 * @return the handler
 	 */
-	public <T extends Throwable> ExceptionHandlerInfo getHandler(final T t) {
-		ExceptionHandlerInfo info = getHandler(t.getClass());
+	public <T extends Throwable> JKExceptionHandlerInfo getHandler(final T t) {
+		JKExceptionHandlerInfo info = getHandler(t.getClass());
 		if (info != null) {
 			info.setException(t);
 		}
@@ -98,7 +98,7 @@ public class ExceptionHandlerFactory {
 	 * @param defaultExceptionHandler
 	 *            the new default exception handler
 	 */
-	public void setDefaultExceptionHandler(final ExceptionHandler defaultExceptionHandler) {
+	public void setDefaultExceptionHandler(final JKExceptionHandler defaultExceptionHandler) {
 		this.defaultExceptionHandler = defaultExceptionHandler;
 	}
 
@@ -110,7 +110,7 @@ public class ExceptionHandlerFactory {
 	 * @param handler
 	 *            the handler
 	 */
-	public void setHandler(final Class<? extends Throwable> clas, final ExceptionHandler handler) {
+	public void setHandler(final Class<? extends Throwable> clas, final JKExceptionHandler handler) {
 		this.handlers.put(clas, handler);
 	}
 }

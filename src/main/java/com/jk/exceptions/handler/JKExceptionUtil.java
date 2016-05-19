@@ -18,22 +18,40 @@ package com.jk.exceptions.handler;
 import com.jk.annotations.Author;
 
 /**
- * The Interface ExceptionHandler.
+ * The Class ExceptionUtil.
  *
  * @author Jalal Kiswani
- * @param <T>
- *            the generic type
  */
 @Author(name = "Jalal H. Kiswani", date = "1/11/2014", version = "1.0")
-public interface ExceptionHandler<T extends Throwable> {
+public class JKExceptionUtil {
 
 	/**
 	 * Handle.
 	 *
-	 * @param throwable
-	 *            the throwable
+	 * @param t
+	 *            the t
+	 */
+	public static void handle(final Throwable t) {
+		JKExceptionUtil.handle(t, true);
+	}
+
+	/**
+	 * Handle.
+	 *
+	 * @param t
+	 *            the t
 	 * @param throwRuntimeException
 	 *            the throw runtime exception
 	 */
-	public void handle(T throwable, boolean throwRuntimeException);
+	public static void handle(final Throwable t, final boolean throwRuntimeException) {
+		final JKExceptionHandlerFactory factory = JKExceptionHandlerFactory.getInstance();
+		final JKExceptionHandlerInfo info = factory.getHandler(t);
+		if (info != null) {
+			info.getHandler().handle(info.getException(), throwRuntimeException);
+		} else {
+			factory.getDefaultHandler().handle(t, throwRuntimeException);
+		}
+
+	}
+
 }

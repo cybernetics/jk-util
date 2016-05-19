@@ -15,36 +15,25 @@
  */
 package com.jk.exceptions.handler;
 
-import java.util.logging.Logger;
-
 import com.jk.annotations.Author;
 
 /**
- * The Class DefaultExceptionHandler.
+ * The Interface ExceptionHandler.
  *
  * @author Jalal Kiswani
+ * @param <T>
+ *            the generic type
  */
 @Author(name = "Jalal H. Kiswani", date = "1/11/2014", version = "1.0")
-public class DefaultExceptionHandler implements ExceptionHandler {
+public interface JKExceptionHandler<T extends Throwable> {
 
-	/** The logger. */
-	Logger logger = Logger.getLogger(getClass().getName());
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.jk.exceptions.ExceptionHandler#handle(java.lang.Throwable,
-	 * boolean)
+	/**
+	 * Handle.
+	 *
+	 * @param throwable
+	 *            the throwable
+	 * @param throwRuntimeException
+	 *            the throw runtime exception
 	 */
-	@Override
-	public void handle(final Throwable throwable, final boolean throwRuntimeException) {
-		this.logger.severe(throwable.getMessage());
-		if (throwRuntimeException) {
-			if (throwable instanceof RuntimeException) {
-				throw (RuntimeException) throwable;
-			}
-			throw new RuntimeException(throwable);
-		}
-	}
-
+	public void handle(T throwable, boolean throwRuntimeException);
 }
