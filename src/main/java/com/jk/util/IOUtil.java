@@ -15,9 +15,7 @@
  */
 package com.jk.util;
 
-import java.beans.XMLDecoder;
 import java.io.BufferedReader;
-import java.io.ByteArrayInputStream;
 import java.io.DataInputStream;
 import java.io.File;
 import java.io.FileInputStream;
@@ -25,6 +23,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.Reader;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Properties;
@@ -40,6 +39,7 @@ import com.jk.resources.JKResourceLoaderFactory;
  */
 public class IOUtil {
 	private static final String USER_LOCAL_PATH = System.getProperty("user.home") + System.getProperty("file.separator") + "jk";
+
 	/** The logger. */
 	static Logger logger = Logger.getLogger(IOUtil.class.getName());
 
@@ -195,22 +195,21 @@ public class IOUtil {
 		return file;
 	}
 
-	// ////////////////////////////////////////////////////////////////////
-	public static Object toObject(final String xml) {
-		// XStream x = createXStream();
-		// return x.fromXML(xml);
-		// try {
-		final ByteArrayInputStream out = new ByteArrayInputStream(xml.getBytes());
-		final XMLDecoder encoder = new XMLDecoder(out);
-		final Object object = encoder.readObject();
-		//
-		encoder.close();
-		return object;
-		// } catch (Exception e) {
-		// System.err.println("Failed to decode object : \n" + xml);
-		// return null;
-		// }
-		// return null;
+	public static Reader getReader(String name) {
+		InputStream inputStream = getInputStream(name);
+		if (inputStream != null) {
+			BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
+			return reader;
+		}
+		return null;
+	}
+
+	public static String readFile(String string) {
+		InputStream inputStream = getInputStream(string);
+		if (inputStream != null) {
+			return new String(readStream(inputStream));
+		}
+		return null;
 	}
 
 }

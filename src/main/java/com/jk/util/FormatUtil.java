@@ -15,17 +15,16 @@
  */
 package com.jk.util;
 
+import java.sql.Date;
 import java.sql.Time;
 import java.sql.Timestamp;
 import java.text.DecimalFormat;
 import java.text.Format;
 import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
 import com.jk.annotations.Author;
-import com.jk.exceptions.handler.ExceptionUtil;
 
 /**
  * The Class FormatUtil.
@@ -99,10 +98,6 @@ public class FormatUtil {
 			pattern = FormatUtil.DEFAULT_DATE_PATTERN;
 		}
 		return FormatUtil.getDateFormatter(pattern).format(object);
-	}
-
-	public synchronized static String formatDate(final java.util.Date object) {
-		return formatDate(object, FormatUtil.DEFAULT_DATE_PATTERN);
 	}
 
 	/**
@@ -190,38 +185,24 @@ public class FormatUtil {
 		return numberFormatter.format(count);
 	}
 
-//	public static String formatCurrentDatabaseDate() {
-//		try {
-//			return FormatUtil.formatDate(DaoUtil.getSystemDate(), "yyyy-MM-dd");
-//		} catch (final JKDataAccessException e) {
-//			ExceptionUtil.handle(e);
-//			// unreachable
-//			return null;
-//		}
-//	}
-
-	public static String formatCurrentDate() {
-		return FormatUtil.formatDate(new Date(), "yyyy-MM-dd");
+	/**
+	 *
+	 * @param date
+	 *            Date
+	 * @param pattren
+	 *            String
+	 * @return String
+	 */
+	public static String formatDate(final java.util.Date date) {
+		return formatDate(date, MYSQL_DATE_DB_PATTERN);
 	}
 
-	public static String formatFullTime(final Date date) {
-		return FormatUtil.formatDate(date, "hh:mm:ss SSS");
+	/**
+	 *
+	 * @param timeFrom
+	 * @return
+	 */
+	public static String formatTime(final Time time) {
+		return formatDate(time, "hh:mm");
 	}
-
-	public static String formatTime(final Date date) {
-		return FormatUtil.formatDate(date, "hh:mm");
-	}
-
-	public static String getCurrentDate() {
-		return getFormatedDate(System.currentTimeMillis());
-	}
-
-	// ///////////////////////////////////////////////////////////////////////////////////////
-	// Mohamed Kiswani
-	//
-	// /////////////////////////////////////////////////////////////////////////////////////
-	public static String getFormatedDate(final long value) {
-		return FormatUtil.formatDate(new Date(value), FormatUtil.MYSQL_DATE_DB_PATTERN);
-	}
-
 }

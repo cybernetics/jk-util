@@ -15,7 +15,6 @@
  */
 package com.jk.util;
 
-
 import java.sql.Time;
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -296,18 +295,11 @@ public class DateTimeUtil {
 	}
 
 	public static boolean isDateEqaualed(final java.util.Date date1, final java.util.Date date2) {
-		final String d1 = FormatUtil.formatDate(date1);
-		final String d2 = FormatUtil.formatDate(date2);
+		final String d1 = FormatUtil.formatDate(date1, FormatUtil.MYSQL_DATE_DB_PATTERN);
+		final String d2 = FormatUtil.formatDate(date2, FormatUtil.MYSQL_DATE_DB_PATTERN);
 		return d1.equalsIgnoreCase(d2);
 	}
 
-	/**
-	 *
-	 * @param startDate
-	 * @param endDate
-	 * @return
-	 * @throws JKDataAccessException
-	 */
 	public static boolean isPeriodActive(final Date startDate, final Date endDate)  {
 		if (startDate == null && endDate == null) {
 			return true;
@@ -327,7 +319,7 @@ public class DateTimeUtil {
 	}
 
 	public static Date getSystemDate() {
-		//fix to get system db in reliable way
+		//TODO : it should read the system data from db server of online time server
 		return new Date();
 	}
 
