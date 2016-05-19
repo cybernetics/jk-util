@@ -21,31 +21,31 @@ import java.util.Enumeration;
 
 import javax.swing.tree.TreeNode;
 
-public class Privilige  {
+public class JKPrivilige  {
 
 	int priviligeId;
 	String priviligeName;
-	Privilige parentPrivlige;
+	JKPrivilige parentPrivlige;
 	String desc;
-	ArrayList<Privilige> childs = new ArrayList<Privilige>();
+	ArrayList<JKPrivilige> childs = new ArrayList<JKPrivilige>();
 	boolean selected;// to be used on the GUI when selected in the security
 	private boolean editable = true;
 	private int number;
 
 	// panel
 
-	public Privilige() {
+	public JKPrivilige() {
 	}
 
-	public Privilige(final int priviligeId) {
+	public JKPrivilige(final int priviligeId) {
 		this.priviligeId = priviligeId;
 	}
 
-	public Privilige(final int priviligeId, final String name, final Privilige parent) {
+	public JKPrivilige(final int priviligeId, final String name, final JKPrivilige parent) {
 		this(priviligeId, name, parent, 0);
 	}
 
-	public Privilige(final int priviligeId, final String name, final Privilige parent, final int number) {
+	public JKPrivilige(final int priviligeId, final String name, final JKPrivilige parent, final int number) {
 		this.priviligeId = priviligeId;
 		this.priviligeName = name;
 		this.parentPrivlige = parent;
@@ -55,12 +55,12 @@ public class Privilige  {
 
 	@Override
 	public boolean equals(final Object obj) {
-		final Privilige that = (Privilige) obj;
+		final JKPrivilige that = (JKPrivilige) obj;
 		return this.priviligeId == that.priviligeId;
 	}
 
 
-	public ArrayList<Privilige> getChilds() {
+	public ArrayList<JKPrivilige> getChilds() {
 		return this.childs;
 	}
 
@@ -72,7 +72,7 @@ public class Privilige  {
 		return this.number;
 	}
 
-	public Privilige getParentPrivlige() {
+	public JKPrivilige getParentPrivlige() {
 		return this.parentPrivlige;
 	}
 
@@ -91,7 +91,7 @@ public class Privilige  {
 	}
 
 
-	public void setChilds(final ArrayList<Privilige> childs) {
+	public void setChilds(final ArrayList<JKPrivilige> childs) {
 		this.childs = childs;
 	}
 
@@ -107,7 +107,7 @@ public class Privilige  {
 		this.number = number;
 	}
 
-	public void setParentPrivlige(final Privilige parentPrivlige) {
+	public void setParentPrivlige(final JKPrivilige parentPrivlige) {
 		this.parentPrivlige = parentPrivlige;
 	}
 

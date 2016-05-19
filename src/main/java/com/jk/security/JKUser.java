@@ -19,7 +19,7 @@ import java.util.List;
 
 import com.jk.util.StringUtil;
 
-public class User {
+public class JKUser {
 	private int userRecordId;
 	private String userId;
 	private String fullName;
@@ -27,20 +27,20 @@ public class User {
 	private int status;
 
 	private boolean disabled;
-	private List<Privilige> priviliges;
+	private List<JKPrivilige> priviliges;
 
-	public User() {
+	public JKUser() {
 	}
 
 	/**
 	 *
 	 * @param userRecordId
 	 */
-	public User(final int userRecordId) {
+	public JKUser(final int userRecordId) {
 		this.userRecordId = userRecordId;
 	}
 
-	public User(final int id, final String name, final String fullName) {
+	public JKUser(final int id, final String name, final String fullName) {
 		this.userRecordId = id;
 		this.userId = name;
 		this.fullName = fullName;
@@ -138,11 +138,11 @@ public class User {
 		this.userRecordId = userRecordId;
 	}
 
-	public void setPriviliges(List<Privilige> priviliges) {
+	public void setPriviliges(List<JKPrivilige> priviliges) {
 		this.priviliges = priviliges;
 	}
 
-	public List<Privilige> getPriviliges() {
+	public List<JKPrivilige> getPriviliges() {
 		return priviliges;
 	}
 }

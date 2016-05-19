@@ -1,12 +1,13 @@
-package com.jk.secutity;
+package com.jk.security;
 
 import javax.crypto.Cipher;
 import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
 
+import com.jk.exceptions.JKEmptyReportException;
 import com.jk.exceptions.JKSecurityException;
 
-public class EncDec {
+public class JKEncDec {
 	static String IV = "AAAAAAAAAAAAAAAA";
 	static String plaintext = "test text 123\0\0\0"; /* Note null padding */
 	static String encryptionKey = "0123456789abcdef";
@@ -60,12 +61,16 @@ public class EncDec {
 	 * @return
 	 * @throws Exception
 	 */
-	public static String decrypt(String cipherText) throws Exception {
-		byte[] cipherBytes = toBytes(cipherText);
-		Cipher cipher = Cipher.getInstance("AES/CBC/NoPadding", "SunJCE");
-		SecretKeySpec key = new SecretKeySpec(encryptionKey.getBytes("UTF-8"), "AES");
-		cipher.init(Cipher.DECRYPT_MODE, key, new IvParameterSpec(IV.getBytes("UTF-8")));
-		return new String(cipher.doFinal(cipherBytes), "UTF-8").trim();
+	public static String decrypt(String cipherText) {
+		try {
+			byte[] cipherBytes = toBytes(cipherText);
+			Cipher cipher = Cipher.getInstance("AES/CBC/NoPadding", "SunJCE");
+			SecretKeySpec key = new SecretKeySpec(encryptionKey.getBytes("UTF-8"), "AES");
+			cipher.init(Cipher.DECRYPT_MODE, key, new IvParameterSpec(IV.getBytes("UTF-8")));
+			return new String(cipher.doFinal(cipherBytes), "UTF-8").trim();
+		} catch (Exception e) {
+			throw new JKSecurityException(e);
+		}
 	}
 
 	/**

@@ -15,6 +15,6 @@
  */
 package com.jk.security;
 
-public interface Authenticaor {
-	public User authenticate(String title, int maxRetries) ;
+public interface JKAuthenticaor {
+	public JKUser authenticate(String title, int maxRetries) ;
 }

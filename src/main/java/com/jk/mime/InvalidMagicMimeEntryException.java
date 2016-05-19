@@ -13,27 +13,22 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.jk.security;
+package com.jk.mime;
 
-public interface Authorizer {
+import java.util.ArrayList;
 
-	/**
-	 * check againest current user
-	 * 
-	 * @param privilige
-	 * @return
-	 * @throws SecurityException
-	 */
-	public void checkAllowed(Privilige privilige) ;
+/*
+ */
 
-	public void checkAllowed(User user, Privilige privilige) ;
+public class InvalidMagicMimeEntryException extends Exception {
 
-	/**
-	 *
-	 * @param privilige
-	 * @return
-	 * @throws SecurityException
-	 */
-	public boolean isValidPrivilige(Privilige privilige) ;
+	private static final long serialVersionUID = -6705937358834408523L;
 
+	public InvalidMagicMimeEntryException() {
+		super("Invalid Magic Mime Entry: Unknown entry");
+	}
+
+	public InvalidMagicMimeEntryException(final ArrayList<?> mimeMagicEntry) {
+		super("Invalid Magic Mime Entry: " + mimeMagicEntry.toString());
+	}
 }

@@ -19,11 +19,11 @@ import java.util.Date;
 
 import com.jk.util.ObjectUtil;
 
-public class Audit {
+public class JKAudit {
 	int auditId;
-	User user = JKSecurityManager.isUserLoggedIn() ? JKSecurityManager.getCurrentUser() : null;
+	JKUser user = JKSecurityManager.isUserLoggedIn() ? JKSecurityManager.getCurrentUser() : null;
 	Date date;
-	AuditType auditType;
+	JKAuditType auditType;
 	Object businessRecordId;
 	String oldValue;
 	String newValue;
@@ -44,7 +44,7 @@ public class Audit {
 		return b.toString();
 	}
 
-	public AuditType getAuditType() {
+	public JKAuditType getAuditType() {
 		return this.auditType;
 	}
 
@@ -76,15 +76,15 @@ public class Audit {
 		return this.tableName;
 	}
 
-	public User getUser() {
-		return this.user == null ? new User(1) : this.user;
+	public JKUser getUser() {
+		return this.user == null ? new JKUser(1) : this.user;
 	}
 
 	public void setAuditId(final int auditId) {
 		this.auditId = auditId;
 	}
 
-	public void setAuditType(final AuditType auditType) {
+	public void setAuditType(final JKAuditType auditType) {
 		this.auditType = auditType;
 	}
 
@@ -120,7 +120,7 @@ public class Audit {
 		this.tableName = recordName;
 	}
 
-	public void setUser(final User user) {
+	public void setUser(final JKUser user) {
 		this.user = user;
 	}
 

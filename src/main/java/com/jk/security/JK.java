@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.jk.secutity;
+package com.jk.security;
 
 import java.util.Random;
 
@@ -22,7 +22,7 @@ import java.util.Random;
 //Since  : 5-2-2010
 ///////////////////////////////////////////////////////////////////////////////////////
 
-public final class PasswordGenerator {
+public final class JK {
 	//////////////////////////////////////////////////////////////
 
 	////////////////////////////////////////////////////////////
@@ -76,6 +76,6 @@ public final class PasswordGenerator {
 
 	//////////////////////////////////////////////////////////////
 	public static void main(final String[] args) {
-		System.err.println(PasswordGenerator.generateMixPassword(8));
+		System.err.println(JK.generateMixPassword(8));
 	}
 }

@@ -16,22 +16,22 @@
 package com.jk.security;
 
 
-public class AuditType {
-	public static AuditType AUDIT_ADD_RECORD = new AuditType(1, "ADD");
-	public static AuditType AUDIT_UPDATE_RECORD = new AuditType(2, "UPDATE");
-	public static AuditType AUDIT_DELETE_RECORD = new AuditType(3, "DELETE");
-	public static AuditType AUDIT_LOGIN = new AuditType(4, "LOGIN");
-	public static AuditType AUDIT_LOGOUT = new AuditType(5, "LOGOUT");
+public class JKAuditType {
+	public static JKAuditType AUDIT_ADD_RECORD = new JKAuditType(1, "ADD");
+	public static JKAuditType AUDIT_UPDATE_RECORD = new JKAuditType(2, "UPDATE");
+	public static JKAuditType AUDIT_DELETE_RECORD = new JKAuditType(3, "DELETE");
+	public static JKAuditType AUDIT_LOGIN = new JKAuditType(4, "LOGIN");
+	public static JKAuditType AUDIT_LOGOUT = new JKAuditType(5, "LOGOUT");
 
 	int auditTypeId;
 	String auditTypeName;
 	String module;
 
-	public AuditType(final int id) {
+	public JKAuditType(final int id) {
 		this.auditTypeId = id;
 	}
 
-	public AuditType(final int id, final String name) {
+	public JKAuditType(final int id, final String name) {
 		this.auditTypeId = id;
 		setAuditTypeName(name);
 	}

@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.fs.commons.util.mime;
+package com.jk.mime;
 
 import java.io.IOException;
 import java.io.RandomAccessFile;

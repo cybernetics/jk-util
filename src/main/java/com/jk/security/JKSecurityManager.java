@@ -16,28 +16,28 @@
 package com.jk.security;
 
 public class JKSecurityManager {
-	static Authenticaor authenticaor;
+	static JKAuthenticaor authenticaor;
 
-	static Authorizer authorizer;
+	static JKAuthorizer authorizer;
 
-	private static User currentUser;
+	private static JKUser currentUser;
 
 	/**
 	 *
 	 * @param priviligeId
 	 * @param String
 	 * @throws SecurityException
-	 * @throws NotAllowedOperationException
+	 * @throws JKNotAllowedOperationException
 	 */
-	public static void checkAllowedPrivilige(final Privilige privilige)  {
-		final Authorizer auth = getAuthorizer();
+	public static void checkAllowedPrivilige(final JKPrivilige privilige)  {
+		final JKAuthorizer auth = getAuthorizer();
 		auth.checkAllowed(privilige);
 	}
 
 	/**
 	 * @return the authenticaor
 	 */
-	public static Authenticaor getAuthenticaor() {
+	public static JKAuthenticaor getAuthenticaor() {
 		if (authenticaor == null) {
 			throw new IllegalStateException("Please set Auth implmentation");
 		}
@@ -47,7 +47,7 @@ public class JKSecurityManager {
 	/**
 	 * @return the authorizer
 	 */
-	public static Authorizer getAuthorizer() {
+	public static JKAuthorizer getAuthorizer() {
 		if (authorizer == null) {
 			throw new IllegalStateException("Please set Auth implmentation");
 		}
@@ -57,7 +57,7 @@ public class JKSecurityManager {
 	/**
 	 * @return the currentUser
 	 */
-	public static User getCurrentUser() {
+	public static JKUser getCurrentUser() {
 		if (currentUser == null) {
 			throw new IllegalStateException("Current user cannot be null");
 		}
@@ -72,7 +72,7 @@ public class JKSecurityManager {
 	 * @param authenticaor
 	 *            the authenticaor to set
 	 */
-	public static void setAuthenticaor(final Authenticaor authenticaor) {
+	public static void setAuthenticaor(final JKAuthenticaor authenticaor) {
 		JKSecurityManager.authenticaor = authenticaor;
 	}
 
@@ -80,7 +80,7 @@ public class JKSecurityManager {
 	 * @param authorizer
 	 *            the authorizer to set
 	 */
-	public static void setAuthorizer(final Authorizer authorizer) {
+	public static void setAuthorizer(final JKAuthorizer authorizer) {
 		JKSecurityManager.authorizer = authorizer;
 	}
 
@@ -88,7 +88,7 @@ public class JKSecurityManager {
 	 *
 	 * @param user
 	 */
-	public static void setCurrentUser(final User currentUser) {
+	public static void setCurrentUser(final JKUser currentUser) {
 		JKSecurityManager.currentUser = currentUser;
 	}
 }
