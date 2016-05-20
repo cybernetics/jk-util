@@ -123,6 +123,15 @@ public class StringUtil {
 		return str == null || str.trim().equals("");
 	}
 
+	public static String concat(String... arr) {
+		StringBuffer b=new StringBuffer();
+		for (String string : arr) {
+			b.append(string);
+			b.append(" ");
+		}
+		return b.toString();
+	}
+
 
 
 
