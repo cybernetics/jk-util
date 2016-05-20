@@ -24,6 +24,7 @@ import java.util.ArrayList;
 import java.util.Vector;
 
 import com.jk.logging.JKLogger;
+import com.jk.logging.JKLoggerFactory;
 
 /*
  * A single MagicMime entry from the magic.mime file. This entry can contain
@@ -146,6 +147,7 @@ public class MagicMimeEntry {
 	MagicMimeEntry parent;
 
 	boolean isBetween;
+	private JKLogger logger=JKLoggerFactory.getLogger(getClass());
 
 	public MagicMimeEntry(final ArrayList<?> entries) throws InvalidMagicMimeEntryException {
 
@@ -593,7 +595,7 @@ public class MagicMimeEntry {
 	}
 
 	public void traverseAndPrint(final String tabs) {
-		JKLogger.info(tabs + toString());
+		logger.info(tabs + toString());
 		final int len = this.subEntries.size();
 		for (int i = 0; i < len; i++) {
 			final MagicMimeEntry me = this.subEntries.get(i);

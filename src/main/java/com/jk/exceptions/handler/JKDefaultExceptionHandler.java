@@ -15,9 +15,12 @@
  */
 package com.jk.exceptions.handler;
 
+
 import java.util.logging.Logger;
 
 import com.jk.annotations.Author;
+import com.jk.logging.JKLogger;
+import com.jk.logging.JKLoggerFactory;
 
 /**
  * The Class DefaultExceptionHandler.
@@ -25,10 +28,10 @@ import com.jk.annotations.Author;
  * @author Jalal Kiswani
  */
 @Author(name = "Jalal H. Kiswani", date = "1/11/2014", version = "1.0")
-public class JKDefaultExceptionHandler implements JKExceptionHandler {
+public class JKDefaultExceptionHandler<T extends Throwable> implements JKExceptionHandler<T> {
 
 	/** The logger. */
-	Logger logger = Logger.getLogger(getClass().getName());
+	JKLogger logger = JKLoggerFactory.getLogger(getClass());
 
 	/*
 	 * (non-Javadoc)
@@ -37,8 +40,8 @@ public class JKDefaultExceptionHandler implements JKExceptionHandler {
 	 * boolean)
 	 */
 	@Override
-	public void handle(final Throwable throwable, final boolean throwRuntimeException) {
-		this.logger.severe(throwable.getMessage());
+	public void handle(final T throwable, final boolean throwRuntimeException) {
+		this.logger.error(throwable);
 		if (throwRuntimeException) {
 			if (throwable instanceof RuntimeException) {
 				throw (RuntimeException) throwable;
