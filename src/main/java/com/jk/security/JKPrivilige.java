@@ -21,7 +21,7 @@ import java.util.Enumeration;
 
 import javax.swing.tree.TreeNode;
 
-public class JKPrivilige  {
+public class JKPrivilige {
 
 	int priviligeId;
 	String priviligeName;
@@ -37,21 +37,20 @@ public class JKPrivilige  {
 	public JKPrivilige() {
 	}
 
-	public JKPrivilige(final int priviligeId) {
-		this.priviligeId = priviligeId;
-	}
+	// private JKPrivilige(final int priviligeId) {
+	// this.priviligeId = priviligeId;
+	// }
 
 	public JKPrivilige(final int priviligeId, final String name, final JKPrivilige parent) {
-		this(priviligeId, name, parent, 0);
+		this(priviligeId, name, parent, parent == null ? 0 : parent.getChilds().size() + 1);
 	}
 
-	public JKPrivilige(final int priviligeId, final String name, final JKPrivilige parent, final int number) {
+	private JKPrivilige(final int priviligeId, final String name, final JKPrivilige parent, final int number) {
 		this.priviligeId = priviligeId;
 		this.priviligeName = name;
 		this.parentPrivlige = parent;
 		this.number = number;
 	}
-
 
 	@Override
 	public boolean equals(final Object obj) {
@@ -59,13 +58,12 @@ public class JKPrivilige  {
 		return this.priviligeId == that.priviligeId;
 	}
 
-
 	public ArrayList<JKPrivilige> getChilds() {
 		return this.childs;
 	}
 
 	public String getDesc() {
-		return getPriviligeName();
+		return desc;
 	}
 
 	public int getNumber() {
@@ -89,7 +87,6 @@ public class JKPrivilige  {
 	public String getPriviligeName() {
 		return this.priviligeName;
 	}
-
 
 	public void setChilds(final ArrayList<JKPrivilige> childs) {
 		this.childs = childs;
@@ -127,19 +124,18 @@ public class JKPrivilige  {
 		this.priviligeName = priviligeName;
 	}
 
-
 	@Override
 	public String toString() {
 		return toString(false);
 	}
 
 	public String toString(final boolean deep) {
-		final StringBuffer buf = new StringBuffer(this.number + " : ");
+		final StringBuffer buf = new StringBuffer(this.getPriviligeName());
 		if (deep) {
 			buf.append(getPriviligeId());
 			buf.append(",");
 		}
-		buf.append(getDesc());
+		buf.append(getPriviligeName());
 		if (deep && this.childs.size() > 0) {
 			buf.append(this.childs.toString());
 		}

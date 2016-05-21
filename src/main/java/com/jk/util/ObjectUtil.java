@@ -374,6 +374,10 @@ public class ObjectUtil {
 		// return null;
 	}
 
+	public static int hash(String name) {
+		return name.hashCode();
+	}
+
 }
 //////////////////////////////////////////////////////////////////////
 class XmlEncoderExceptionListener implements ExceptionListener {

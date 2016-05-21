@@ -1,5 +1,7 @@
 package com.jk.logging;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class JKLoggerFactory {
 
@@ -15,4 +17,5 @@ public class JKLoggerFactory {
 		JKLogger logger = JKLoggerFactory.getLogger(Integer.class);
 		logger.info("asdfads");
 	}
+
 }

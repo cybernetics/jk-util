@@ -15,6 +15,8 @@
  */
 package com.jk.security;
 
+import com.jk.util.ObjectUtil;
+
 public class JKSecurityManager {
 	static JKAuthenticaor authenticaor;
 
@@ -98,5 +100,14 @@ public class JKSecurityManager {
 
 	public static String encryptPassword(String text) {
 		return JKEncDec.encode(text);
+	}
+
+//	public static JKPrivilige createPrivilige(int id, String name, JKPrivilige parent) {
+//		return new JKPrivilige(id, name,parent);
+//	}
+
+	public static JKPrivilige createPrivilige(String name, JKPrivilige parent) {
+		int id=ObjectUtil.hash(parent==null?name:name.concat(parent.getPriviligeName()));
+		return new JKPrivilige(id, name,parent);
 	}
 }
