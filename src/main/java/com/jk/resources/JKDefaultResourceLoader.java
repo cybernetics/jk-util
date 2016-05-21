@@ -40,6 +40,9 @@ public class JKDefaultResourceLoader implements JKResourceLoader {
 
 	@Override
 	public URL getResourceUrl(String fileName) {
+		if(fileName==null){
+			return null;
+		}
 		URL resource = getClass().getResource(fileName);
 		if (resource == null) {
 			resource = Thread.currentThread().getContextClassLoader().getResource(fileName);
