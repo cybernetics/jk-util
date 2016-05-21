@@ -108,6 +108,8 @@ public class JKSecurityManager {
 
 	public static JKPrivilige createPrivilige(String name, JKPrivilige parent) {
 		int id=ObjectUtil.hash(parent==null?name:name.concat(parent.getPriviligeName()));
-		return new JKPrivilige(id, name,parent);
+		JKPrivilige p = new JKPrivilige(id, name,parent);
+		p.setDesc(p.getFullName());
+		return p;
 	}
 }

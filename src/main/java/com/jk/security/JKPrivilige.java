@@ -141,4 +141,13 @@ public class JKPrivilige {
 		}
 		return buf.toString();
 	}
+
+	public String getFullName() {
+		StringBuffer buf = new StringBuffer();
+		if (getParentPrivlige() != null) {
+			buf.append(parentPrivlige.getFullName().concat(" >"));
+		}
+		buf.append(getPriviligeName());
+		return buf.toString();
+	}
 }
