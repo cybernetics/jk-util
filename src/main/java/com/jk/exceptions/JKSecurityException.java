@@ -1,6 +1,6 @@
 package com.jk.exceptions;
 
-public class JKSecurityException extends JKException {
+public class JKSecurityException extends JKException implements JKNonPrintableException{
 
 	public JKSecurityException() {
 		super();
