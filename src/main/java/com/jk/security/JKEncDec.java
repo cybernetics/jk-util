@@ -4,6 +4,8 @@ import javax.crypto.Cipher;
 import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
 
+import org.apache.commons.codec.binary.Base64;
+
 import com.jk.exceptions.JKEmptyReportException;
 import com.jk.exceptions.JKSecurityException;
 
@@ -16,6 +18,9 @@ public class JKEncDec {
 		String encrypt = encrypt("123");
 		System.out.println(encrypt);
 		System.out.println(decrypt("97,-32,64,9,-124,-41,-95,94,-73,-72,28,-126,-76,79,-108,109"));
+		
+		System.out.println(encode("3"));
+		
 	}
 
 	/**
@@ -100,6 +105,37 @@ public class JKEncDec {
 			plainText += " ";
 		}
 		return plainText;
+	}
+
+	/**
+	 *
+	 * @param source
+	 * @return
+	 */
+	public static String decode(final String source) {
+		return decodeFromBase64(source);
+	}
+
+	/**
+	 *
+	 * @param string
+	 * @return
+	 */
+	public static String decodeFromBase64(final String string) {
+		return new String(Base64.decodeBase64(string));
+	}
+
+	public static String encode(final String source) {
+		return encodeInToBase64(source);
+	}
+
+	/**
+	 *
+	 * @param string
+	 * @return
+	 */
+	public static String encodeInToBase64(final String string) {
+		return Base64.encodeBase64String(string.getBytes());
 	}
 
 }

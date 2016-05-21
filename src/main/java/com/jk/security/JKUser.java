@@ -145,4 +145,5 @@ public class JKUser {
 	public List<JKPrivilige> getPriviliges() {
 		return priviliges;
 	}
+
 }

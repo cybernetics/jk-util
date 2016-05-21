@@ -91,4 +91,12 @@ public class JKSecurityManager {
 	public static void setCurrentUser(final JKUser currentUser) {
 		JKSecurityManager.currentUser = currentUser;
 	}
+
+	public static boolean matchPassword(String plain, JKUser user) {
+		return JKEncDec.encode(plain).equals(user.getPassword());
+	}
+
+	public static String encryptPassword(String text) {
+		return JKEncDec.encode(text);
+	}
 }

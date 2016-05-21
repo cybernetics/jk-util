@@ -12,7 +12,7 @@ public class JKLogger {
 		logger = LoggerFactory.getLogger(name);
 	}
 
-	public void info(String... msg) {
+	public void info(Object... msg) {
 		logger.info(StringUtil.concat(msg));
 	}
 
@@ -20,7 +20,7 @@ public class JKLogger {
 		logger.info(msg, exception);
 	}
 
-	public void debug(String... msg) {
+	public void debug(Object... msg) {
 		logger.debug(StringUtil.concat(msg));
 	}
 
@@ -28,7 +28,7 @@ public class JKLogger {
 		logger.debug(msg, exception);
 	}
 
-	public void trace(String... msg) {
+	public void trace(Object... msg) {
 		logger.trace(StringUtil.concat(msg));
 	}
 
@@ -36,7 +36,7 @@ public class JKLogger {
 		logger.trace(msg, exception);
 	}
 
-	public void error(String ...msg) {
+	public void error(Object ...msg) {
 		logger.error(StringUtil.concat(msg));
 	}
 

@@ -31,7 +31,6 @@ import java.lang.reflect.Modifier;
 import java.sql.Time;
 import java.sql.Timestamp;
 import java.util.Date;
-import java.util.List;
 
 import org.apache.commons.beanutils.BeanUtils;
 import org.apache.commons.beanutils.ConstructorUtils;

@@ -106,7 +106,7 @@ public class StringUtil {
 
 	public static String removeLast(String original, String string) {
 		int lastIndexOf = original.lastIndexOf(string);
-		if(lastIndexOf == -1 ){
+		if (lastIndexOf == -1) {
 			return original;
 		}
 		return original.substring(0, lastIndexOf);
@@ -118,21 +118,19 @@ public class StringUtil {
 		return "'" + value + "'";
 	}
 
-
 	public static boolean isEmpty(String str) {
 		return str == null || str.trim().equals("");
 	}
 
-	public static String concat(String... arr) {
-		StringBuffer b=new StringBuffer();
-		for (String string : arr) {
-			b.append(string);
-			b.append(" ");
+	public static String concat(Object... arr) {
+		StringBuffer b = new StringBuffer();
+		for (Object string : arr) {
+			if (string != null) {
+				b.append(string);
+				b.append(" ");
+			}
 		}
 		return b.toString();
 	}
-
-
-
 
 }
