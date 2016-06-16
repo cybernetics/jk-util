@@ -106,7 +106,7 @@ public class StringUtil {
 
 	public static String removeLast(String original, String string) {
 		int lastIndexOf = original.lastIndexOf(string);
-		if(lastIndexOf == -1 ){
+		if (lastIndexOf == -1) {
 			return original;
 		}
 		return original.substring(0, lastIndexOf);
