@@ -10,12 +10,15 @@ This is utility classes used by my other projects
 	</dependency>
 
 ##Resource Loading
+###API
+![alt tag](https://github.com/kiswanij/jk-util/blob/master/design/resource-loader.PNG)
+###Usage	
 	InputStream in = JKResourceLoaderFactory.getResourceLoader().getResourceAsStream(fileName);
 
 ## Exception Handling
-###Class Diagram
+###API Class Diagram
 ![alt tag](https://github.com/kiswanij/jk-util/blob/master/design/exception-handling1.PNG)
-###Sequence Diagram
+###API Sequence Diagram
 ![alt tag](https://github.com/kiswanij/jk-util/blob/master/design/exception-handling2.PNG)
 ###Usage:
 just handle the exception this way in your catch clause:  
@@ -53,8 +56,6 @@ To create exception handler :
 ##Context-API
 ![alt tag](https://github.com/kiswanij/jk-util/blob/master/design/context.PNG)
 
-##Resource-Loaders API
-![alt tag](https://github.com/kiswanij/jk-util/blob/master/design/resource-loader.PNG)
 
 Enjoy!  
 Jalal   
