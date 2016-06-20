@@ -49,7 +49,7 @@ To create exception handler :
 		}
 	}
 	
-- To register the exception handler :  
+- To register the exception handler :  	
 	
 	JKExceptionHandlerFactory.getInstance().setHandler(FileNotFoundException.class, new FileNotFoundExceptionHandler()); 
 
