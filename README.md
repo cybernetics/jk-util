@@ -57,6 +57,8 @@ To create exception handler :
 ###Class-Diagram
 ![alt tag](https://github.com/kiswanij/jk-util/blob/master/design/cache.PNG)  
 ### Usage
+In this scenario, the application should call `JKCacheManager cacheManager = JKCacheFactory.getCacheManager();` to get instance of cache manager, then it can add value to the cache by calling `cacheManager.cache(key, value);`, for retrieval , it should use `cacheManager.get(key,String.class)` to retrieve the value from cache , it will return `null` if the value is not available in cache.    
+
 	package com.jalalkiswani.examples;
 	
 	import com.jk.cache.JKCacheFactory;
