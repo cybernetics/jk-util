@@ -53,6 +53,27 @@ To create exception handler :
 	
 	JKExceptionHandlerFactory.getInstance().setHandler(FileNotFoundException.class, new FileNotFoundExceptionHandler()); 
 
+## Caching API
+###Class-Diagram
+![alt tag](https://github.com/kiswanij/jk-util/blob/master/design/cache.PNG)  
+### Usage
+	package com.jalalkiswani.examples;
+	
+	import com.jk.cache.JKCacheFactory;
+	import com.jk.cache.JKCacheManager;
+	
+	public class CachTest {
+		public static void main(String[] args) {
+			JKCacheManager cacheManager = JKCacheFactory.getCacheManager();
+			String key = "Cache-Key";
+			String value = "Cache-Value";
+			cacheManager.cache(key, value);
+			
+			System.out.println(cacheManager.get(key,String.class));			
+		}
+	}
+
+
 ##Context-API
 ![alt tag](https://github.com/kiswanij/jk-util/blob/master/design/context.PNG)
 

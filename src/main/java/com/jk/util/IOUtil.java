@@ -24,12 +24,14 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.Reader;
+import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Properties;
 import java.util.logging.Logger;
 
 import com.jk.exceptions.JKException;
+import com.jk.exceptions.handler.JKExceptionUtil;
 import com.jk.resources.JKResourceLoaderFactory;
 
 /**
@@ -39,7 +41,7 @@ import com.jk.resources.JKResourceLoaderFactory;
  */
 public class IOUtil {
 	private static final String USER_LOCAL_PATH = System.getProperty("user.home") + System.getProperty("file.separator") + "jk";
-
+	public static final String NEW_LINE = System.getProperty("line.separator");
 	/** The logger. */
 	static Logger logger = Logger.getLogger(IOUtil.class.getName());
 
@@ -212,4 +214,41 @@ public class IOUtil {
 		return null;
 	}
 
+	public static String getUrlContents(String urlString) {
+		HttpURLConnection con = null;
+		try {
+			URL url = new URL(urlString);
+			con = (HttpURLConnection) url.openConnection();
+			con.connect();
+			InputStream inputStream = con.getInputStream();
+
+			BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
+			StringBuffer contents = new StringBuffer();
+			String line;
+			while ((line = reader.readLine()) != null) {
+				contents.append(line);
+				contents.append(NEW_LINE);
+			}
+			inputStream.close();
+			return contents.toString();
+		} catch (Exception e) {
+			JKExceptionUtil.handle(e);
+			return null;// unreachable
+		} finally {
+			if (con != null) {
+				con.disconnect();
+			}
+		}
+	}
+
+	public static String getValueFromUrl(String url, String preText, int length) {
+		String urlContents = getUrlContents(url);
+		int indexOf = urlContents.indexOf(preText);
+		if (indexOf != -1) {
+			indexOf += preText.length();
+			String substring = urlContents.substring(indexOf, indexOf + length);
+			return substring;
+		}
+		return null;
+	}
 }
