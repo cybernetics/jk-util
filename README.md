@@ -9,13 +9,9 @@ This is utility classes used by my other projects
 	     <version>0.0.9-1</version>
 	</dependency>
 
-##Resource Loading
-###API
-![alt tag](https://github.com/kiswanij/jk-util/blob/master/design/resource-loader.PNG)
-###Usage	
-	InputStream in = JKResourceLoaderFactory.getResourceLoader().getResourceAsStream(fileName);
-
 ## Exception Handling
+For detailed descrption about this API, check my article titled "Exception Handling in Real-Life Java Applications" on DZone at :  
+<http://dzone.com/articles/exception-handling-in-real-life-applications>   
 ###API Class Diagram
 ![alt tag](https://github.com/kiswanij/jk-util/blob/master/design/exception-handling1.PNG)
 ###API Sequence Diagram
@@ -54,8 +50,6 @@ To create exception handler :
 	
 	    JKExceptionHandlerFactory.getInstance().registerHanders(yourPackageNameString);
 
-For more information, check my article titled "Exception Handling in Real-Life Java Applications" on DZone at :  
-<http://dzone.com/articles/exception-handling-in-real-life-applications>   
 ## Caching API
 ###Class-Diagram
 ![alt tag](https://github.com/kiswanij/jk-util/blob/master/design/cache.PNG)  
@@ -81,6 +75,13 @@ In this scenario, the application should call `JKCacheManager cacheManager = JKC
 
 ##Context-API
 ![alt tag](https://github.com/kiswanij/jk-util/blob/master/design/context.PNG)
+
+
+##Resource Loading
+###API
+![alt tag](https://github.com/kiswanij/jk-util/blob/master/design/resource-loader.PNG)
+###Usage	
+	InputStream in = JKResourceLoaderFactory.getResourceLoader().getResourceAsStream(fileName);
 
 
 Enjoy!  
