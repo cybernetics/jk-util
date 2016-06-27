@@ -10,7 +10,7 @@ Utility API's and wrappers useful for all types of Java application development.
 	</dependency>
 
 ## Exception Handling
-For detailed descrption about this API, check my article titled "Exception Handling in Real-Life Java Applications" on DZone at :  
+For detailed description about this API, check my article titled "Exception Handling in Real-Life Java Applications" on DZone at :  
 <http://dzone.com/articles/exception-handling-in-real-life-applications>   
 ###API Class Diagram
 ![alt tag](https://github.com/kiswanij/jk-util/blob/master/design/exception-handling1.PNG)
