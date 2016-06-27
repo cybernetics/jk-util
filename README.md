@@ -6,7 +6,7 @@ This is utility classes used by my other projects
 	<dependency>
 	    <groupId>com.jalalkiswani</groupId>
 	    <artifactId>jk-util</artifactId>
-	    <version>0.0.9</version>
+	     <version>0.0.9-1</version>
 	</dependency>
 
 ##Resource Loading
@@ -37,6 +37,7 @@ To create exception handler :
 	
 	import com.jk.exceptions.handler.JKExceptionHandler;
 	
+	@ExceptionHandler
 	public class FileNotFoundExceptionHandler implements JKExceptionHandler<FileNotFoundException> {
 		Logger logger = Logger.getLogger(getClass().getName());
 	
@@ -51,8 +52,10 @@ To create exception handler :
 	
 - To register the exception handler :  	
 	
-	JKExceptionHandlerFactory.getInstance().setHandler(FileNotFoundException.class, new FileNotFoundExceptionHandler()); 
+	    JKExceptionHandlerFactory.getInstance().registerHanders(yourPackageNameString);
 
+For more information, check my article titled "Exception Handling in Real-Life Java Applications" on DZone at :  
+<http://dzone.com/articles/exception-handling-in-real-life-applications>   
 ## Caching API
 ###Class-Diagram
 ![alt tag](https://github.com/kiswanij/jk-util/blob/master/design/cache.PNG)  
