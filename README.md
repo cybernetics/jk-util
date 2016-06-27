@@ -1,5 +1,5 @@
 # JK-Util
-This is utility classes used by my other projects
+Utility API's and wrappers useful for all types of Java application development. 
 
 #Maven dependency:
 
