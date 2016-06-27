@@ -15,15 +15,24 @@
  */
 package com.jk.exceptions.handler;
 
+import java.io.IOException;
+import java.lang.reflect.ParameterizedType;
+import java.lang.reflect.Type;
 import java.util.LinkedHashMap;
+import java.util.List;
 
+import com.jk.annotations.AnnotationDetector;
+import com.jk.annotations.AnnotationHandler;
 import com.jk.annotations.Author;
+import com.jk.util.ObjectUtil;
 
 /**
  * A factory for creating ExceptionHandler objects.
  */
 @Author(name = "Jalal H. Kiswani", date = "1/11/2014", version = "1.0")
 public class JKExceptionHandlerFactory {
+
+	private static final String ParameterizedType = null;
 
 	/** The instance. */
 	private static JKExceptionHandlerFactory instance;
@@ -112,5 +121,22 @@ public class JKExceptionHandlerFactory {
 	 */
 	public void setHandler(final Class<? extends Throwable> clas, final JKExceptionHandler handler) {
 		this.handlers.put(clas, handler);
+	}
+
+	public void registerHanders(String packageString) {
+		List<String> list = AnnotationDetector.scanAsList(ExceptionHandler.class, packageString);
+		for (String handler : list) {
+//			System.out.println(handler);						
+			JKExceptionHandler<? extends Throwable> newInstance = ObjectUtil.newInstance(handler);
+			Class<? extends Throwable> clas = ObjectUtil.getGenericParamter(handler);
+			setHandler(clas, newInstance);
+		}
+	}
+
+
+
+	public static void main(String[] args) {
+		getInstance().registerHanders("com.jk.annotations");
+		JKExceptionUtil.handle(new IOException("test exception"));
 	}
 }

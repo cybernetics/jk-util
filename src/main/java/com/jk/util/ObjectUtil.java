@@ -15,7 +15,6 @@
  */
 package com.jk.util;
 
-
 import java.beans.ExceptionListener;
 import java.beans.XMLEncoder;
 import java.io.ByteArrayInputStream;
@@ -28,6 +27,8 @@ import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
+import java.lang.reflect.ParameterizedType;
+import java.lang.reflect.Type;
 import java.sql.Time;
 import java.sql.Timestamp;
 import java.util.Date;
@@ -74,7 +75,7 @@ public class ObjectUtil {
 	 *            the bean class name
 	 * @return the class
 	 */
-	public static Class getClass(final String beanClassName) {
+	public static Class<?> getClass(final String beanClassName) {
 		try {
 			return Class.forName(beanClassName);
 		} catch (final ClassNotFoundException e) {
@@ -327,7 +328,7 @@ public class ObjectUtil {
 			throw new JKException(e);
 		}
 	}
-	
+
 	///////////////////////////////////////////////////////////////////
 	public static Object callStaticMethod(Class clas, String methodName, Object... params) {
 		try {
@@ -354,7 +355,7 @@ public class ObjectUtil {
 			Object deepCopy = ois.readObject();
 			return deepCopy;
 		} catch (Exception e) {
-			throw new JKException(e); 
+			throw new JKException(e);
 		}
 	}
 
@@ -378,7 +379,14 @@ public class ObjectUtil {
 		return name.hashCode();
 	}
 
+	public static <T> Class<? extends T> getGenericParamter(String handler) {
+		ParameterizedType parameterizedType = (ParameterizedType) ObjectUtil.getClass(handler).getGenericInterfaces()[0];
+		Class<? extends T> clas = (Class<? extends T>) (parameterizedType.getActualTypeArguments()[0]);
+		return clas;
+	}
+
 }
+
 //////////////////////////////////////////////////////////////////////
 class XmlEncoderExceptionListener implements ExceptionListener {
 

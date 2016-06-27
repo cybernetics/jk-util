@@ -15,6 +15,7 @@
  */
 package com.jk.annotations;
 
+import java.lang.annotation.Annotation;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -42,7 +43,7 @@ public class AnnotationDetector {
 	 * @param handler
 	 *            the handler
 	 */
-	public static void scan(final Class clas, final String[] basePackage, final AnnotationHandler handler) {
+	public static void scan(final Class<? extends Annotation> clas, final String[] basePackage, final AnnotationHandler handler) {
 		final ClassPathScanningCandidateComponentProvider scanner = new ClassPathScanningCandidateComponentProvider(false);
 		scanner.setResourceLoader(new PathMatchingResourcePatternResolver(Thread.currentThread().getContextClassLoader()));
 		scanner.addIncludeFilter(new AnnotationTypeFilter(clas));
@@ -53,7 +54,7 @@ public class AnnotationDetector {
 		}
 	}
 
-	public static List<String> scanAsList(final Class clas, final String[] basePackage) {
+	public static List<String> scanAsList(final Class<? extends Annotation> clas, final String... basePackage) {
 		final List<String> classes = new ArrayList<>();
 		scan(clas, basePackage, new AnnotationHandler() {
 
