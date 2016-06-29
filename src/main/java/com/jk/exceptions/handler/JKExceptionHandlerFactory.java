@@ -32,8 +32,6 @@ import com.jk.util.ObjectUtil;
 @Author(name = "Jalal H. Kiswani", date = "1/11/2014", version = "1.0")
 public class JKExceptionHandlerFactory {
 
-	private static final String ParameterizedType = null;
-
 	/** The instance. */
 	private static JKExceptionHandlerFactory instance;
 
