@@ -6,7 +6,7 @@ Utility API's and wrappers useful for all types of Java application development.
 	<dependency>
 	    <groupId>com.jalalkiswani</groupId>
 	    <artifactId>jk-util</artifactId>
-	     <version>0.0.9-1</version>
+	     <version>0.0.9-2</version>
 	</dependency>
 
 ## Exception Handling
