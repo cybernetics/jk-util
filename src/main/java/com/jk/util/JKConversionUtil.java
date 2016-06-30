@@ -22,7 +22,7 @@ import java.util.Date;
  *
  * @author Jalal Kiswani
  */
-public class ConversionUtil {
+public class JKConversionUtil {
 
 	/**
 	 * To boolean.
@@ -32,18 +32,7 @@ public class ConversionUtil {
 	 * @return true, if successful
 	 */
 	public static boolean toBoolean(final Object value) {
-		boolean result = false;
-		if (value != null) {
-			if (value.toString().trim().equals("1") || value.toString().trim().toLowerCase().equals("true")) {
-				result = true;
-			} else {
-				result = false;
-			}
-		} else {
-			result = false;
-		}
-		return result;
-
+		return toBoolean(value, false);
 	}
 
 	/**
@@ -103,7 +92,7 @@ public class ConversionUtil {
 	 * @return the integer
 	 */
 	public static Integer toInteger(final Object value) {
-		return (int) ConversionUtil.toDouble(value);
+		return (int) JKConversionUtil.toDouble(value);
 	}
 
 	/**
@@ -136,5 +125,20 @@ public class ConversionUtil {
 			return new java.sql.Time(date.getTime());
 		}
 		return null;
+	}
+
+	public static boolean toBoolean(Object value, boolean defaultValue) {
+		boolean result;// = defaultValue;
+		if (value != null) {
+			if (value.toString().trim().equals("1") || value.toString().trim().toLowerCase().equals("true")) {
+				result = true;
+			} else {
+				result = false;
+			}
+		} else {
+			result = defaultValue;
+		}
+		return result;
+
 	}
 }

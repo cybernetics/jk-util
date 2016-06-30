@@ -18,7 +18,7 @@ package com.jk.mail;
 import java.io.IOException;
 import java.io.InputStream;
 
-import com.jk.util.IOUtil;
+import com.jk.util.JKIOUtil;
 
 public class Attachment {
 	public enum MimeType {
@@ -71,7 +71,7 @@ public class Attachment {
 	 * @throws IOException
 	 */
 	public void setData(final InputStream in) throws IOException {
-		final byte[] bytes = IOUtil.readStream(in);
+		final byte[] bytes = JKIOUtil.readStream(in);
 		setData(bytes);
 	}
 

@@ -3,7 +3,7 @@ package com.jk.logging;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.jk.util.StringUtil;
+import com.jk.util.JKStringUtil;
 
 public class JKLogger {
 	private Logger logger;
@@ -13,7 +13,7 @@ public class JKLogger {
 	}
 
 	public void info(Object... msg) {
-		logger.info(StringUtil.concat(msg));
+		logger.info(JKStringUtil.concat(msg));
 	}
 
 	public void info(String msg, Throwable exception) {
@@ -21,7 +21,7 @@ public class JKLogger {
 	}
 
 	public void debug(Object... msg) {
-		logger.debug(StringUtil.concat(msg));
+		logger.debug(JKStringUtil.concat(msg));
 	}
 
 	public void debug(String msg, Throwable exception) {
@@ -29,7 +29,7 @@ public class JKLogger {
 	}
 
 	public void trace(Object... msg) {
-		logger.trace(StringUtil.concat(msg));
+		logger.trace(JKStringUtil.concat(msg));
 	}
 
 	public void trace(String msg, Throwable exception) {
@@ -37,7 +37,7 @@ public class JKLogger {
 	}
 
 	public void error(Object ...msg) {
-		logger.error(StringUtil.concat(msg));
+		logger.error(JKStringUtil.concat(msg));
 	}
 
 	public void error(String msg, Throwable exception) {

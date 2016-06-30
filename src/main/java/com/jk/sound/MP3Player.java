@@ -19,7 +19,7 @@ import java.io.BufferedInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
 
-import com.jk.util.IOUtil;
+import com.jk.util.JKIOUtil;
 
 import javazoom.jl.player.Player;
 
@@ -30,7 +30,7 @@ public class MP3Player {
 	}
 
 	public static void play(final String fileName) throws FileNotFoundException, SoundException {
-		final InputStream inputStream = IOUtil.getInputStream(fileName);
+		final InputStream inputStream = JKIOUtil.getInputStream(fileName);
 		play(inputStream);
 	}
 
@@ -46,7 +46,7 @@ public class MP3Player {
 
 	// constructor that takes the name of an MP3 file
 	public MP3Player(final String filename) throws FileNotFoundException {
-		this(IOUtil.getInputStream(filename));
+		this(JKIOUtil.getInputStream(filename));
 		this.filename = filename;
 
 	}

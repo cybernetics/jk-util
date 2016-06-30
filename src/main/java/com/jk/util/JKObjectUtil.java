@@ -16,6 +16,7 @@
 package com.jk.util;
 
 import java.beans.ExceptionListener;
+import java.beans.XMLDecoder;
 import java.beans.XMLEncoder;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -32,8 +33,12 @@ import java.lang.reflect.Type;
 import java.sql.Time;
 import java.sql.Timestamp;
 import java.util.Date;
+import java.util.Enumeration;
+import java.util.Map;
+import java.util.Properties;
 
 import org.apache.commons.beanutils.BeanUtils;
+import org.apache.commons.beanutils.BeanUtilsBean;
 import org.apache.commons.beanutils.ConstructorUtils;
 import org.apache.commons.beanutils.PropertyUtils;
 import org.apache.commons.lang3.builder.ToStringBuilder;
@@ -42,6 +47,7 @@ import org.junit.Assert;
 
 import com.jk.annotations.Author;
 import com.jk.exceptions.JKException;
+import com.jk.exceptions.handler.JKExceptionUtil;
 
 /**
  * The Class ObjectUtil.
@@ -49,7 +55,7 @@ import com.jk.exceptions.JKException;
  * @author Jalal Kiswani
  */
 @Author(name = "Jalal Kiswani", date = "23/9/2014", version = "1.0")
-public class ObjectUtil {
+public class JKObjectUtil {
 
 	/**
 	 * Clone bean.
@@ -213,7 +219,7 @@ public class ObjectUtil {
 	 */
 	public static <T> T newInstance(final Class<T> clas, final Object... params) {
 		try {
-			final Class<?>[] paramClasses = ObjectUtil.toClassesFromObjects(params);
+			final Class<?>[] paramClasses = JKObjectUtil.toClassesFromObjects(params);
 			if (paramClasses.length == 0) {
 				return clas.newInstance();
 			}
@@ -316,7 +322,7 @@ public class ObjectUtil {
 	 */
 	public static boolean equals(final Object source, final Object target) {
 		Assert.assertNotNull(source);
-		return ObjectUtil.toString(source).equals(ObjectUtil.toString(target));
+		return JKObjectUtil.toString(source).equals(JKObjectUtil.toString(target));
 	}
 
 	public static <T> T getFieldValue(Class<?> clas, Object instance, String fieldName) {
@@ -375,15 +381,124 @@ public class ObjectUtil {
 		// return null;
 	}
 
+	public static Object toObject(final String xml) {
+		// XStream x = createXStream();
+		// return x.fromXML(xml);
+		// try {
+		final ByteArrayInputStream out = new ByteArrayInputStream(xml.getBytes());
+		final XMLDecoder encoder = new XMLDecoder(out);
+		final Object object = encoder.readObject();
+		//
+		encoder.close();
+		return object;
+		// } catch (Exception e) {
+		// System.err.println("Failed to decode object : \n" + xml);
+		// return null;
+		// }
+		// return null;
+	}
+
 	public static int hash(String name) {
 		return name.hashCode();
 	}
 
 	public static <T> Class<? extends T> getGenericParamter(String handler) {
-		ParameterizedType parameterizedType = (ParameterizedType) ObjectUtil.getClass(handler).getGenericInterfaces()[0];
+		ParameterizedType parameterizedType = (ParameterizedType) JKObjectUtil.getClass(handler).getGenericInterfaces()[0];
 		Class<? extends T> clas = (Class<? extends T>) (parameterizedType.getActualTypeArguments()[0]);
 		return clas;
 	}
+
+	////////////////////////////////////////////////////////////////////////////////////////////
+	public static String fixPropertyName(String name) {
+		// captialize every char after the underscore , and remove underscores
+		final char[] charArray = name.toCharArray();
+		for (int i = 0; i < charArray.length; i++) {
+			if (charArray[i] == '_') {
+				charArray[i + 1] = Character.toUpperCase(charArray[i + 1]);
+			}
+		}
+		name = new String(charArray).replaceAll("_", "");
+		return name;
+	}
+
+	public static void populate(Object instance, Map<String, Object> values) {
+		try {
+			BeanUtilsBean beanUtilBean = new BeanUtilsBean();
+			for (String key : values.keySet()) {
+				Object value = values.get(key);
+				beanUtilBean.setProperty(instance, key, value);
+			}
+		} catch (Exception e) {
+			JKExceptionUtil.handle(e);
+		}
+	}
+
+	public static boolean isClassAvilableInClassPath(String string) {
+		try {
+			Class.forName(string);
+			return true;
+		} catch (ClassNotFoundException e) {
+			return false;
+		}
+	}
+
+	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	public static void callMethod(final Object obj, final String methodName, final boolean includePrivateMehtods, final Object... args)
+			throws InvocationTargetException {
+		final Class[] intArgsClass = initParamsClasses(args);
+		try {
+			Class<?> current = obj.getClass();
+			Method method = null;
+			while (current != Object.class) {
+				try {
+					method = current.getDeclaredMethod(methodName, intArgsClass);
+					break;
+				} catch (final NoSuchMethodException ex) {
+					current = current.getSuperclass();
+				}
+			}
+			if (method == null) {
+				throw new NoSuchMethodException("Mehtod is not found in " + current);
+			}
+			method.setAccessible(true);
+			method.invoke(obj, args);
+		} catch (final InvocationTargetException e) {
+			throw new InvocationTargetException(e.getCause());
+		} catch (final Exception e) {
+			throw new InvocationTargetException(e);
+		}
+	}
+
+	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	public static void callMethod(final Object obj, final String methodName, final Object... args) throws InvocationTargetException {
+		callMethod(obj, methodName, false, args);
+	}
+
+	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	private static Class[] initParamsClasses(final Object... args) {
+		int count = 0;
+		Class[] intArgsClass = null;
+		if (args != null) {
+			intArgsClass = new Class[args.length];
+			for (final Object arg : args) {
+				intArgsClass[count++] = arg.getClass();
+			}
+		}
+		return intArgsClass;
+	}
+
+	// //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	// private static Object[] initParamsValues(final Object... args) {
+	// if (args == null) {
+	// return null;
+	// }
+	// final Object[] intArgs = new Object[args.length];
+	// int count = 0;
+	// for (final Object arg : args) {
+	// intArgs[count++] = arg;
+	// }
+	// return intArgs;
+	// }
 
 }
 
@@ -394,7 +509,7 @@ class XmlEncoderExceptionListener implements ExceptionListener {
 
 	public XmlEncoderExceptionListener() {
 		try {
-			this.out = new PrintStream(new FileOutputStream(IOUtil.getUserFolderPath(true) + "gui.log", true));
+			this.out = new PrintStream(new FileOutputStream(JKIOUtil.getUserFolderPath(true) + "gui.log", true));
 		} catch (final Exception e) {
 			System.err.println("unable to creat gui.log file for encoder exceptions , default logging will be used");
 		}

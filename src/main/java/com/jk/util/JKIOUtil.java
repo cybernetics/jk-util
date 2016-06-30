@@ -20,9 +20,11 @@ import java.io.DataInputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.PrintWriter;
 import java.io.Reader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
@@ -39,11 +41,11 @@ import com.jk.resources.JKResourceLoaderFactory;
  *
  * @author Jalal Kiswani
  */
-public class IOUtil {
+public class JKIOUtil {
 	private static final String USER_LOCAL_PATH = System.getProperty("user.home") + System.getProperty("file.separator") + "jk";
 	public static final String NEW_LINE = System.getProperty("line.separator");
 	/** The logger. */
-	static Logger logger = Logger.getLogger(IOUtil.class.getName());
+	static Logger logger = Logger.getLogger(JKIOUtil.class.getName());
 
 	/**
 	 * If the provided class has been loaded from a jar file that is on the
@@ -116,16 +118,18 @@ public class IOUtil {
 	 */
 	public static Properties readPropertiesFile(final File file) {
 		if (!file.exists()) {
-			IOUtil.logger.info(String.format("File %s doesnot exists , return empty map", file.getName()));
+			JKIOUtil.logger.info(String.format("File %s doesnot exists , return empty map", file.getName()));
 			return new Properties();
 		}
-		try (InputStream in = new FileInputStream(file)) {
-			final Properties prop = new Properties();
-			prop.load(in);
-			return prop;
-		} catch (final IOException e) {
-			throw new RuntimeException();
+		try {
+			InputStream in = new FileInputStream(file);
+			if (in != null) {
+				return readPropertiesStream(in);
+			}
+		} catch (IOException e) {
+			JKExceptionUtil.handle(e);
 		}
+		return null;
 	}
 
 	/**
@@ -250,5 +254,113 @@ public class IOUtil {
 			return substring;
 		}
 		return null;
+	}
+
+	public static String getExtension(final String fileName, final boolean withPoint) {
+		final int lastIndexOf = fileName.lastIndexOf(".");
+		if (!withPoint) {
+			return fileName.substring(lastIndexOf + 1);
+		}
+		return fileName.substring(lastIndexOf);
+	}
+
+	public static String removeExtension(String fileName) {
+		final String separator = System.getProperty("file.separator");
+		String filename;
+		// Remove the path upto the filename.
+		final int lastSeparatorIndex = fileName.lastIndexOf(separator);
+		if (lastSeparatorIndex == -1) {
+			filename = fileName;
+		} else {
+			filename = fileName.substring(lastSeparatorIndex + 1);
+		}
+
+		// Remove the extension.
+		final int extensionIndex = filename.lastIndexOf(".");
+		if (extensionIndex == -1) {
+			return filename;
+		}
+		fileName = fileName.substring(0, lastSeparatorIndex);
+		return fileName + File.separator + filename.substring(0, extensionIndex);
+	}
+
+	public static File writeDataToFile(final byte[] data, final File file) {
+		return writeDataToFile(data, file, false);
+	}
+
+	/**
+	 *
+	 * @param data
+	 * @param file
+	 * @param append
+	 * @return
+	 * @throws FileNotFoundException
+	 * @throws IOException
+	 */
+	public static File writeDataToFile(final byte[] data, final File file, final boolean append) {
+		try (FileOutputStream out = new FileOutputStream(file, append)) {
+			out.write(data);
+			out.close();
+			return file;
+		} catch (Exception e) {
+			JKExceptionUtil.handle(e);
+			return null;
+		}
+	}
+
+	public static Properties readPropertiesStream(InputStream inputStream) {
+		try {
+			final Properties prop = new Properties();
+			prop.load(inputStream);
+			return prop;
+		} catch (IOException e) {
+			JKExceptionUtil.handle(e);
+			return null;
+		} finally {
+			close(inputStream);
+		}
+
+	}
+
+	private static void close(InputStream inputStream) {
+		if (inputStream != null) {
+			try {
+				inputStream.close();
+			} catch (IOException e) {
+				// It is safe to eat this exception
+			}
+		}
+	}
+
+	public static File writeDataToTempFile(final byte[] data, final String suffix) throws IOException {
+		final File file = File.createTempFile("fs-", suffix);
+		return writeDataToFile(data, file);
+	}
+
+	// ////////////////////////////////////////////////////////////////////////
+
+	/**
+	 *
+	 * @return File
+	 * @param data
+	 *            String
+	 * @throws IOException
+	 */
+	public static File writeDataToTempFile(final String data, final String ext) throws IOException {
+		final File file = createTempFile(ext);
+		final PrintWriter out = new PrintWriter(new FileOutputStream(file));
+		out.print(data);
+		out.close();
+		return file;
+	}
+
+	/**
+	 * @param ext
+	 * @return
+	 * @throws IOException
+	 */
+	public static File createTempFile(final String ext) throws IOException {
+		final File file = File.createTempFile("fs-", "." + ext);
+		return file;
 	}
 }

@@ -31,7 +31,7 @@ import com.jk.time.JKTimeObject;
  *
  * @author Jalal Kiswani
  */
-public class DateTimeUtil {
+public class JKDateTimeUtil {
 	public enum CompareDates {
 		DATE1_LESS_THAN_DATE2, DATE1_GREATER_THAN_DATE2, DATE1_EQUAL_DATE2;
 	}
@@ -70,7 +70,7 @@ public class DateTimeUtil {
 	 * @return the string
 	 */
 	public static String formatFullTime(final Date date) {
-		return DateTimeUtil.formatDate(date, "hh:mm:ss SSS");
+		return JKDateTimeUtil.formatDate(date, "hh:mm:ss SSS");
 	}
 
 	/**
@@ -79,7 +79,7 @@ public class DateTimeUtil {
 	 * @return the current time
 	 */
 	public static String getCurrentTime() {
-		return DateTimeUtil.formatFullTime(new Date());
+		return JKDateTimeUtil.formatFullTime(new Date());
 	}
 
 	/**
@@ -121,7 +121,7 @@ public class DateTimeUtil {
 	}
 
 	public static String formatTime(Date date) {
-		return FormatUtil.formatDate(date, "hh:mm");
+		return JKFormatUtil.formatDate(date, "hh:mm");
 	}
 
 	public static boolean isTimesEqaualed(Date time1, Date time2) {
@@ -141,7 +141,7 @@ public class DateTimeUtil {
 	}
 
 	public static String formatCurrentDate() {
-		return FormatUtil.formatDate(new Date(), "yyyy-MM-dd");
+		return JKFormatUtil.formatDate(new Date(), "yyyy-MM-dd");
 	}
 
 	public static CompareDates compareTwoDates(Date date1, Date date2) {
@@ -227,7 +227,7 @@ public class DateTimeUtil {
 
 	// //////////////////////////////////////////////////////////////////////////////////
 	public static boolean isTimeConflict(Time timeFrom, Time timeTo, Time otherTimeFrom, Time otherTimeTo) {
-		if (DateTimeUtil.isTimesEqaualed(timeFrom, otherTimeFrom) || DateTimeUtil.isTimesEqaualed(timeTo, otherTimeTo)) {
+		if (JKDateTimeUtil.isTimesEqaualed(timeFrom, otherTimeFrom) || JKDateTimeUtil.isTimesEqaualed(timeTo, otherTimeTo)) {
 			return true;
 		}
 
@@ -261,7 +261,7 @@ public class DateTimeUtil {
 		if ((date1 == null && date2 != null) || (date1 != null && date2 == null)) {
 			return false;
 		}
-		return formatDate(date1, FormatUtil.MYSQL_DATE_DB_PATTERN).equals(formatDate(date2, FormatUtil.MYSQL_DATE_DB_PATTERN));
+		return formatDate(date1, JKFormatUtil.MYSQL_DATE_DB_PATTERN).equals(formatDate(date2, JKFormatUtil.MYSQL_DATE_DB_PATTERN));
 
 	}
 
@@ -295,8 +295,8 @@ public class DateTimeUtil {
 	}
 
 	public static boolean isDateEqaualed(final java.util.Date date1, final java.util.Date date2) {
-		final String d1 = FormatUtil.formatDate(date1, FormatUtil.MYSQL_DATE_DB_PATTERN);
-		final String d2 = FormatUtil.formatDate(date2, FormatUtil.MYSQL_DATE_DB_PATTERN);
+		final String d1 = JKFormatUtil.formatDate(date1, JKFormatUtil.MYSQL_DATE_DB_PATTERN);
+		final String d2 = JKFormatUtil.formatDate(date2, JKFormatUtil.MYSQL_DATE_DB_PATTERN);
 		return d1.equalsIgnoreCase(d2);
 	}
 

@@ -17,7 +17,7 @@ package com.jk.security;
 
 import java.util.Date;
 
-import com.jk.util.ObjectUtil;
+import com.jk.util.JKObjectUtil;
 
 public class JKAudit {
 	int auditId;
@@ -101,7 +101,7 @@ public class JKAudit {
 	}
 
 	public void setGui(final Object gui) {
-		setGui(ObjectUtil.toXml(gui));
+		setGui(JKObjectUtil.toXml(gui));
 	}
 
 	public void setGui(final String gui) {

@@ -26,10 +26,10 @@ import com.jk.logging.JKLoggerFactory;
  *
  * @author Jalal Kiswani
  */
-public class DebugUtil {
+public class JKDebugUtil {
 
 	/** The logger. */
-	static JKLogger logger = JKLoggerFactory.getLogger(DebugUtil.class);
+	static JKLogger logger = JKLoggerFactory.getLogger(JKDebugUtil.class);
 
 	/**
 	 * Gets the exception caller class.
@@ -53,7 +53,7 @@ public class DebugUtil {
 	 *            the label
 	 */
 	public static void printCurrentTime(final Object label) {
-		logger.debug(DateTimeUtil.getCurrentTime() + "  :" + label);
+		logger.debug(JKDateTimeUtil.getCurrentTime() + "  :" + label);
 	}
 
 	/**

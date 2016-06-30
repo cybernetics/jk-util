@@ -17,19 +17,19 @@ package com.jk.locale;
 
 import java.io.Serializable;
 
-public class Locale implements Serializable {
+public class JKLocale implements Serializable {
 	/**
 	 *
 	 */
 	private static final long serialVersionUID = -4392783699434888201L;
-	public static final Locale ARABIC = new Locale(1, "ar");
-	public static final Locale ENGLISH = new Locale(2, "en");
+	public static final JKLocale ARABIC = new JKLocale(1, "ar");
+	public static final JKLocale ENGLISH = new JKLocale(2, "en");
 
-	public static Locale valueOf(final int languageId) {
+	public static JKLocale valueOf(final int languageId) {
 		return languageId == 1 ? ARABIC : ENGLISH;
 	}
 
-	public static Locale valueOf(final String localeString) {
+	public static JKLocale valueOf(final String localeString) {
 		return localeString.equals("ar") ? ARABIC : ENGLISH;
 	}
 
@@ -41,7 +41,7 @@ public class Locale implements Serializable {
 	 * @param langId
 	 * @param languageName
 	 */
-	public Locale(final int langId, final String languageName) {
+	public JKLocale(final int langId, final String languageName) {
 		this.languageId = langId;
 		this.languageName = languageName;
 	}

@@ -23,7 +23,7 @@ import org.apache.commons.lang3.text.WordUtils;
  *
  * @author Jalal Kiswani
  */
-public class StringUtil {
+public class JKStringUtil {
 
 	/**
 	 * Compile.
@@ -132,5 +132,25 @@ public class StringUtil {
 		}
 		return b.toString();
 	}
+
+	public static String getFirstLine(final String message) {
+		if (isEmpty(message)) {
+			return message;
+		}
+		if (message.contains("\n")) {
+			return message.split("\n")[0];
+		}
+		return message;
+	}
+
+	////////////////////////////////////////////////////////////////////////////////////////////
+	public static StringBuilder removeLast(final StringBuilder builder, final String string) {
+		final int lastIndexOf = builder.lastIndexOf(string);
+		if (lastIndexOf == -1) {
+			return builder;
+		}
+		return new StringBuilder(builder.substring(0, lastIndexOf));
+	}
+
 
 }

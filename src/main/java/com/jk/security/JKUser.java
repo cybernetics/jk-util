@@ -17,7 +17,7 @@ package com.jk.security;
 
 import java.util.List;
 
-import com.jk.util.StringUtil;
+import com.jk.util.JKStringUtil;
 
 public class JKUser {
 	private int userRecordId;
@@ -52,7 +52,7 @@ public class JKUser {
 	 * @return
 	 */
 	public String getFullName() {
-		if (StringUtil.isEmpty(this.fullName)) {
+		if (JKStringUtil.isEmpty(this.fullName)) {
 			return getUserId();
 		}
 		return this.fullName;

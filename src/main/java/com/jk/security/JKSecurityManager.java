@@ -15,7 +15,7 @@
  */
 package com.jk.security;
 
-import com.jk.util.ObjectUtil;
+import com.jk.util.JKObjectUtil;
 
 public class JKSecurityManager {
 	static JKAuthenticaor authenticaor;
@@ -111,7 +111,7 @@ public class JKSecurityManager {
 	}
 	
 	public static JKPrivilige createPrivilige(String name, JKPrivilige parent,int number) {
-		int id=ObjectUtil.hash(parent==null?name:name.concat(parent.getPriviligeName()));
+		int id=JKObjectUtil.hash(parent==null?name:name.concat(parent.getPriviligeName()));
 		JKPrivilige p = new JKPrivilige(id, name,parent);
 		p.setNumber(number);
 		p.setDesc(p.getFullName());

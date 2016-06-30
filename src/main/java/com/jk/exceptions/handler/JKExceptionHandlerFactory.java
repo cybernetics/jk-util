@@ -24,7 +24,7 @@ import java.util.List;
 import com.jk.annotations.AnnotationDetector;
 import com.jk.annotations.AnnotationHandler;
 import com.jk.annotations.Author;
-import com.jk.util.ObjectUtil;
+import com.jk.util.JKObjectUtil;
 
 /**
  * A factory for creating ExceptionHandler objects.
@@ -125,8 +125,8 @@ public class JKExceptionHandlerFactory {
 		List<String> list = AnnotationDetector.scanAsList(ExceptionHandler.class, packageString);
 		for (String handler : list) {
 //			System.out.println(handler);						
-			JKExceptionHandler<? extends Throwable> newInstance = ObjectUtil.newInstance(handler);
-			Class<? extends Throwable> clas = ObjectUtil.getGenericParamter(handler);
+			JKExceptionHandler<? extends Throwable> newInstance = JKObjectUtil.newInstance(handler);
+			Class<? extends Throwable> clas = JKObjectUtil.getGenericParamter(handler);
 			setHandler(clas, newInstance);
 		}
 	}

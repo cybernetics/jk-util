@@ -32,7 +32,7 @@ import com.jk.annotations.Author;
  * @author Jalal Kiswani
  */
 @Author(name = "Jalal H. Kiswani", date = "1/11/2014", version = "1.0")
-public class FormatUtil {
+public class JKFormatUtil {
 
 	/** The Constant DEFAULT_DATE_PATTERN. */
 	private static final String DEFAULT_DATE_PATTERN = "dd/MM/yyyy";
@@ -64,19 +64,19 @@ public class FormatUtil {
 	 */
 	public static String format(final Object object, final String pattern) {
 		if (object instanceof Date) {
-			return FormatUtil.formatDate((Date) object, pattern);
+			return JKFormatUtil.formatDate((Date) object, pattern);
 		}
 		if (object instanceof Time) {
-			return FormatUtil.formatTime((Time) object, pattern);
+			return JKFormatUtil.formatTime((Time) object, pattern);
 		}
 		if (object instanceof Timestamp) {
-			return FormatUtil.formatTimeStamp((Timestamp) object, pattern);
+			return JKFormatUtil.formatTimeStamp((Timestamp) object, pattern);
 		}
 		if (object instanceof java.util.Date) {
-			return FormatUtil.formatDate((java.util.Date) object, pattern);
+			return JKFormatUtil.formatDate((java.util.Date) object, pattern);
 		}
 		if (object instanceof Double) {
-			return FormatUtil.formatDouble((Double) object, pattern);
+			return JKFormatUtil.formatDouble((Double) object, pattern);
 		}
 		if (object != null) {
 			return object.toString();
@@ -95,9 +95,9 @@ public class FormatUtil {
 	 */
 	public synchronized static String formatDate(final java.util.Date object, String pattern) {
 		if (pattern == null || pattern.equals("")) {
-			pattern = FormatUtil.DEFAULT_DATE_PATTERN;
+			pattern = JKFormatUtil.DEFAULT_DATE_PATTERN;
 		}
-		return FormatUtil.getDateFormatter(pattern).format(object);
+		return JKFormatUtil.getDateFormatter(pattern).format(object);
 	}
 
 	/**
@@ -111,9 +111,9 @@ public class FormatUtil {
 	 */
 	public static String formatDouble(final Double amount, String pattern) {
 		if (pattern == null || pattern.equals("")) {
-			pattern = FormatUtil.DEFAULT_DOUBLE_FORMAT;
+			pattern = JKFormatUtil.DEFAULT_DOUBLE_FORMAT;
 		}
-		return FormatUtil.getNumberFormatter(pattern).format(amount);
+		return JKFormatUtil.getNumberFormatter(pattern).format(amount);
 	}
 
 	/**
@@ -127,9 +127,9 @@ public class FormatUtil {
 	 */
 	public synchronized static String formatTime(final Time object, String pattern) {
 		if (pattern == null || pattern.equals("")) {
-			pattern = FormatUtil.DEFAULT_TIME_PATTERN;
+			pattern = JKFormatUtil.DEFAULT_TIME_PATTERN;
 		}
-		return FormatUtil.getDateFormatter(pattern).format(object);
+		return JKFormatUtil.getDateFormatter(pattern).format(object);
 	}
 
 	/**
@@ -143,9 +143,9 @@ public class FormatUtil {
 	 */
 	public synchronized static String formatTimeStamp(final Timestamp date, String pattern) {
 		if (pattern == null || pattern.equals("")) {
-			pattern = FormatUtil.DEFAULT_TIMESTAMP_PATTERN;
+			pattern = JKFormatUtil.DEFAULT_TIMESTAMP_PATTERN;
 		}
-		return FormatUtil.getDateFormatter(pattern).format(date);
+		return JKFormatUtil.getDateFormatter(pattern).format(date);
 	}
 
 	/**
@@ -156,10 +156,10 @@ public class FormatUtil {
 	 * @return the date formatter
 	 */
 	public static Format getDateFormatter(final String pattern) {
-		Format format = FormatUtil.formatMap.get(pattern);
+		Format format = JKFormatUtil.formatMap.get(pattern);
 		if (format == null) {
 			format = new SimpleDateFormat(pattern);
-			FormatUtil.formatMap.put(pattern, format);
+			JKFormatUtil.formatMap.put(pattern, format);
 		}
 		return format;
 	}
@@ -172,10 +172,10 @@ public class FormatUtil {
 	 * @return the number formatter
 	 */
 	public static Format getNumberFormatter(final String pattern) {
-		Format format = FormatUtil.formatMap.get(pattern);
+		Format format = JKFormatUtil.formatMap.get(pattern);
 		if (format == null) {
 			format = new DecimalFormat(pattern);
-			FormatUtil.formatMap.put(pattern, format);
+			JKFormatUtil.formatMap.put(pattern, format);
 		}
 		return format;
 	}

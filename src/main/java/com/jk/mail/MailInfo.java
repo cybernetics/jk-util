@@ -22,15 +22,15 @@ import org.apache.commons.mail.ByteArrayDataSource;
 import org.apache.commons.mail.EmailException;
 import org.apache.commons.mail.MultiPartEmail;
 
-import com.jk.util.ConversionUtil;
+import com.jk.util.JKConversionUtil;
 
 public class MailInfo {
 	String host = System.getProperty("jk-mail-host", "smtp.gmail.com");
-	boolean requiresAuthentication = ConversionUtil.toBoolean(System.getProperty("jk-mail-host-auth", "true"));
-	boolean secured = ConversionUtil.toBoolean(System.getProperty("jk-mail-secured", "true"));
+	boolean requiresAuthentication = JKConversionUtil.toBoolean(System.getProperty("jk-mail-host-auth", "true"));
+	boolean secured = JKConversionUtil.toBoolean(System.getProperty("jk-mail-secured", "true"));
 	private String username = System.getProperty("jk-mail-user");
 	private String password = System.getProperty("jk-mail-password");
-	private int smtpPort = ConversionUtil.toInteger(System.getProperty("jk-mail-smtp-port", "587"));
+	private int smtpPort = JKConversionUtil.toInteger(System.getProperty("jk-mail-smtp-port", "587"));
 
 	String from;
 	String to;

@@ -17,7 +17,7 @@ package com.jk.util;
 
 import java.io.FileNotFoundException;
 
-public class MoneyUtil {
+public class JKMoneyUtil {
 	/**
 	 *
 	 * @param amount
