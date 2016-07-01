@@ -332,9 +332,14 @@ public class JKIOUtil {
 		}
 	}
 
-	public static File writeDataToTempFile(final byte[] data, final String suffix) throws IOException {
-		final File file = File.createTempFile("fs-", suffix);
-		return writeDataToFile(data, file);
+	public static File writeDataToTempFile(final byte[] data, final String suffix) {
+		try {
+			File file = File.createTempFile("fs-", suffix);
+			return writeDataToFile(data, file);
+		} catch (IOException e) {
+			JKExceptionUtil.handle(e);
+			return null;
+		}
 	}
 
 	// ////////////////////////////////////////////////////////////////////////
@@ -346,12 +351,17 @@ public class JKIOUtil {
 	 *            String
 	 * @throws IOException
 	 */
-	public static File writeDataToTempFile(final String data, final String ext) throws IOException {
-		final File file = createTempFile(ext);
-		final PrintWriter out = new PrintWriter(new FileOutputStream(file));
-		out.print(data);
-		out.close();
-		return file;
+	public static File writeDataToTempFile(final String data, final String ext) {
+		try {
+			final File file = createTempFile(ext);
+			final PrintWriter out = new PrintWriter(new FileOutputStream(file));
+			out.print(data);
+			out.close();
+			return file;
+		} catch (IOException e) {
+			JKExceptionUtil.handle(e);
+			return null;
+		}
 	}
 
 	/**
@@ -362,5 +372,17 @@ public class JKIOUtil {
 	public static File createTempFile(final String ext) throws IOException {
 		final File file = File.createTempFile("fs-", "." + ext);
 		return file;
+	}
+
+	public static URL getURL(String path) {
+		return JKResourceLoaderFactory.getResourceLoader().getResourceUrl(path);
+	}
+
+	public static Properties readPropertiesFile(String fileName) {
+		InputStream in = getInputStream(fileName);
+		if (in != null) {
+			return readPropertiesStream(in);
+		}
+		return new Properties();
 	}
 }

@@ -321,7 +321,12 @@ public class JKObjectUtil {
 	 * @return true, if successful
 	 */
 	public static boolean equals(final Object source, final Object target) {
-		Assert.assertNotNull(source);
+		if(source==null && target!=null){
+			return false;
+		}
+		if(source==null && target==null){
+			return true;
+		}
 		return JKObjectUtil.toString(source).equals(JKObjectUtil.toString(target));
 	}
 

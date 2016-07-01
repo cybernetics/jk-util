@@ -15,6 +15,10 @@
  */
 package com.jk.util;
 
+import java.awt.Toolkit;
+import java.awt.datatransfer.Clipboard;
+import java.awt.datatransfer.StringSelection;
+
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.text.WordUtils;
 
@@ -152,5 +156,10 @@ public class JKStringUtil {
 		return new StringBuilder(builder.substring(0, lastIndexOf));
 	}
 
+	public static void copyToClipboard(String text) {
+		final StringSelection stringSelection = new StringSelection(text);
+		final Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
+		clipboard.setContents(stringSelection, stringSelection);
+	}
 
 }

@@ -323,4 +323,8 @@ public class JKDateTimeUtil {
 		return new Date();
 	}
 
+	public static Date parseDate(String date) {
+		return parseDate(date, JKFormatUtil.DEFAULT_DATE_PATTERN);
+	}
+
 }

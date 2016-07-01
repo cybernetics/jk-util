@@ -35,23 +35,23 @@ import com.jk.annotations.Author;
 public class JKFormatUtil {
 
 	/** The Constant DEFAULT_DATE_PATTERN. */
-	private static final String DEFAULT_DATE_PATTERN = "dd/MM/yyyy";
+	public static final String DEFAULT_DATE_PATTERN = "dd/MM/yyyy";
 
 	/** The Constant DEFAULT_TIME_PATTERN. */
-	private static final String DEFAULT_TIME_PATTERN = "hh:mm:ss";
+	public static final String DEFAULT_TIME_PATTERN = "hh:mm:ss";
 
 	/** The Constant DEFAULT_TIMESTAMP_PATTERN. */
-	private static final String DEFAULT_TIMESTAMP_PATTERN = "dd/MM/yyyy hh:mm:ss";
+	public static final String DEFAULT_TIMESTAMP_PATTERN = "dd/MM/yyyy hh:mm:ss";
 
 	/** The Constant DEFAULT_DOUBLE_FORMAT. */
-	private static final String DEFAULT_DOUBLE_FORMAT = "###,###,##0.000";
+	public static final String DEFAULT_DOUBLE_FORMAT = "###,###,##0.000";
 
-	private static final String DEFAULT_NUMBER_FORMAT = "###,###,##0";
+	public static final String DEFAULT_NUMBER_FORMAT = "###,###,##0";
 
 	public static final String MYSQL_DATE_DB_PATTERN = "yyyy-MM-dd";
 
 	/** The format map. */
-	private static Map<String, Format> formatMap = new LinkedHashMap<String, Format>();
+	public static Map<String, Format> formatMap = new LinkedHashMap<String, Format>();
 
 	/**
 	 * Format.
@@ -194,7 +194,7 @@ public class JKFormatUtil {
 	 * @return String
 	 */
 	public static String formatDate(final java.util.Date date) {
-		return formatDate(date, MYSQL_DATE_DB_PATTERN);
+		return formatDate(date, DEFAULT_DATE_PATTERN);
 	}
 
 	/**
