@@ -210,17 +210,29 @@ public abstract class JKAbstractContext implements JKContext {
 		JKThreadLocal.setValue(JKContextConstants.USER, user);
 	}
 
+	/* (non-Javadoc)
+	 * @see com.jk.context.JKContext#getResourceLoader()
+	 */
 	@Override
 	public JKResourceLoader getResourceLoader() {
 		return JKResourceLoaderFactory.getResourceLoader();
 	}
 
+	/* (non-Javadoc)
+	 * @see com.jk.context.JKContext#getConfigPath()
+	 */
 	@Override
 	public String getConfigPath() {
 		return JKThreadLocal.getValue(JKContextConstants.JK_CONFIG_PATH, JKContextConstants.JK_CONFIG_PATH_DEFAULT)
 				.toString();
 	}
 
+	/**
+	 * Sets the config path.
+	 *
+	 * @param configPath
+	 *            the new config path
+	 */
 	public void setConfigPath(String configPath) {
 		JKThreadLocal.setValue(JKContextConstants.JK_CONFIG_PATH, configPath);
 	}

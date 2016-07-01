@@ -15,13 +15,30 @@
  */
 package com.fs.commons.desktop.validation.builtin;
 
+/**
+ * The Class Utilities.
+ *
+ * @author Jalal Kiswani
+ */
 public class Utilities {
 
+	/**
+	 * Checks if is java identifier.
+	 *
+	 * @param text
+	 *            the text
+	 * @return true, if is java identifier
+	 */
 	public static boolean isJavaIdentifier(final String text) {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
+	/**
+	 * Checks if is windows.
+	 *
+	 * @return true, if is windows
+	 */
 	public static boolean isWindows() {
 		// TODO Auto-generated method stub
 		return false;

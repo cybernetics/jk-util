@@ -45,6 +45,8 @@ public interface JKCacheManager {
 	/**
 	 * Gets the.
 	 *
+	 * @param <T>
+	 *            the generic type
 	 * @param key
 	 *            the key
 	 * @param clas

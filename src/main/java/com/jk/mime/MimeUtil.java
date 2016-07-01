@@ -25,8 +25,14 @@ import java.nio.ByteOrder;
 import java.util.ArrayList;
 import java.util.Properties;
 
+/**
+ * The Class MimeUtil.
+ *
+ * @author Jalal Kiswani
+ */
 public class MimeUtil {
 
+	/** The Constant UNKNOWN_MIME_TYPE. */
 	public static final String UNKNOWN_MIME_TYPE = "application/x-unknown-mime-type";
 
 	// the native byte order of the underlying OS. "BIG" or "little" Endian
@@ -65,9 +71,11 @@ public class MimeUtil {
 	}
 
 	/**
+	 * Gets the mime type.
 	 *
 	 * @param data
-	 * @return
+	 *            the data
+	 * @return the mime type
 	 */
 	public static String getMimeType(final byte[] data) {
 		String mimeType = null;
@@ -83,10 +91,14 @@ public class MimeUtil {
 	}
 
 	/**
+	 * Inits the.
 	 *
 	 * @param mimeTypes
+	 *            the mime types
 	 * @param magicStream
+	 *            the magic stream
 	 * @throws IOException
+	 *             Signals that an I/O exception has occurred.
 	 */
 	public static void init(final InputStream mimeTypes, final InputStream magicStream) throws IOException {
 		MimeUtil.mimeTypes.load(mimeTypes);
@@ -94,10 +106,14 @@ public class MimeUtil {
 	}
 
 	/**
+	 * The main method.
 	 *
 	 * @param args
-	 * @throws IOException
+	 *            the arguments
 	 * @throws FileNotFoundException
+	 *             the file not found exception
+	 * @throws IOException
+	 *             Signals that an I/O exception has occurred.
 	 */
 	public static void main(final String[] args) throws FileNotFoundException, IOException {
 		// init(GeneralUtility.getFileInputStream("/resources/mime-types.properties"),GeneralUtility.getFileInputStream("/resources/magic.mime")

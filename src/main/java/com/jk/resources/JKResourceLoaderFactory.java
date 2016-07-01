@@ -15,9 +15,17 @@
  */
 package com.jk.resources;
 
+/**
+ * A factory for creating JKResourceLoader objects.
+ */
 public class JKResourceLoaderFactory {
 	private static JKResourceLoader resourceLoader;
 
+	/**
+	 * Gets the resource loader.
+	 *
+	 * @return the resource loader
+	 */
 	public static JKResourceLoader getResourceLoader() {
 		if (resourceLoader == null) {
 			return new JKDefaultResourceLoader();
@@ -25,6 +33,12 @@ public class JKResourceLoaderFactory {
 		return resourceLoader;
 	}
 
+	/**
+	 * Sets the resource loader.
+	 *
+	 * @param servletResourceLoader
+	 *            the new resource loader
+	 */
 	public static void setResourceLoader(JKResourceLoader servletResourceLoader) {
 		resourceLoader = servletResourceLoader;
 	}

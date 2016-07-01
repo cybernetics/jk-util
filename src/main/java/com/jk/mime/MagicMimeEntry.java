@@ -45,15 +45,35 @@ import com.jk.logging.JKLoggerFactory;
  *
  */
 
+/**
+ * The Class MagicMimeEntry.
+ *
+ * @author Jalal Kiswani
+ */
 public class MagicMimeEntry {
 
+	/** The Constant STRING_TYPE. */
 	public static final int STRING_TYPE = 1;
+	
+	/** The Constant BELONG_TYPE. */
 	public static final int BELONG_TYPE = 2;
+	
+	/** The Constant SHORT_TYPE. */
 	public static final int SHORT_TYPE = 3;
+	
+	/** The Constant LELONG_TYPE. */
 	public static final int LELONG_TYPE = 4;
+	
+	/** The Constant BESHORT_TYPE. */
 	public static final int BESHORT_TYPE = 5;
+	
+	/** The Constant LESHORT_TYPE. */
 	public static final int LESHORT_TYPE = 6;
+	
+	/** The Constant BYTE_TYPE. */
 	public static final int BYTE_TYPE = 7;
+	
+	/** The Constant UNKNOWN_TYPE. */
 	public static final int UNKNOWN_TYPE = 20;
 
 	/*
@@ -149,6 +169,14 @@ public class MagicMimeEntry {
 	boolean isBetween;
 	private JKLogger logger=JKLoggerFactory.getLogger(getClass());
 
+	/**
+	 * Instantiates a new magic mime entry.
+	 *
+	 * @param entries
+	 *            the entries
+	 * @throws InvalidMagicMimeEntryException
+	 *             the invalid magic mime entry exception
+	 */
 	public MagicMimeEntry(final ArrayList<?> entries) throws InvalidMagicMimeEntryException {
 
 		this(0, null, entries);
@@ -232,14 +260,33 @@ public class MagicMimeEntry {
 		}
 	}
 
+	/**
+	 * Gets the check bytes from.
+	 *
+	 * @return the check bytes from
+	 */
 	public int getCheckBytesFrom() {
 		return this.checkBytesFrom;
 	}
 
+	/**
+	 * Gets the content.
+	 *
+	 * @return the content
+	 */
 	public String getContent() {
 		return this.content;
 	}
 
+	/**
+	 * Gets the match.
+	 *
+	 * @param content
+	 *            the content
+	 * @return the match
+	 * @throws IOException
+	 *             Signals that an I/O exception has occurred.
+	 */
 	public String getMatch(final byte[] content) throws IOException {
 		final ByteBuffer buf = readBuffer(content);
 		if (buf == null) {
@@ -270,10 +317,20 @@ public class MagicMimeEntry {
 		return null;
 	}
 
+	/**
+	 * Gets the mime type.
+	 *
+	 * @return the mime type
+	 */
 	public String getMimeType() {
 		return this.mimeType;
 	}
 
+	/**
+	 * Gets the type.
+	 *
+	 * @return the type
+	 */
 	public int getType() {
 		return this.type;
 	}
@@ -589,11 +646,20 @@ public class MagicMimeEntry {
 		return buf;
 	}
 
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
 	@Override
 	public String toString() {
 		return "MimeMagicType: " + this.checkBytesFrom + ", " + this.type + ", " + this.content + ", " + this.mimeType + ", " + this.mimeEnc;
 	}
 
+	/**
+	 * Traverse and print.
+	 *
+	 * @param tabs
+	 *            the tabs
+	 */
 	public void traverseAndPrint(final String tabs) {
 		logger.info(tabs + toString());
 		final int len = this.subEntries.size();

@@ -29,10 +29,22 @@ import com.fs.commons.desktop.validation.Validator;
 final class OrValidator<T> implements Validator<T> {
 	private final List<Validator<T>> validators = new LinkedList<Validator<T>>();
 
+	/**
+	 * Instantiates a new or validator.
+	 *
+	 * @param initial
+	 *            the initial
+	 */
 	public OrValidator(final Validator<T>... initial) {
 		this.validators.addAll(Arrays.asList(initial));
 	}
 
+	/**
+	 * Or.
+	 *
+	 * @param v
+	 *            the v
+	 */
 	public void or(final Validator<T> v) {
 		orImpl(v);
 	}
@@ -42,11 +54,17 @@ final class OrValidator<T> implements Validator<T> {
 		return this;
 	}
 
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
 	@Override
 	public String toString() {
 		return "OrValidator for " + this.validators;
 	}
 
+	/* (non-Javadoc)
+	 * @see com.fs.commons.desktop.validation.Validator#validate(com.fs.commons.desktop.validation.Problems, java.lang.String, java.lang.Object)
+	 */
 	@Override
 	public boolean validate(final Problems problems, final String compName, final T model) {
 		boolean result = true;

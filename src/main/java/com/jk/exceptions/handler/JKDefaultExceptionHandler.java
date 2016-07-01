@@ -26,6 +26,8 @@ import com.jk.logging.JKLoggerFactory;
  * The Class DefaultExceptionHandler.
  *
  * @author Jalal Kiswani
+ * @param <T>
+ *            the generic type
  */
 @Author(name = "Jalal H. Kiswani", date = "1/11/2014", version = "1.0")
 public class JKDefaultExceptionHandler<T extends Throwable> implements JKExceptionHandler<T> {

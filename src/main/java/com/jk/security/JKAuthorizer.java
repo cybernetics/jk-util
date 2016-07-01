@@ -15,24 +15,41 @@
  */
 package com.jk.security;
 
+/**
+ * The Interface JKAuthorizer.
+ *
+ * @author Jalal Kiswani
+ */
 public interface JKAuthorizer {
 
 	/**
-	 * check againest current user
-	 * 
+	 * check againest current user.
+	 *
 	 * @param privilige
-	 * @return
+	 *            the privilige
 	 * @throws SecurityException
+	 *             the security exception
 	 */
 	public void checkAllowed(JKPrivilige privilige) ;
 
+	/**
+	 * Check allowed.
+	 *
+	 * @param user
+	 *            the user
+	 * @param privilige
+	 *            the privilige
+	 */
 	public void checkAllowed(JKUser user, JKPrivilige privilige) ;
 
 	/**
+	 * Checks if is valid privilige.
 	 *
 	 * @param privilige
-	 * @return
+	 *            the privilige
+	 * @return true, if is valid privilige
 	 * @throws SecurityException
+	 *             the security exception
 	 */
 	public boolean isValidPrivilige(JKPrivilige privilige) ;
 

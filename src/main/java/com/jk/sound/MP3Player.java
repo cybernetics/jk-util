@@ -23,12 +23,36 @@ import com.jk.util.JKIOUtil;
 
 import javazoom.jl.player.Player;
 
+/**
+ * The Class MP3Player.
+ *
+ * @author Jalal Kiswani
+ */
 public class MP3Player {
+	
+	/**
+	 * Play.
+	 *
+	 * @param inputStream
+	 *            the input stream
+	 * @throws SoundException
+	 *             the sound exception
+	 */
 	public static void play(final InputStream inputStream) throws SoundException {
 		final MP3Player mp3 = new MP3Player(inputStream);
 		mp3.play();
 	}
 
+	/**
+	 * Play.
+	 *
+	 * @param fileName
+	 *            the file name
+	 * @throws FileNotFoundException
+	 *             the file not found exception
+	 * @throws SoundException
+	 *             the sound exception
+	 */
 	public static void play(final String fileName) throws FileNotFoundException, SoundException {
 		final InputStream inputStream = JKIOUtil.getInputStream(fileName);
 		play(inputStream);
@@ -40,10 +64,24 @@ public class MP3Player {
 
 	private final InputStream in;
 
+	/**
+	 * Instantiates a new MP 3 player.
+	 *
+	 * @param fileInputStream
+	 *            the file input stream
+	 */
 	public MP3Player(final InputStream fileInputStream) {
 		this.in = fileInputStream;
 	}
 
+	/**
+	 * Instantiates a new MP 3 player.
+	 *
+	 * @param filename
+	 *            the filename
+	 * @throws FileNotFoundException
+	 *             the file not found exception
+	 */
 	// constructor that takes the name of an MP3 file
 	public MP3Player(final String filename) throws FileNotFoundException {
 		this(JKIOUtil.getInputStream(filename));
@@ -51,12 +89,21 @@ public class MP3Player {
 
 	}
 
+	/**
+	 * Close.
+	 */
 	public void close() {
 		if (this.player != null) {
 			this.player.close();
 		}
 	}
 
+	/**
+	 * Play.
+	 *
+	 * @throws SoundException
+	 *             the sound exception
+	 */
 	// play the MP3 file to the sound card
 	public void play() throws SoundException {
 		try {

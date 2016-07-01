@@ -15,6 +15,11 @@
  */
 package com.jk.sound;
 
+/**
+ * The Class SoundException.
+ *
+ * @author Jalal Kiswani
+ */
 public class SoundException extends Exception {
 
 	/**
@@ -22,21 +27,44 @@ public class SoundException extends Exception {
 	 */
 	private static final long serialVersionUID = 1961246061140382786L;
 
+	/**
+	 * Instantiates a new sound exception.
+	 */
 	public SoundException() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
+	/**
+	 * Instantiates a new sound exception.
+	 *
+	 * @param message
+	 *            the message
+	 */
 	public SoundException(final String message) {
 		super(message);
 		// TODO Auto-generated constructor stub
 	}
 
+	/**
+	 * Instantiates a new sound exception.
+	 *
+	 * @param message
+	 *            the message
+	 * @param cause
+	 *            the cause
+	 */
 	public SoundException(final String message, final Throwable cause) {
 		super(message, cause);
 		// TODO Auto-generated constructor stub
 	}
 
+	/**
+	 * Instantiates a new sound exception.
+	 *
+	 * @param cause
+	 *            the cause
+	 */
 	public SoundException(final Throwable cause) {
 		super(cause);
 		// TODO Auto-generated constructor stub

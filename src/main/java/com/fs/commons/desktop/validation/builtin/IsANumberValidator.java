@@ -37,6 +37,9 @@ final class IsANumberValidator implements Validator<String> {
 		this.locale = l;
 	}
 
+	/* (non-Javadoc)
+	 * @see com.fs.commons.desktop.validation.Validator#validate(com.fs.commons.desktop.validation.Problems, java.lang.String, java.lang.Object)
+	 */
 	@Override
 	public boolean validate(final Problems problems, final String compName, final String model) {
 		final ParsePosition p = new ParsePosition(0);

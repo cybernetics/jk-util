@@ -46,8 +46,10 @@ public class JKFormatUtil {
 	/** The Constant DEFAULT_DOUBLE_FORMAT. */
 	public static final String DEFAULT_DOUBLE_FORMAT = "###,###,##0.000";
 
+	/** The Constant DEFAULT_NUMBER_FORMAT. */
 	public static final String DEFAULT_NUMBER_FORMAT = "###,###,##0";
 
+	/** The Constant MYSQL_DATE_DB_PATTERN. */
 	public static final String MYSQL_DATE_DB_PATTERN = "yyyy-MM-dd";
 
 	/** The format map. */
@@ -180,17 +182,23 @@ public class JKFormatUtil {
 		return format;
 	}
 
+	/**
+	 * Format number.
+	 *
+	 * @param count
+	 *            the count
+	 * @return the string
+	 */
 	public static String formatNumber(Number count) {
 		Format numberFormatter = getNumberFormatter(DEFAULT_NUMBER_FORMAT);
 		return numberFormatter.format(count);
 	}
 
 	/**
+	 * Format date.
 	 *
 	 * @param date
 	 *            Date
-	 * @param pattren
-	 *            String
 	 * @return String
 	 */
 	public static String formatDate(final java.util.Date date) {
@@ -198,9 +206,11 @@ public class JKFormatUtil {
 	}
 
 	/**
+	 * Format time.
 	 *
-	 * @param timeFrom
-	 * @return
+	 * @param time
+	 *            the time
+	 * @return the string
 	 */
 	public static String formatTime(final Time time) {
 		return formatDate(time, "hh:mm");

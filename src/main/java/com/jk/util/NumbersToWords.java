@@ -17,12 +17,24 @@ package com.jk.util;
 
 import java.text.DecimalFormat;
 
+/**
+ * The Class NumbersToWords.
+ *
+ * @author Jalal Kiswani
+ */
 public class NumbersToWords {
 	private static final String[] tensNames = { "", " Ten", " Twenty", " Thirty", " Forty", " Fifty", " Sixty", " Seventy", " Eighty", " Ninety" };
 
 	private static final String[] numNames = { "", " One", " Two", " Three", " Four", " Five", " Six", " Seven", " Eight", " Nine", " Ten", " Eleven",
 			" Twelve", " Thirteen", " Fourteen", " Fifteen", " Sixteen", " Seventeen", " Eighteen", " Nineteen" };
 
+	/**
+	 * Convert.
+	 *
+	 * @param number
+	 *            the number
+	 * @return the string
+	 */
 	public static String convert(final long number) {
 		// 0 to 999 999 999 999
 		if (number == 0) {
@@ -113,6 +125,12 @@ public class NumbersToWords {
 		return numNames[number] + " Hundred" + soFar;
 	}
 
+	/**
+	 * The main method.
+	 *
+	 * @param args
+	 *            the arguments
+	 */
 	public static void main(final String[] args) {
 		System.err.println(NumbersToWords.convert(45233));
 	}

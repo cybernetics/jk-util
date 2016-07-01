@@ -25,8 +25,8 @@ public final class Problem implements Comparable<Problem> {
 	private final Severity severity;
 
 	/**
-	 * Create a new problem with the given message and severity
-	 * 
+	 * Create a new problem with the given message and severity.
+	 *
 	 * @param message
 	 *            A localized, human readable message
 	 * @param severity
@@ -44,9 +44,10 @@ public final class Problem implements Comparable<Problem> {
 	}
 
 	/**
-	 * Compare, such that most severe Problems will appear last, least first
-	 * 
+	 * Compare, such that most severe Problems will appear last, least first.
+	 *
 	 * @param o
+	 *            the o
 	 * @return the difference in severity as an integer
 	 */
 	@Override
@@ -56,6 +57,9 @@ public final class Problem implements Comparable<Problem> {
 		return ix - oid;
 	}
 
+	/* (non-Javadoc)
+	 * @see java.lang.Object#equals(java.lang.Object)
+	 */
 	@Override
 	public boolean equals(final Object o) {
 		if (o == this) {
@@ -70,14 +74,17 @@ public final class Problem implements Comparable<Problem> {
 	}
 
 	/**
-	 * Get the localized, human-readable description of the problem
-	 * 
+	 * Get the localized, human-readable description of the problem.
+	 *
 	 * @return The message
 	 */
 	public String getMessage() {
 		return this.message;
 	}
 
+	/* (non-Javadoc)
+	 * @see java.lang.Object#hashCode()
+	 */
 	@Override
 	public int hashCode() {
 		return this.message.hashCode() * (this.severity.hashCode() + 1);
@@ -94,8 +101,8 @@ public final class Problem implements Comparable<Problem> {
 	}
 
 	/**
-	 * Determine if this problem is more severe than another
-	 * 
+	 * Determine if this problem is more severe than another.
+	 *
 	 * @param other
 	 *            The other problem
 	 * @return true if compareTo(other) &lt; 0;
@@ -116,6 +123,9 @@ public final class Problem implements Comparable<Problem> {
 		return this.severity;
 	}
 
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
 	@Override
 	public String toString() {
 		return getMessage() + "(" + severity() + ")";

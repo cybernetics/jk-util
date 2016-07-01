@@ -1,3 +1,18 @@
+/*
+ * Copyright 2002-2016 Jalal Kiswani.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package com.jk.security;
 
 import javax.crypto.Cipher;
@@ -9,11 +24,24 @@ import org.apache.commons.codec.binary.Base64;
 import com.jk.exceptions.JKEmptyReportException;
 import com.jk.exceptions.JKSecurityException;
 
+/**
+ * The Class JKEncDec.
+ *
+ * @author Jalal Kiswani
+ */
 public class JKEncDec {
 	static String IV = "AAAAAAAAAAAAAAAA";
 	static String plaintext = "test text 123\0\0\0"; /* Note null padding */
 	static String encryptionKey = "0123456789abcdef";
 
+	/**
+	 * The main method.
+	 *
+	 * @param args
+	 *            the arguments
+	 * @throws Exception
+	 *             the exception
+	 */
 	public static void main(String[] args) throws Exception {
 		String encrypt = encrypt("123");
 		System.out.println(encrypt);
@@ -24,11 +52,11 @@ public class JKEncDec {
 	}
 
 	/**
-	 * 
+	 * Encrypt.
+	 *
 	 * @param plainText
-	 * @param encryptionKey
-	 * @return
-	 * @throws Exception
+	 *            the plain text
+	 * @return the string
 	 */
 	public static String encrypt(String plainText) {
 		try {
@@ -60,11 +88,11 @@ public class JKEncDec {
 	}
 
 	/**
-	 * 
+	 * Decrypt.
+	 *
 	 * @param cipherText
-	 * @param encryptionKey
-	 * @return
-	 * @throws Exception
+	 *            the cipher text
+	 * @return the string
 	 */
 	public static String decrypt(String cipherText) {
 		try {
@@ -108,31 +136,44 @@ public class JKEncDec {
 	}
 
 	/**
+	 * Decode.
 	 *
 	 * @param source
-	 * @return
+	 *            the source
+	 * @return the string
 	 */
 	public static String decode(final String source) {
 		return decodeFromBase64(source);
 	}
 
 	/**
+	 * Decode from base 64.
 	 *
 	 * @param string
-	 * @return
+	 *            the string
+	 * @return the string
 	 */
 	public static String decodeFromBase64(final String string) {
 		return new String(Base64.decodeBase64(string));
 	}
 
+	/**
+	 * Encode.
+	 *
+	 * @param source
+	 *            the source
+	 * @return the string
+	 */
 	public static String encode(final String source) {
 		return encodeInToBase64(source);
 	}
 
 	/**
+	 * Encode in to base 64.
 	 *
 	 * @param string
-	 * @return
+	 *            the string
+	 * @return the string
 	 */
 	public static String encodeInToBase64(final String string) {
 		return Base64.encodeBase64String(string.getBytes());

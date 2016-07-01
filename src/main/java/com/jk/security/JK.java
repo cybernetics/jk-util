@@ -22,9 +22,21 @@ import java.util.Random;
 //Since  : 5-2-2010
 ///////////////////////////////////////////////////////////////////////////////////////
 
+/**
+ * The Class JK.
+ *
+ * @author Jalal Kiswani
+ */
 public final class JK {
 	//////////////////////////////////////////////////////////////
 
+	/**
+	 * Generate mix password.
+	 *
+	 * @param n
+	 *            the n
+	 * @return the string
+	 */
 	////////////////////////////////////////////////////////////
 	public static String generateMixPassword(final int n) {
 		final char[] pw = new char[n];
@@ -48,6 +60,13 @@ public final class JK {
 		return new String(pw);
 	}
 
+	/**
+	 * Generate numric password.
+	 *
+	 * @param numberOfChar
+	 *            the number of char
+	 * @return the string
+	 */
 	//////////////////////////////////////////////////////////////
 	public static String generateNumricPassword(final int numberOfChar) {
 		final Random randomGenerator = new Random();
@@ -58,6 +77,15 @@ public final class JK {
 		return password;
 	}
 
+	/**
+	 * Gets the alphaptic passowrds.
+	 *
+	 * @param numberOfChar
+	 *            the number of char
+	 * @param islowerCase
+	 *            the islower case
+	 * @return the alphaptic passowrds
+	 */
 	////////////////////////////////////////////////////////////
 	public static String getAlphapticPassowrds(final int numberOfChar, final boolean islowerCase) {
 		double randomNumber;
@@ -74,6 +102,12 @@ public final class JK {
 		return islowerCase ? password : password.toUpperCase();
 	}
 
+	/**
+	 * The main method.
+	 *
+	 * @param args
+	 *            the arguments
+	 */
 	//////////////////////////////////////////////////////////////
 	public static void main(final String[] args) {
 		System.err.println(JK.generateMixPassword(8));

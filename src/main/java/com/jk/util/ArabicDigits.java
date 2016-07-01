@@ -22,6 +22,11 @@ import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+/**
+ * The Class ArabicDigits.
+ *
+ * @author Jalal Kiswani
+ */
 /*
  This class used by jasper reports to show the arabic digits instead of
  english digits
@@ -29,10 +34,11 @@ import java.util.Date;
 public class ArabicDigits {
 
 	/**
-	 * @1.1
-	 * 
+	 * Format.
+	 *
 	 * @param num
-	 * @return
+	 *            the num
+	 * @return the string @1.1
 	 */
 	public static String format(final double num) {
 		final NumberFormat dFormatter = new DecimalFormat("#0.00");
@@ -41,6 +47,7 @@ public class ArabicDigits {
 	}
 
 	/**
+	 * Format.
 	 *
 	 * @param num
 	 *            Integer
@@ -51,6 +58,7 @@ public class ArabicDigits {
 	}
 
 	/**
+	 * Format.
 	 *
 	 * @param str
 	 *            String
@@ -64,9 +72,11 @@ public class ArabicDigits {
 	}
 
 	/**
+	 * Format date.
 	 *
 	 * @param date
-	 * @return
+	 *            the date
+	 * @return the string
 	 */
 	public static String formatDate(final Date date) {
 		final SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
@@ -75,16 +85,19 @@ public class ArabicDigits {
 	}
 
 	/**
+	 * Gets the current date formatted.
 	 *
-	 * @return
+	 * @return the current date formatted
 	 */
 	public static String getCurrentDateFormatted() {
 		return formatDate(new Date(System.currentTimeMillis()));
 	}
 
 	/**
+	 * The main method.
 	 *
 	 * @param args
+	 *            the arguments
 	 */
 	public static void main(final String[] args) {
 		System.out.println(getCurrentDateFormatted());

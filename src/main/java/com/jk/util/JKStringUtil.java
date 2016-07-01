@@ -91,10 +91,24 @@ public class JKStringUtil {
 		return value;
 	}
 
+	/**
+	 * Trim.
+	 *
+	 * @param str
+	 *            the str
+	 * @return the string
+	 */
 	public static String trim(String str) {
 		return StringUtils.trim(str);
 	}
 
+	/**
+	 * Capitalize fully.
+	 *
+	 * @param label
+	 *            the label
+	 * @return the string
+	 */
 	public static String capitalizeFully(String label) {
 		return WordUtils.capitalizeFully(label);
 	}
@@ -103,8 +117,10 @@ public class JKStringUtil {
 	 * This method create nre properties from the origianl one and remove any
 	 * key with the password , then call toString method on this prperties.
 	 *
-	 * @param properties
-	 *            the properties
+	 * @param original
+	 *            the original
+	 * @param string
+	 *            the string
 	 * @return the string
 	 */
 
@@ -116,16 +132,37 @@ public class JKStringUtil {
 		return original.substring(0, lastIndexOf);
 	}
 
+	/**
+	 * Escape value.
+	 *
+	 * @param value
+	 *            the value
+	 * @return the string
+	 */
 	// //////////////////////////////////////////////////////////////////
 	public static String escapeValue(String value) {
 		value = value.replaceAll("'", "\\\\'");
 		return "'" + value + "'";
 	}
 
+	/**
+	 * Checks if is empty.
+	 *
+	 * @param str
+	 *            the str
+	 * @return true, if is empty
+	 */
 	public static boolean isEmpty(String str) {
 		return str == null || str.trim().equals("");
 	}
 
+	/**
+	 * Concat.
+	 *
+	 * @param arr
+	 *            the arr
+	 * @return the string
+	 */
 	public static String concat(Object... arr) {
 		StringBuffer b = new StringBuffer();
 		for (Object string : arr) {
@@ -137,6 +174,13 @@ public class JKStringUtil {
 		return b.toString();
 	}
 
+	/**
+	 * Gets the first line.
+	 *
+	 * @param message
+	 *            the message
+	 * @return the first line
+	 */
 	public static String getFirstLine(final String message) {
 		if (isEmpty(message)) {
 			return message;
@@ -147,6 +191,15 @@ public class JKStringUtil {
 		return message;
 	}
 
+	/**
+	 * Removes the last.
+	 *
+	 * @param builder
+	 *            the builder
+	 * @param string
+	 *            the string
+	 * @return the string builder
+	 */
 	////////////////////////////////////////////////////////////////////////////////////////////
 	public static StringBuilder removeLast(final StringBuilder builder, final String string) {
 		final int lastIndexOf = builder.lastIndexOf(string);
@@ -156,6 +209,12 @@ public class JKStringUtil {
 		return new StringBuilder(builder.substring(0, lastIndexOf));
 	}
 
+	/**
+	 * Copy to clipboard.
+	 *
+	 * @param text
+	 *            the text
+	 */
 	public static void copyToClipboard(String text) {
 		final StringSelection stringSelection = new StringSelection(text);
 		final Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();

@@ -23,8 +23,16 @@ import java.net.URL;
 
 import com.jk.exceptions.JKException;
 
+/**
+ * The Class JKDefaultResourceLoader.
+ *
+ * @author Jalal Kiswani
+ */
 public class JKDefaultResourceLoader implements JKResourceLoader {
 
+	/* (non-Javadoc)
+	 * @see com.jk.resources.JKResourceLoader#getResourceAsStream(java.lang.String)
+	 */
 	@Override
 	public InputStream getResourceAsStream(String resourceName) {
 		URL url = getResourceUrl(resourceName);
@@ -38,6 +46,9 @@ public class JKDefaultResourceLoader implements JKResourceLoader {
 		return null;
 	}
 
+	/* (non-Javadoc)
+	 * @see com.jk.resources.JKResourceLoader#getResourceUrl(java.lang.String)
+	 */
 	@Override
 	public URL getResourceUrl(String fileName) {
 		if(fileName==null){

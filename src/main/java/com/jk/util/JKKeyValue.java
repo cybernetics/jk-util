@@ -15,8 +15,28 @@
  */
 package com.jk.util;
 
+/**
+ * The Interface JKKeyValue.
+ *
+ * @author Jalal Kiswani
+ * @param <K>
+ *            the key type
+ * @param <V>
+ *            the value type
+ */
 public interface JKKeyValue<K, V> {
+	
+	/**
+	 * Gets the key.
+	 *
+	 * @return the key
+	 */
 	public K getKey();
 
+	/**
+	 * Gets the value.
+	 *
+	 * @return the value
+	 */
 	public V getValue();
 }

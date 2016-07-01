@@ -65,6 +65,9 @@ final class HostNameValidator implements Validator<String> {
 		return result;
 	}
 
+	/* (non-Javadoc)
+	 * @see com.fs.commons.desktop.validation.Validator#validate(com.fs.commons.desktop.validation.Problems, java.lang.String, java.lang.Object)
+	 */
 	@Override
 	public boolean validate(final Problems problems, final String compName, final String model) {
 		if (model.length() == 0) {

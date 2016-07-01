@@ -24,6 +24,11 @@ import org.apache.commons.mail.MultiPartEmail;
 
 import com.jk.util.JKConversionUtil;
 
+/**
+ * The Class MailInfo.
+ *
+ * @author Jalal Kiswani
+ */
 public class MailInfo {
 	String host = System.getProperty("jk-mail-host", "smtp.gmail.com");
 	boolean requiresAuthentication = JKConversionUtil.toBoolean(System.getProperty("jk-mail-host-auth", "true"));
@@ -39,18 +44,24 @@ public class MailInfo {
 	ArrayList<Attachment> attachements = new ArrayList<Attachment>();
 
 	/**
+	 * Adds the attachment.
 	 *
 	 * @param attachment
+	 *            the attachment
 	 */
 	public void addAttachment(final Attachment attachment) {
 		this.attachements.add(attachment);
 	}
 
 	/**
+	 * Fill email.
 	 *
 	 * @param email
+	 *            the email
 	 * @throws EmailException
+	 *             the email exception
 	 * @throws IOException
+	 *             Signals that an I/O exception has occurred.
 	 */
 	public void fillEmail(final MultiPartEmail email) throws EmailException, IOException {
 		email.setHostName(getHost());
@@ -71,26 +82,59 @@ public class MailInfo {
 		}
 	}
 
+	/**
+	 * Gets the smtp port.
+	 *
+	 * @return the smtp port
+	 */
 	public int getSmtpPort() {
 		return smtpPort;
 	}
 
+	/**
+	 * Sets the smtp port.
+	 *
+	 * @param smtpPort
+	 *            the new smtp port
+	 */
 	public void setSmtpPort(int smtpPort) {
 		this.smtpPort = smtpPort;
 	}
 
+	/**
+	 * Checks if is requires authentication.
+	 *
+	 * @return true, if is requires authentication
+	 */
 	public boolean isRequiresAuthentication() {
 		return requiresAuthentication;
 	}
 
+	/**
+	 * Sets the requires authentication.
+	 *
+	 * @param requiresAuthentication
+	 *            the new requires authentication
+	 */
 	public void setRequiresAuthentication(boolean requiresAuthentication) {
 		this.requiresAuthentication = requiresAuthentication;
 	}
 
+	/**
+	 * Gets the username.
+	 *
+	 * @return the username
+	 */
 	public String getUsername() {
 		return username;
 	}
 
+	/**
+	 * Sets the username.
+	 *
+	 * @param username
+	 *            the new username
+	 */
 	public void setUsername(String username) {
 		this.username = username;
 	}
@@ -99,11 +143,19 @@ public class MailInfo {
 		return password;
 	}
 
+	/**
+	 * Sets the password.
+	 *
+	 * @param password
+	 *            the new password
+	 */
 	public void setPassword(String password) {
 		this.password = password;
 	}
 
 	/**
+	 * Gets the from.
+	 *
 	 * @return the from
 	 */
 	public String getFrom() {
@@ -111,6 +163,8 @@ public class MailInfo {
 	}
 
 	/**
+	 * Gets the host.
+	 *
 	 * @return the host
 	 */
 	public String getHost() {
@@ -118,6 +172,8 @@ public class MailInfo {
 	}
 
 	/**
+	 * Gets the msg.
+	 *
 	 * @return the msg
 	 */
 	public String getMsg() {
@@ -125,6 +181,8 @@ public class MailInfo {
 	}
 
 	/**
+	 * Gets the subject.
+	 *
 	 * @return the subject
 	 */
 	public String getSubject() {
@@ -132,6 +190,8 @@ public class MailInfo {
 	}
 
 	/**
+	 * Gets the to.
+	 *
 	 * @return the to
 	 */
 	public String getTo() {
@@ -139,6 +199,8 @@ public class MailInfo {
 	}
 
 	/**
+	 * Sets the from.
+	 *
 	 * @param from
 	 *            the from to set
 	 */
@@ -147,6 +209,8 @@ public class MailInfo {
 	}
 
 	/**
+	 * Sets the host.
+	 *
 	 * @param host
 	 *            the host to set
 	 */
@@ -155,6 +219,8 @@ public class MailInfo {
 	}
 
 	/**
+	 * Sets the msg.
+	 *
 	 * @param msg
 	 *            the msg to set
 	 */
@@ -163,6 +229,8 @@ public class MailInfo {
 	}
 
 	/**
+	 * Sets the subject.
+	 *
 	 * @param subject
 	 *            the subject to set
 	 */
@@ -171,6 +239,8 @@ public class MailInfo {
 	}
 
 	/**
+	 * Sets the to.
+	 *
 	 * @param to
 	 *            the to to set
 	 */
@@ -178,10 +248,21 @@ public class MailInfo {
 		this.to = to;
 	}
 
+	/**
+	 * Checks if is secured.
+	 *
+	 * @return true, if is secured
+	 */
 	public boolean isSecured() {
 		return secured;
 	}
 
+	/**
+	 * Sets the secured.
+	 *
+	 * @param secured
+	 *            the new secured
+	 */
 	public void setSecured(boolean secured) {
 		this.secured = secured;
 	}

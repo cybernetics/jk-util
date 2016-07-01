@@ -17,11 +17,21 @@ package com.jk.util;
 
 import java.math.BigDecimal;
 
+/**
+ * The Class JKNumbersUtil.
+ *
+ * @author Jalal Kiswani
+ */
 public class JKNumbersUtil {
+	
 	/**
-	 * @param totalCredit
-	 * @param creditAmount
-	 * @return
+	 * Adds the amounts.
+	 *
+	 * @param num1
+	 *            the num 1
+	 * @param num2
+	 *            the num 2
+	 * @return the double
 	 */
 	public static double addAmounts(final double num1, final double num2) {
 		final BigDecimal b1 = new BigDecimal(num1);
@@ -33,10 +43,13 @@ public class JKNumbersUtil {
 	}
 
 	/**
+	 * Divide.
 	 *
-	 * @param price
-	 * @param qty
-	 * @return
+	 * @param n1
+	 *            the n 1
+	 * @param n2
+	 *            the n 2
+	 * @return the double
 	 */
 	public static double divide(final double n1, final double n2) {
 		final BigDecimal b1 = new BigDecimal(n1);
@@ -48,9 +61,11 @@ public class JKNumbersUtil {
 	}
 
 	/**
+	 * Fix amount.
 	 *
 	 * @param value
-	 * @return
+	 *            the value
+	 * @return the double
 	 */
 	public static double fixAmount(final double value) {
 		final BigDecimal b1 = new BigDecimal(value);
@@ -58,15 +73,24 @@ public class JKNumbersUtil {
 		return b2.doubleValue();
 	}
 
+	/**
+	 * The main method.
+	 *
+	 * @param args
+	 *            the arguments
+	 */
 	public static void main(final String[] args) {
 		System.out.println(divide(10.1, 30));
 	}
 
 	/**
+	 * Mutiply.
 	 *
-	 * @param price
-	 * @param qty
-	 * @return
+	 * @param n1
+	 *            the n 1
+	 * @param n2
+	 *            the n 2
+	 * @return the double
 	 */
 	public static double mutiply(final double n1, final double n2) {
 		final BigDecimal b1 = new BigDecimal(n1);
@@ -78,10 +102,13 @@ public class JKNumbersUtil {
 	}
 
 	/**
+	 * Sub amounts.
 	 *
-	 * @param d
-	 * @param e
-	 * @return
+	 * @param n1
+	 *            the n 1
+	 * @param n2
+	 *            the n 2
+	 * @return the double
 	 */
 	public static double subAmounts(final double n1, final double n2) {
 		final BigDecimal b1 = new BigDecimal(n1);

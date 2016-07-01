@@ -31,11 +31,17 @@ final class TrimStringValidator implements Validator<String> {
 		this.other = other;
 	}
 
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
 	@Override
 	public String toString() {
 		return "TrimStringValidator for " + this.other; // NOI18N
 	}
 
+	/* (non-Javadoc)
+	 * @see com.fs.commons.desktop.validation.Validator#validate(com.fs.commons.desktop.validation.Problems, java.lang.String, java.lang.Object)
+	 */
 	@Override
 	public boolean validate(final Problems problems, final String compName, final String model) {
 		return this.other.validate(problems, compName, model == null ? null : model.trim());

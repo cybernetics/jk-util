@@ -17,18 +17,41 @@ package com.jk.locale;
 
 import java.io.Serializable;
 
+/**
+ * The Class JKLocale.
+ *
+ * @author Jalal Kiswani
+ */
 public class JKLocale implements Serializable {
 	/**
 	 *
 	 */
 	private static final long serialVersionUID = -4392783699434888201L;
+	
+	/** The Constant ARABIC. */
 	public static final JKLocale ARABIC = new JKLocale(1, "ar");
+	
+	/** The Constant ENGLISH. */
 	public static final JKLocale ENGLISH = new JKLocale(2, "en");
 
+	/**
+	 * Value of.
+	 *
+	 * @param languageId
+	 *            the language id
+	 * @return the JK locale
+	 */
 	public static JKLocale valueOf(final int languageId) {
 		return languageId == 1 ? ARABIC : ENGLISH;
 	}
 
+	/**
+	 * Value of.
+	 *
+	 * @param localeString
+	 *            the locale string
+	 * @return the JK locale
+	 */
 	public static JKLocale valueOf(final String localeString) {
 		return localeString.equals("ar") ? ARABIC : ENGLISH;
 	}
@@ -37,9 +60,12 @@ public class JKLocale implements Serializable {
 	String languageName;
 
 	/**
+	 * Instantiates a new JK locale.
 	 *
 	 * @param langId
+	 *            the lang id
 	 * @param languageName
+	 *            the language name
 	 */
 	public JKLocale(final int langId, final String languageName) {
 		this.languageId = langId;
@@ -47,6 +73,8 @@ public class JKLocale implements Serializable {
 	}
 
 	/**
+	 * Gets the language id.
+	 *
 	 * @return the languageId
 	 */
 	public int getLanguageId() {
@@ -54,6 +82,8 @@ public class JKLocale implements Serializable {
 	}
 
 	/**
+	 * Gets the language name.
+	 *
 	 * @return the languageName
 	 */
 	public String getLanguageName() {
@@ -61,6 +91,8 @@ public class JKLocale implements Serializable {
 	}
 
 	/**
+	 * Sets the language id.
+	 *
 	 * @param languageId
 	 *            the languageId to set
 	 */
@@ -69,6 +101,8 @@ public class JKLocale implements Serializable {
 	}
 
 	/**
+	 * Sets the language name.
+	 *
 	 * @param languageName
 	 *            the languageName to set
 	 */

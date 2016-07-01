@@ -20,7 +20,18 @@ import java.io.InputStream;
 
 import com.jk.util.JKIOUtil;
 
+/**
+ * The Class Attachment.
+ *
+ * @author Jalal Kiswani
+ */
 public class Attachment {
+	
+	/**
+	 * The Enum MimeType.
+	 *
+	 * @author Jalal Kiswani
+	 */
 	public enum MimeType {
 	}
 
@@ -30,6 +41,8 @@ public class Attachment {
 	String mimeType;
 
 	/**
+	 * Gets the data.
+	 *
 	 * @return the data
 	 */
 	public byte[] getData() {
@@ -37,6 +50,8 @@ public class Attachment {
 	}
 
 	/**
+	 * Gets the description.
+	 *
 	 * @return the description
 	 */
 	public String getDescription() {
@@ -44,6 +59,8 @@ public class Attachment {
 	}
 
 	/**
+	 * Gets the mime type.
+	 *
 	 * @return the mimeType
 	 */
 	public String getMimeType() {
@@ -51,6 +68,8 @@ public class Attachment {
 	}
 
 	/**
+	 * Gets the name.
+	 *
 	 * @return the name
 	 */
 	public String getName() {
@@ -58,6 +77,8 @@ public class Attachment {
 	}
 
 	/**
+	 * Sets the data.
+	 *
 	 * @param data
 	 *            the data to set
 	 */
@@ -66,9 +87,12 @@ public class Attachment {
 	}
 
 	/**
+	 * Sets the data.
 	 *
 	 * @param in
+	 *            the new data
 	 * @throws IOException
+	 *             Signals that an I/O exception has occurred.
 	 */
 	public void setData(final InputStream in) throws IOException {
 		final byte[] bytes = JKIOUtil.readStream(in);
@@ -76,6 +100,8 @@ public class Attachment {
 	}
 
 	/**
+	 * Sets the description.
+	 *
 	 * @param description
 	 *            the description to set
 	 */
@@ -84,6 +110,8 @@ public class Attachment {
 	}
 
 	/**
+	 * Sets the mime type.
+	 *
 	 * @param mimeType
 	 *            the mimeType to set
 	 */
@@ -92,6 +120,8 @@ public class Attachment {
 	}
 
 	/**
+	 * Sets the name.
+	 *
 	 * @param name
 	 *            the name to set
 	 */

@@ -40,25 +40,47 @@ public class JKContextFactory {
 	}
 
 	/**
-	 * 
+	 * Sets the instance.
+	 *
 	 * @param instance
+	 *            the new instance
 	 */
 	public static void setInstance(JKContextFactory instance) {
 		JKContextFactory.factoryImpl = instance;
 	}
 
+	/**
+	 * Creates a new JKContext object.
+	 *
+	 * @return the JK context
+	 */
 	public JKContext createDesktopContext() {
 		return new JKDesktopContext();
 	}
 
+	/**
+	 * Creates a new JKContext object.
+	 *
+	 * @return the JK mobile context
+	 */
 	public JKMobileContext createMobileContext() {
 		return new JKMobileContext();
 	}
 
+	/**
+	 * Creates a new JKContext object.
+	 *
+	 * @return the JK jsf context
+	 */
 	public JKJsfContext createJsfContext() {
 		return new JKJsfContext();
 	}
 
+	/**
+	 * Creates a new JKContext object.
+	 *
+	 * @return the JK servlet context
+	 */
 	public JKServletContext createJkServletContext() {
 		return new JKServletContext();
 	}
@@ -78,8 +100,10 @@ public class JKContextFactory {
 	}
 
 	/**
-	 * 
+	 * Sets the current context.
+	 *
 	 * @param context
+	 *            the new current context
 	 */
 	public static void setCurrentContext(JKContext context) {
 		JKThreadLocal.setValue(JKContextConstants.JK_CONTEXT, context);

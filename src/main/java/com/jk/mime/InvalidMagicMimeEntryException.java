@@ -20,14 +20,28 @@ import java.util.ArrayList;
 /*
  */
 
+/**
+ * The Class InvalidMagicMimeEntryException.
+ *
+ * @author Jalal Kiswani
+ */
 public class InvalidMagicMimeEntryException extends Exception {
 
 	private static final long serialVersionUID = -6705937358834408523L;
 
+	/**
+	 * Instantiates a new invalid magic mime entry exception.
+	 */
 	public InvalidMagicMimeEntryException() {
 		super("Invalid Magic Mime Entry: Unknown entry");
 	}
 
+	/**
+	 * Instantiates a new invalid magic mime entry exception.
+	 *
+	 * @param mimeMagicEntry
+	 *            the mime magic entry
+	 */
 	public InvalidMagicMimeEntryException(final ArrayList<?> mimeMagicEntry) {
 		super("Invalid Magic Mime Entry: " + mimeMagicEntry.toString());
 	}

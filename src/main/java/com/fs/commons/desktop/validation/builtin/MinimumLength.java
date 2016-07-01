@@ -29,6 +29,9 @@ final class MinimumLength implements Validator<String> {
 		this.len = len;
 	}
 
+	/* (non-Javadoc)
+	 * @see com.fs.commons.desktop.validation.Validator#validate(com.fs.commons.desktop.validation.Problems, java.lang.String, java.lang.Object)
+	 */
 	@Override
 	public boolean validate(final Problems problems, final String compName, final String model) {
 		if (model == null) {

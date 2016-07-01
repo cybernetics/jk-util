@@ -121,6 +121,12 @@ public class JKExceptionHandlerFactory {
 		this.handlers.put(clas, handler);
 	}
 
+	/**
+	 * Register handers.
+	 *
+	 * @param packageString
+	 *            the package string
+	 */
 	public void registerHanders(String packageString) {
 		List<String> list = AnnotationDetector.scanAsList(ExceptionHandler.class, packageString);
 		for (String handler : list) {
@@ -133,6 +139,12 @@ public class JKExceptionHandlerFactory {
 
 
 
+	/**
+	 * The main method.
+	 *
+	 * @param args
+	 *            the arguments
+	 */
 	public static void main(String[] args) {
 		getInstance().registerHanders("com.jk.annotations");
 		JKExceptionUtil.handle(new IOException("test exception"));

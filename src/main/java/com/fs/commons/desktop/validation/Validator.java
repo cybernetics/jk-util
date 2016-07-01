@@ -23,6 +23,8 @@ package com.fs.commons.desktop.validation;
  * </code> provides many built-in validators to perform common tasks.
  *
  * @author Tim Boudreau
+ * @param <T>
+ *            the generic type
  */
 public interface Validator<T> {
 

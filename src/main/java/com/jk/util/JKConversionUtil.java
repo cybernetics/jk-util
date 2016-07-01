@@ -127,6 +127,15 @@ public class JKConversionUtil {
 		return null;
 	}
 
+	/**
+	 * To boolean.
+	 *
+	 * @param value
+	 *            the value
+	 * @param defaultValue
+	 *            the default value
+	 * @return true, if successful
+	 */
 	public static boolean toBoolean(Object value, boolean defaultValue) {
 		boolean result;// = defaultValue;
 		if (value != null) {

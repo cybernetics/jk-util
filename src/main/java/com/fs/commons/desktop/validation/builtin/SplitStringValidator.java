@@ -29,16 +29,30 @@ final class SplitStringValidator implements Validator<String> {
 	private final String regexp;
 	private final Validator<String> other;
 
+	/**
+	 * Instantiates a new split string validator.
+	 *
+	 * @param regexp
+	 *            the regexp
+	 * @param other
+	 *            the other
+	 */
 	public SplitStringValidator(final String regexp, final Validator<String> other) {
 		this.regexp = regexp;
 		this.other = other;
 	}
 
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
 	@Override
 	public String toString() {
 		return "SplitStringValidator for " + this.other; // NOI18N
 	}
 
+	/* (non-Javadoc)
+	 * @see com.fs.commons.desktop.validation.Validator#validate(com.fs.commons.desktop.validation.Problems, java.lang.String, java.lang.Object)
+	 */
 	@Override
 	public boolean validate(final Problems problems, final String compName, final String model) {
 		final String[] components = model.split(this.regexp);

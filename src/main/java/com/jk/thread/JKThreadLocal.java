@@ -52,6 +52,13 @@ public class JKThreadLocal {
 		return map;
 	}
 
+	/**
+	 * Gets the value.
+	 *
+	 * @param name
+	 *            the name
+	 * @return the value
+	 */
 	public static Object getValue(final String name) {
 		return getValue(name, null);
 	}
@@ -61,6 +68,8 @@ public class JKThreadLocal {
 	 *
 	 * @param name
 	 *            the name
+	 * @param defaultValue
+	 *            the default value
 	 * @return the value
 	 */
 	/*

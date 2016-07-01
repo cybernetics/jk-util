@@ -43,6 +43,8 @@ import com.jk.resources.JKResourceLoaderFactory;
  */
 public class JKIOUtil {
 	private static final String USER_LOCAL_PATH = System.getProperty("user.home") + System.getProperty("file.separator") + "jk";
+	
+	/** The Constant NEW_LINE. */
 	public static final String NEW_LINE = System.getProperty("line.separator");
 	/** The logger. */
 	static Logger logger = Logger.getLogger(JKIOUtil.class.getName());
@@ -158,6 +160,15 @@ public class JKIOUtil {
 		}
 	}
 
+	/**
+	 * Convert to string.
+	 *
+	 * @param input
+	 *            the input
+	 * @return the string
+	 * @throws IOException
+	 *             Signals that an I/O exception has occurred.
+	 */
 	public static String convertToString(InputStream input) throws IOException {
 		try {
 			if (input == null) {
@@ -179,6 +190,13 @@ public class JKIOUtil {
 		}
 	}
 
+	/**
+	 * Gets the user folder path.
+	 *
+	 * @param appendFileSeprator
+	 *            the append file seprator
+	 * @return the user folder path
+	 */
 	// ////////////////////////////////////////////////////////////////////
 	public static String getUserFolderPath(final boolean appendFileSeprator) {
 		String path = USER_LOCAL_PATH;
@@ -189,6 +207,15 @@ public class JKIOUtil {
 		return path;
 	}
 
+	/**
+	 * Check folder path.
+	 *
+	 * @param path
+	 *            the path
+	 * @param create
+	 *            the create
+	 * @return the file
+	 */
 	// ////////////////////////////////////////////////////////////////////
 	public static File checkFolderPath(final String path, final boolean create) {
 		final File file = new File(path);
@@ -201,6 +228,13 @@ public class JKIOUtil {
 		return file;
 	}
 
+	/**
+	 * Gets the reader.
+	 *
+	 * @param name
+	 *            the name
+	 * @return the reader
+	 */
 	public static Reader getReader(String name) {
 		InputStream inputStream = getInputStream(name);
 		if (inputStream != null) {
@@ -210,6 +244,13 @@ public class JKIOUtil {
 		return null;
 	}
 
+	/**
+	 * Read file.
+	 *
+	 * @param string
+	 *            the string
+	 * @return the string
+	 */
 	public static String readFile(String string) {
 		InputStream inputStream = getInputStream(string);
 		if (inputStream != null) {
@@ -218,6 +259,13 @@ public class JKIOUtil {
 		return null;
 	}
 
+	/**
+	 * Gets the url contents.
+	 *
+	 * @param urlString
+	 *            the url string
+	 * @return the url contents
+	 */
 	public static String getUrlContents(String urlString) {
 		HttpURLConnection con = null;
 		try {
@@ -245,6 +293,17 @@ public class JKIOUtil {
 		}
 	}
 
+	/**
+	 * Gets the value from url.
+	 *
+	 * @param url
+	 *            the url
+	 * @param preText
+	 *            the pre text
+	 * @param length
+	 *            the length
+	 * @return the value from url
+	 */
 	public static String getValueFromUrl(String url, String preText, int length) {
 		String urlContents = getUrlContents(url);
 		int indexOf = urlContents.indexOf(preText);
@@ -256,6 +315,15 @@ public class JKIOUtil {
 		return null;
 	}
 
+	/**
+	 * Gets the extension.
+	 *
+	 * @param fileName
+	 *            the file name
+	 * @param withPoint
+	 *            the with point
+	 * @return the extension
+	 */
 	public static String getExtension(final String fileName, final boolean withPoint) {
 		final int lastIndexOf = fileName.lastIndexOf(".");
 		if (!withPoint) {
@@ -264,6 +332,13 @@ public class JKIOUtil {
 		return fileName.substring(lastIndexOf);
 	}
 
+	/**
+	 * Removes the extension.
+	 *
+	 * @param fileName
+	 *            the file name
+	 * @return the string
+	 */
 	public static String removeExtension(String fileName) {
 		final String separator = System.getProperty("file.separator");
 		String filename;
@@ -284,18 +359,29 @@ public class JKIOUtil {
 		return fileName + File.separator + filename.substring(0, extensionIndex);
 	}
 
+	/**
+	 * Write data to file.
+	 *
+	 * @param data
+	 *            the data
+	 * @param file
+	 *            the file
+	 * @return the file
+	 */
 	public static File writeDataToFile(final byte[] data, final File file) {
 		return writeDataToFile(data, file, false);
 	}
 
 	/**
+	 * Write data to file.
 	 *
 	 * @param data
+	 *            the data
 	 * @param file
+	 *            the file
 	 * @param append
-	 * @return
-	 * @throws FileNotFoundException
-	 * @throws IOException
+	 *            the append
+	 * @return the file
 	 */
 	public static File writeDataToFile(final byte[] data, final File file, final boolean append) {
 		try (FileOutputStream out = new FileOutputStream(file, append)) {
@@ -308,6 +394,13 @@ public class JKIOUtil {
 		}
 	}
 
+	/**
+	 * Read properties stream.
+	 *
+	 * @param inputStream
+	 *            the input stream
+	 * @return the properties
+	 */
 	public static Properties readPropertiesStream(InputStream inputStream) {
 		try {
 			final Properties prop = new Properties();
@@ -332,6 +425,15 @@ public class JKIOUtil {
 		}
 	}
 
+	/**
+	 * Write data to temp file.
+	 *
+	 * @param data
+	 *            the data
+	 * @param suffix
+	 *            the suffix
+	 * @return the file
+	 */
 	public static File writeDataToTempFile(final byte[] data, final String suffix) {
 		try {
 			File file = File.createTempFile("fs-", suffix);
@@ -345,11 +447,13 @@ public class JKIOUtil {
 	// ////////////////////////////////////////////////////////////////////////
 
 	/**
+	 * Write data to temp file.
 	 *
-	 * @return File
 	 * @param data
 	 *            String
-	 * @throws IOException
+	 * @param ext
+	 *            the ext
+	 * @return File
 	 */
 	public static File writeDataToTempFile(final String data, final String ext) {
 		try {
@@ -365,24 +469,54 @@ public class JKIOUtil {
 	}
 
 	/**
+	 * Creates the temp file.
+	 *
 	 * @param ext
-	 * @return
+	 *            the ext
+	 * @return the file
 	 * @throws IOException
+	 *             Signals that an I/O exception has occurred.
 	 */
 	public static File createTempFile(final String ext) throws IOException {
 		final File file = File.createTempFile("fs-", "." + ext);
 		return file;
 	}
 
+	/**
+	 * Gets the url.
+	 *
+	 * @param path
+	 *            the path
+	 * @return the url
+	 */
 	public static URL getURL(String path) {
 		return JKResourceLoaderFactory.getResourceLoader().getResourceUrl(path);
 	}
 
+	/**
+	 * Read properties file.
+	 *
+	 * @param fileName
+	 *            the file name
+	 * @return the properties
+	 */
 	public static Properties readPropertiesFile(String fileName) {
 		InputStream in = getInputStream(fileName);
 		if (in != null) {
 			return readPropertiesStream(in);
 		}
 		return new Properties();
+	}
+
+	/**
+	 * Gets the report file as stream.
+	 *
+	 * @param name
+	 *            the name
+	 * @return the report file as stream
+	 */
+	public static InputStream getReportFileAsStream(String name) {
+		//TODO: make it configurable for both path and extension
+		return getInputStream("/resources/reports/".concat(name).concat(".jrxml"));
 	}
 }

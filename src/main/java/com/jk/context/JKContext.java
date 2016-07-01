@@ -102,7 +102,17 @@ public interface JKContext {
 	 */
 	public void setAttribute(String key, Object value);
 
+	/**
+	 * Gets the resource loader.
+	 *
+	 * @return the resource loader
+	 */
 	public JKResourceLoader getResourceLoader();
 	
+	/**
+	 * Gets the config path.
+	 *
+	 * @return the config path
+	 */
 	public String getConfigPath();
 }

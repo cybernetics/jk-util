@@ -17,6 +17,11 @@ package com.jk.security;
 
 import com.jk.util.JKObjectUtil;
 
+/**
+ * The Class JKSecurityManager.
+ *
+ * @author Jalal Kiswani
+ */
 public class JKSecurityManager {
 	static JKAuthenticaor authenticaor;
 
@@ -25,11 +30,12 @@ public class JKSecurityManager {
 	private static JKUser currentUser;
 
 	/**
+	 * Check allowed privilige.
 	 *
-	 * @param priviligeId
-	 * @param String
+	 * @param privilige
+	 *            the privilige
 	 * @throws SecurityException
-	 * @throws JKNotAllowedOperationException
+	 *             the security exception
 	 */
 	public static void checkAllowedPrivilige(final JKPrivilige privilige)  {
 		final JKAuthorizer auth = getAuthorizer();
@@ -37,6 +43,8 @@ public class JKSecurityManager {
 	}
 
 	/**
+	 * Gets the authenticaor.
+	 *
 	 * @return the authenticaor
 	 */
 	public static JKAuthenticaor getAuthenticaor() {
@@ -47,6 +55,8 @@ public class JKSecurityManager {
 	}
 
 	/**
+	 * Gets the authorizer.
+	 *
 	 * @return the authorizer
 	 */
 	public static JKAuthorizer getAuthorizer() {
@@ -57,6 +67,8 @@ public class JKSecurityManager {
 	}
 
 	/**
+	 * Gets the current user.
+	 *
 	 * @return the currentUser
 	 */
 	public static JKUser getCurrentUser() {
@@ -66,11 +78,18 @@ public class JKSecurityManager {
 		return currentUser;
 	}
 
+	/**
+	 * Checks if is user logged in.
+	 *
+	 * @return true, if is user logged in
+	 */
 	public static boolean isUserLoggedIn() {
 		return currentUser != null;
 	}
 
 	/**
+	 * Sets the authenticaor.
+	 *
 	 * @param authenticaor
 	 *            the authenticaor to set
 	 */
@@ -79,6 +98,8 @@ public class JKSecurityManager {
 	}
 
 	/**
+	 * Sets the authorizer.
+	 *
 	 * @param authorizer
 	 *            the authorizer to set
 	 */
@@ -87,17 +108,35 @@ public class JKSecurityManager {
 	}
 
 	/**
+	 * Sets the current user.
 	 *
-	 * @param user
+	 * @param currentUser
+	 *            the new current user
 	 */
 	public static void setCurrentUser(final JKUser currentUser) {
 		JKSecurityManager.currentUser = currentUser;
 	}
 
+	/**
+	 * Match password.
+	 *
+	 * @param plain
+	 *            the plain
+	 * @param user
+	 *            the user
+	 * @return true, if successful
+	 */
 	public static boolean matchPassword(String plain, JKUser user) {
 		return JKEncDec.encode(plain).equals(user.getPassword());
 	}
 
+	/**
+	 * Encrypt password.
+	 *
+	 * @param text
+	 *            the text
+	 * @return the string
+	 */
 	public static String encryptPassword(String text) {
 		return JKEncDec.encode(text);
 	}
@@ -106,10 +145,30 @@ public class JKSecurityManager {
 //		return new JKPrivilige(id, name,parent);
 //	}
 
-	public static JKPrivilige createPrivilige(String name, JKPrivilige parent) {
+	/**
+ * Creates the privilige.
+ *
+ * @param name
+ *            the name
+ * @param parent
+ *            the parent
+ * @return the JK privilige
+ */
+public static JKPrivilige createPrivilige(String name, JKPrivilige parent) {
 		return createPrivilige(name, parent,0);
 	}
 	
+	/**
+	 * Creates the privilige.
+	 *
+	 * @param name
+	 *            the name
+	 * @param parent
+	 *            the parent
+	 * @param number
+	 *            the number
+	 * @return the JK privilige
+	 */
 	public static JKPrivilige createPrivilige(String name, JKPrivilige parent,int number) {
 		int id=JKObjectUtil.hash(parent==null?name:name.concat(parent.getPriviligeName()));
 		JKPrivilige p = new JKPrivilige(id, name,parent);

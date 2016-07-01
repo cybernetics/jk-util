@@ -26,14 +26,35 @@ import javax.xml.bind.Unmarshaller;
 
 import com.jk.exceptions.JKException;
 
+/**
+ * The Class JKXmlHandler.
+ *
+ * @author Jalal Kiswani
+ */
 public class JKXmlHandler {
 
 	private static JKXmlHandler instance = new JKXmlHandler();
 
+	/**
+	 * Gets the single instance of JKXmlHandler.
+	 *
+	 * @return single instance of JKXmlHandler
+	 */
 	public static JKXmlHandler getInstance() {
 		return instance;
 	}
 
+	/**
+	 * Parses the.
+	 *
+	 * @param <T>
+	 *            the generic type
+	 * @param in
+	 *            the in
+	 * @param clas
+	 *            the clas
+	 * @return the t
+	 */
 	/*
 	 * 
 	 */
@@ -49,9 +70,14 @@ public class JKXmlHandler {
 	}
 
 	/**
-	 * 
+	 * To xml.
+	 *
 	 * @param object
+	 *            the object
 	 * @param out
+	 *            the out
+	 * @param clas
+	 *            the clas
 	 */
 	public void toXml(Object object, OutputStream out, Class<?>... clas) {
 		try {
@@ -65,10 +91,26 @@ public class JKXmlHandler {
 		}
 	}
 
+	/**
+	 * To xml.
+	 *
+	 * @param obj
+	 *            the obj
+	 * @return the string
+	 */
 	public String toXml(Object obj) {
 		return toXml(obj, obj.getClass());
 	}
 
+	/**
+	 * To xml.
+	 *
+	 * @param obj
+	 *            the obj
+	 * @param clas
+	 *            the clas
+	 * @return the string
+	 */
 	public String toXml(Object obj, Class<?>... clas) {
 		ByteArrayOutputStream out = new ByteArrayOutputStream();
 		toXml(obj, out, clas);

@@ -152,8 +152,8 @@ public enum FSValidators implements Validator {
 
 	/**
 	 * Get a validator which does fails if any of the characters in the passed
-	 * char array are contained in the evaluated text
-	 * 
+	 * char array are contained in the evaluated text.
+	 *
 	 * @param chars
 	 *            The array of illegal characters
 	 * @param trim
@@ -202,9 +202,10 @@ public enum FSValidators implements Validator {
 	}
 
 	/**
-	 * Validator that enforces maximum input length
-	 * 
+	 * Validator that enforces maximum input length.
+	 *
 	 * @param length
+	 *            the length
 	 * @return A validator for string lengths
 	 */
 	public static Validator<String> maxLength(final int length) {
@@ -248,9 +249,10 @@ public enum FSValidators implements Validator {
 	}
 
 	/**
-	 * Validator that enforces minimum input length
-	 * 
+	 * Validator that enforces minimum input length.
+	 *
 	 * @param length
+	 *            the length
 	 * @return A validator for string lengths
 	 */
 	public static Validator<String> minLength(final int length) {
@@ -259,8 +261,8 @@ public enum FSValidators implements Validator {
 
 	/**
 	 * Get a validator that guarantees that a number is within a certain range
-	 * (inclusive)
-	 * 
+	 * (inclusive).
+	 *
 	 * @param min
 	 *            The minimum value
 	 * @param max
@@ -332,9 +334,7 @@ public enum FSValidators implements Validator {
 	 * Create a number validator that uses a specific locale. For the default
 	 * locale, use Validators.REQUIRE_VALID_NUMBER. Use this if you specifically
 	 * want validation for another locale.
-	 * 
-	 * @param l
-	 *            The locale to use
+	 *
 	 * @return A string validator for numbers
 	 */
 	public static Validator<String> validNumber() {
@@ -423,10 +423,18 @@ public enum FSValidators implements Validator {
 	}
 
 
+	/**
+	 * Trim.
+	 *
+	 * @return the validator
+	 */
 	public Validator<String> trim() {
 		return forString(true);
 	}
 
+	/* (non-Javadoc)
+	 * @see com.fs.commons.desktop.validation.Validator#validate(com.fs.commons.desktop.validation.Problems, java.lang.String, java.lang.Object)
+	 */
 	@Override
 	public boolean validate(final Problems problems, final String compName, final Object model) {
 		return forString(false).validate(problems, compName, model);

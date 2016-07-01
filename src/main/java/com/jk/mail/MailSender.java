@@ -22,11 +22,22 @@ import org.apache.commons.mail.EmailException;
 import org.apache.commons.mail.MultiPartEmail;
 
 /**
- * @author ASUS
+ * The Class MailSender.
  *
+ * @author ASUS
  */
 public class MailSender {
 
+	/**
+	 * The main method.
+	 *
+	 * @param args
+	 *            the arguments
+	 * @throws EmailException
+	 *             the email exception
+	 * @throws IOException
+	 *             Signals that an I/O exception has occurred.
+	 */
 	public static void main(final String[] args) throws EmailException, IOException {
 		final MailInfo info = new MailInfo();
 		final Attachment attachment = new Attachment();
@@ -46,16 +57,14 @@ public class MailSender {
 	}
 
 	/**
+	 * Send.
 	 *
-	 * @param hostName
-	 * @param from
-	 * @param to
-	 * @param subject
-	 * @param msgBody
-	 * @param in
+	 * @param mailInfo
+	 *            the mail info
 	 * @throws EmailException
+	 *             the email exception
 	 * @throws IOException
-	 * @throws IOException
+	 *             Signals that an I/O exception has occurred.
 	 */
 	public static void send(final MailInfo mailInfo) throws EmailException, IOException {
 		final MultiPartEmail email = new MultiPartEmail();

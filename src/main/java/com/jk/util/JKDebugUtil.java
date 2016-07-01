@@ -63,6 +63,11 @@ public class JKDebugUtil {
 		logger.debug(Arrays.toString(Thread.currentThread().getStackTrace()).replaceAll(",", "\\\n"));
 	}
 
+	/**
+	 * Gets the caller.
+	 *
+	 * @return the caller
+	 */
 	public static String getCaller() {
 		return Thread.currentThread().getStackTrace()[2].toString();
 	}

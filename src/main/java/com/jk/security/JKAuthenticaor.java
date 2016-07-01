@@ -15,6 +15,21 @@
  */
 package com.jk.security;
 
+/**
+ * The Interface JKAuthenticaor.
+ *
+ * @author Jalal Kiswani
+ */
 public interface JKAuthenticaor {
+	
+	/**
+	 * Authenticate.
+	 *
+	 * @param title
+	 *            the title
+	 * @param maxRetries
+	 *            the max retries
+	 * @return the JK user
+	 */
 	public JKUser authenticate(String title, int maxRetries) ;
 }

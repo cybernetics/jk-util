@@ -330,6 +330,19 @@ public class JKObjectUtil {
 		return JKObjectUtil.toString(source).equals(JKObjectUtil.toString(target));
 	}
 
+	/**
+	 * Gets the field value.
+	 *
+	 * @param <T>
+	 *            the generic type
+	 * @param clas
+	 *            the clas
+	 * @param instance
+	 *            the instance
+	 * @param fieldName
+	 *            the field name
+	 * @return the field value
+	 */
 	public static <T> T getFieldValue(Class<?> clas, Object instance, String fieldName) {
 		try {
 			Field declaredField = clas.getDeclaredField(fieldName);
@@ -340,6 +353,17 @@ public class JKObjectUtil {
 		}
 	}
 
+	/**
+	 * Call static method.
+	 *
+	 * @param clas
+	 *            the clas
+	 * @param methodName
+	 *            the method name
+	 * @param params
+	 *            the params
+	 * @return the object
+	 */
 	///////////////////////////////////////////////////////////////////
 	public static Object callStaticMethod(Class clas, String methodName, Object... params) {
 		try {
@@ -355,6 +379,13 @@ public class JKObjectUtil {
 		}
 	}
 
+	/**
+	 * Copy.
+	 *
+	 * @param source
+	 *            the source
+	 * @return the object
+	 */
 	// /////////////////////////////////////////////////////////////////
 	public static Object copy(Object source) {
 		try {
@@ -370,6 +401,13 @@ public class JKObjectUtil {
 		}
 	}
 
+	/**
+	 * To xml.
+	 *
+	 * @param obj
+	 *            the obj
+	 * @return the string
+	 */
 	// ////////////////////////////////////////////////////////////////////
 	public static String toXml(final Object obj) {
 		final ByteArrayOutputStream out = new ByteArrayOutputStream();
@@ -386,6 +424,13 @@ public class JKObjectUtil {
 		// return null;
 	}
 
+	/**
+	 * To object.
+	 *
+	 * @param xml
+	 *            the xml
+	 * @return the object
+	 */
 	public static Object toObject(final String xml) {
 		// XStream x = createXStream();
 		// return x.fromXML(xml);
@@ -403,16 +448,39 @@ public class JKObjectUtil {
 		// return null;
 	}
 
+	/**
+	 * Hash.
+	 *
+	 * @param name
+	 *            the name
+	 * @return the int
+	 */
 	public static int hash(String name) {
 		return name.hashCode();
 	}
 
+	/**
+	 * Gets the generic paramter.
+	 *
+	 * @param <T>
+	 *            the generic type
+	 * @param handler
+	 *            the handler
+	 * @return the generic paramter
+	 */
 	public static <T> Class<? extends T> getGenericParamter(String handler) {
 		ParameterizedType parameterizedType = (ParameterizedType) JKObjectUtil.getClass(handler).getGenericInterfaces()[0];
 		Class<? extends T> clas = (Class<? extends T>) (parameterizedType.getActualTypeArguments()[0]);
 		return clas;
 	}
 
+	/**
+	 * Fix property name.
+	 *
+	 * @param name
+	 *            the name
+	 * @return the string
+	 */
 	////////////////////////////////////////////////////////////////////////////////////////////
 	public static String fixPropertyName(String name) {
 		// captialize every char after the underscore , and remove underscores
@@ -426,6 +494,14 @@ public class JKObjectUtil {
 		return name;
 	}
 
+	/**
+	 * Populate.
+	 *
+	 * @param instance
+	 *            the instance
+	 * @param values
+	 *            the values
+	 */
 	public static void populate(Object instance, Map<String, Object> values) {
 		try {
 			BeanUtilsBean beanUtilBean = new BeanUtilsBean();
@@ -438,6 +514,13 @@ public class JKObjectUtil {
 		}
 	}
 
+	/**
+	 * Checks if is class avilable in class path.
+	 *
+	 * @param string
+	 *            the string
+	 * @return true, if is class avilable in class path
+	 */
 	public static boolean isClassAvilableInClassPath(String string) {
 		try {
 			Class.forName(string);
@@ -447,6 +530,20 @@ public class JKObjectUtil {
 		}
 	}
 
+	/**
+	 * Call method.
+	 *
+	 * @param obj
+	 *            the obj
+	 * @param methodName
+	 *            the method name
+	 * @param includePrivateMehtods
+	 *            the include private mehtods
+	 * @param args
+	 *            the args
+	 * @throws InvocationTargetException
+	 *             the invocation target exception
+	 */
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	public static void callMethod(final Object obj, final String methodName, final boolean includePrivateMehtods, final Object... args)
 			throws InvocationTargetException {
@@ -474,6 +571,18 @@ public class JKObjectUtil {
 		}
 	}
 
+	/**
+	 * Call method.
+	 *
+	 * @param obj
+	 *            the obj
+	 * @param methodName
+	 *            the method name
+	 * @param args
+	 *            the args
+	 * @throws InvocationTargetException
+	 *             the invocation target exception
+	 */
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	public static void callMethod(final Object obj, final String methodName, final Object... args) throws InvocationTargetException {
 		callMethod(obj, methodName, false, args);

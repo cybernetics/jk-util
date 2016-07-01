@@ -32,10 +32,25 @@ import com.jk.time.JKTimeObject;
  * @author Jalal Kiswani
  */
 public class JKDateTimeUtil {
+	
+	/**
+	 * The Enum CompareDates.
+	 *
+	 * @author Jalal Kiswani
+	 */
 	public enum CompareDates {
 		DATE1_LESS_THAN_DATE2, DATE1_GREATER_THAN_DATE2, DATE1_EQUAL_DATE2;
 	}
 
+	/**
+	 * Parses the date.
+	 *
+	 * @param strDate
+	 *            the str date
+	 * @param pattern
+	 *            the pattern
+	 * @return the java.util. date
+	 */
 	public static java.util.Date parseDate(String strDate, String pattern) {
 		try {
 			SimpleDateFormat parser = new SimpleDateFormat(pattern, Locale.US);
@@ -83,7 +98,8 @@ public class JKDateTimeUtil {
 	}
 
 	/**
-	 * 
+	 * Gets the current year.
+	 *
 	 * @return int
 	 */
 	public static int getCurrentYear() {
@@ -91,15 +107,21 @@ public class JKDateTimeUtil {
 		return cal.get(Calendar.YEAR);
 	}
 
+	/**
+	 * Gets the current month.
+	 *
+	 * @return the current month
+	 */
 	public static int getCurrentMonth() {
 		return getMonthFromDate(new Date());
 	}
 
 	/**
-	 * 
-	 * @return int
+	 * Gets the year from data.
+	 *
 	 * @param date
 	 *            Date
+	 * @return int
 	 */
 	public static int getYearFromData(Date date) {
 		Calendar cal = Calendar.getInstance();
@@ -108,11 +130,11 @@ public class JKDateTimeUtil {
 	}
 
 	/**
-	 * s
-	 * 
-	 * @return int / //@v 1.1 start Update Bashar Nadir
+	 * s.
+	 *
 	 * @param date
 	 *            Date
+	 * @return int / //@v 1.1 start Update Bashar Nadir
 	 */
 	public static int getMonthFromDate(Date date) {
 		Calendar cal = Calendar.getInstance();
@@ -120,14 +142,39 @@ public class JKDateTimeUtil {
 		return cal.get(Calendar.MONTH) + 1;
 	}
 
+	/**
+	 * Format time.
+	 *
+	 * @param date
+	 *            the date
+	 * @return the string
+	 */
 	public static String formatTime(Date date) {
 		return JKFormatUtil.formatDate(date, "hh:mm");
 	}
 
+	/**
+	 * Checks if is times eqaualed.
+	 *
+	 * @param time1
+	 *            the time 1
+	 * @param time2
+	 *            the time 2
+	 * @return true, if is times eqaualed
+	 */
 	public static boolean isTimesEqaualed(Date time1, Date time2) {
 		return formatTime(time1).equals(formatTime(time2));
 	}
 
+	/**
+	 * Gets the num of months.
+	 *
+	 * @param date1
+	 *            the date 1
+	 * @param date2
+	 *            the date 2
+	 * @return the num of months
+	 */
 	public static int getNumOfMonths(Date date1, Date date2) {
 		Calendar firstDate = Calendar.getInstance();
 		Date date = new Date(date1.getTime());
@@ -140,10 +187,24 @@ public class JKDateTimeUtil {
 		return months;
 	}
 
+	/**
+	 * Format current date.
+	 *
+	 * @return the string
+	 */
 	public static String formatCurrentDate() {
 		return JKFormatUtil.formatDate(new Date(), "yyyy-MM-dd");
 	}
 
+	/**
+	 * Compare two dates.
+	 *
+	 * @param date1
+	 *            the date 1
+	 * @param date2
+	 *            the date 2
+	 * @return the compare dates
+	 */
 	public static CompareDates compareTwoDates(Date date1, Date date2) {
 		Date d1 = new Date(date1.getTime());// to unify the format of the dates
 											// before the compare
@@ -156,6 +217,13 @@ public class JKDateTimeUtil {
 			return CompareDates.DATE1_EQUAL_DATE2;
 	}
 
+	/**
+	 * Addd days to current date.
+	 *
+	 * @param numberOfDays
+	 *            the number of days
+	 * @return the date
+	 */
 	public static Date adddDaysToCurrentDate(int numberOfDays) {
 		Date date = new Date();
 		Calendar instance = Calendar.getInstance();
@@ -164,6 +232,15 @@ public class JKDateTimeUtil {
 		return instance.getTime();
 	}
 
+	/**
+	 * Checks if is date.
+	 *
+	 * @param strDate
+	 *            the str date
+	 * @param pattern
+	 *            the pattern
+	 * @return true, if is date
+	 */
 	public static boolean isDate(String strDate, String pattern) {
 		try {
 			parseDate(strDate, pattern);
@@ -173,10 +250,26 @@ public class JKDateTimeUtil {
 		}
 	}
 
+	/**
+	 * Addd months.
+	 *
+	 * @param numOfMonths
+	 *            the num of months
+	 * @return the date
+	 */
 	public static Date adddMonths(int numOfMonths) {
 		return addMonths(new Date(), numOfMonths);
 	}
 
+	/**
+	 * Adds the months.
+	 *
+	 * @param date
+	 *            the date
+	 * @param numOfMonths
+	 *            the num of months
+	 * @return the date
+	 */
 	public static Date addMonths(Date date, int numOfMonths) {
 		Calendar instance = Calendar.getInstance();
 		instance.setTime(date);
@@ -185,11 +278,13 @@ public class JKDateTimeUtil {
 	}
 
 	/**
-	 * 
+	 * Gets the difference.
+	 *
 	 * @param timeFrom
+	 *            the time from
 	 * @param timeTo
-	 * @return
-	 * @throws DateParseException
+	 *            the time to
+	 * @return the difference
 	 */
 	public static long getDifference(Time timeFrom, Time timeTo) {
 		try {
@@ -205,8 +300,9 @@ public class JKDateTimeUtil {
 	}
 
 	/**
-	 * 
-	 * @return
+	 * Gets the current day in month.
+	 *
+	 * @return the current day in month
 	 */
 	public static int getCurrentDayInMonth() {
 		Date date = new Date();
@@ -219,12 +315,32 @@ public class JKDateTimeUtil {
 		return cal.get(Calendar.DAY_OF_MONTH);
 	}
 
+	/**
+	 * Gets the day of week.
+	 *
+	 * @param date
+	 *            the date
+	 * @return the day of week
+	 */
 	public static int getDayOfWeek(Date date) {
 		Calendar cal = Calendar.getInstance();
 		cal.setTime(date);
 		return cal.get(Calendar.DAY_OF_WEEK);
 	}
 
+	/**
+	 * Checks if is time conflict.
+	 *
+	 * @param timeFrom
+	 *            the time from
+	 * @param timeTo
+	 *            the time to
+	 * @param otherTimeFrom
+	 *            the other time from
+	 * @param otherTimeTo
+	 *            the other time to
+	 * @return true, if is time conflict
+	 */
 	// //////////////////////////////////////////////////////////////////////////////////
 	public static boolean isTimeConflict(Time timeFrom, Time timeTo, Time otherTimeFrom, Time otherTimeTo) {
 		if (JKDateTimeUtil.isTimesEqaualed(timeFrom, otherTimeFrom) || JKDateTimeUtil.isTimesEqaualed(timeTo, otherTimeTo)) {
@@ -249,6 +365,13 @@ public class JKDateTimeUtil {
 		return false;
 	}
 
+	/**
+	 * Gets the hour.
+	 *
+	 * @param timeFrom
+	 *            the time from
+	 * @return the hour
+	 */
 	public static int getHour(Date timeFrom) {
 		Calendar instance = Calendar.getInstance();
 		instance.setTime(timeFrom);
@@ -257,6 +380,15 @@ public class JKDateTimeUtil {
 
 	}
 
+	/**
+	 * Equals.
+	 *
+	 * @param date1
+	 *            the date 1
+	 * @param date2
+	 *            the date 2
+	 * @return true, if successful
+	 */
 	public static boolean equals(Date date1, Date date2) {
 		if ((date1 == null && date2 != null) || (date1 != null && date2 == null)) {
 			return false;
@@ -265,6 +397,19 @@ public class JKDateTimeUtil {
 
 	}
 
+	/**
+	 * Checks if is current time between tow times.
+	 *
+	 * @param fromDate
+	 *            the from date
+	 * @param fromTime
+	 *            the from time
+	 * @param toDate
+	 *            the to date
+	 * @param timeTo
+	 *            the time to
+	 * @return true, if is current time between tow times
+	 */
 	public static boolean isCurrentTimeBetweenTowTimes(Date fromDate, Date fromTime, Date toDate, Date timeTo) {
 		JKTimeObject currntTime = getCurrntTime();
 		JKTimeObject fromTimeObject = new JKTimeObject();
@@ -275,6 +420,11 @@ public class JKDateTimeUtil {
 		return false;
 	}
 
+	/**
+	 * Gets the currnt time.
+	 *
+	 * @return the currnt time
+	 */
 	public static JKTimeObject getCurrntTime() {
 		JKTimeObject fsTimeObject = new JKTimeObject();
 		Calendar instance = Calendar.getInstance();
@@ -286,6 +436,15 @@ public class JKDateTimeUtil {
 		return fsTimeObject;
 	}
 
+	/**
+	 * Gets the day difference.
+	 *
+	 * @param startDate
+	 *            the start date
+	 * @param endDate
+	 *            the end date
+	 * @return the day difference
+	 */
 	public static long getDayDifference(Date startDate, Date endDate) {
 		long startTime = startDate.getTime();
 		long endTime = endDate.getTime();
@@ -294,12 +453,30 @@ public class JKDateTimeUtil {
 		return diffDays;
 	}
 
+	/**
+	 * Checks if is date eqaualed.
+	 *
+	 * @param date1
+	 *            the date 1
+	 * @param date2
+	 *            the date 2
+	 * @return true, if is date eqaualed
+	 */
 	public static boolean isDateEqaualed(final java.util.Date date1, final java.util.Date date2) {
 		final String d1 = JKFormatUtil.formatDate(date1, JKFormatUtil.MYSQL_DATE_DB_PATTERN);
 		final String d2 = JKFormatUtil.formatDate(date2, JKFormatUtil.MYSQL_DATE_DB_PATTERN);
 		return d1.equalsIgnoreCase(d2);
 	}
 
+	/**
+	 * Checks if is period active.
+	 *
+	 * @param startDate
+	 *            the start date
+	 * @param endDate
+	 *            the end date
+	 * @return true, if is period active
+	 */
 	public static boolean isPeriodActive(final Date startDate, final Date endDate)  {
 		if (startDate == null && endDate == null) {
 			return true;
@@ -318,11 +495,23 @@ public class JKDateTimeUtil {
 		return startLessThanCurrent && endGreaterThanCurrent;
 	}
 
+	/**
+	 * Gets the system date.
+	 *
+	 * @return the system date
+	 */
 	public static Date getSystemDate() {
 		//TODO : it should read the system data from db server of online time server
 		return new Date();
 	}
 
+	/**
+	 * Parses the date.
+	 *
+	 * @param date
+	 *            the date
+	 * @return the date
+	 */
 	public static Date parseDate(String date) {
 		return parseDate(date, JKFormatUtil.DEFAULT_DATE_PATTERN);
 	}

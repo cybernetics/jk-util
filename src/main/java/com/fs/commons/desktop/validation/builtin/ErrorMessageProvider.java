@@ -17,9 +17,22 @@
 package com.fs.commons.desktop.validation.builtin;
 
 /**
+ * The Class ErrorMessageProvider.
  *
  * @author Tim Boudreau
  */
 public abstract class ErrorMessageProvider {
+	
+	/**
+	 * Gets the message.
+	 *
+	 * @param source
+	 *            the source
+	 * @param messageId
+	 *            the message id
+	 * @param args
+	 *            the args
+	 * @return the message
+	 */
 	public abstract String getMessage(Class<?> source, String messageId, String... args);
 }

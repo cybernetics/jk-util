@@ -20,7 +20,19 @@ import java.util.Hashtable;
 import java.util.List;
 import java.util.Properties;
 
+/**
+ * The Class JKCollectionUtil.
+ *
+ * @author Jalal Kiswani
+ */
 public class JKCollectionUtil {
+	
+	/**
+	 * Fix properties keys.
+	 *
+	 * @param prop
+	 *            the prop
+	 */
 	public static void fixPropertiesKeys(final Properties prop) {
 		final Enumeration<Object> keys = prop.keys();
 		while (keys.hasMoreElements()) {
@@ -32,10 +44,24 @@ public class JKCollectionUtil {
 		}
 	}
 
+	/**
+	 * Fix property key.
+	 *
+	 * @param name
+	 *            the name
+	 * @return the string
+	 */
 	public static String fixPropertyKey(final String name) {
 		return name.toLowerCase().replace("_", "-");
 	}
 
+	/**
+	 * Gat random item.
+	 *
+	 * @param items
+	 *            the items
+	 * @return the object
+	 */
 	// //////////////////////////////////////////////////////////
 	public static Object gatRandomItem(final List items) {
 		if (items == null || items.size() == 0) {
@@ -49,9 +75,12 @@ public class JKCollectionUtil {
 	 * Unify the objects in the list according to the hash code IMPORTANT :
 	 * hashcode usage here is different from the Java Spec , IT SHOULD BE
 	 * UNIUQUE FOR EACH OBJECT WHICH SHOULD HOLD SOMTHING LIKE THE DATABASE
-	 * PRIMARY KEY
+	 * PRIMARY KEY.
 	 *
-	 * @param config
+	 * @param hash
+	 *            the hash
+	 * @param list
+	 *            the list
 	 */
 	public static void unifyReferences(final Hashtable hash, final List list) {
 		if (list != null) {
@@ -65,7 +94,13 @@ public class JKCollectionUtil {
 
 	// //////////////////////////////////////////////////////////
 	/**
-	 * return unified reference
+	 * return unified reference.
+	 *
+	 * @param hash
+	 *            the hash
+	 * @param object
+	 *            the object
+	 * @return the object
 	 */
 	public static Object unifyReferences(final Hashtable hash, Object object) {
 		final Object itemAtHash = hash.get(object.hashCode());

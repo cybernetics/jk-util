@@ -13,25 +13,27 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.jk.exceptions;
+package com.fs.commons.reports;
+
+import com.jk.exceptions.JKException;
 
 /**
- * The Class JKSecurityException.
+ * The Class JKXmlException.
  *
  * @author Jalal Kiswani
  */
-public class JKSecurityException extends JKException implements JKNonPrintableException{
+public class JKXmlException extends JKException {
 
 	/**
-	 * Instantiates a new JK security exception.
+	 * Instantiates a new JK xml exception.
 	 */
-	public JKSecurityException() {
+	public JKXmlException() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
 	/**
-	 * Instantiates a new JK security exception.
+	 * Instantiates a new JK xml exception.
 	 *
 	 * @param message
 	 *            the message
@@ -42,42 +44,42 @@ public class JKSecurityException extends JKException implements JKNonPrintableEx
 	 * @param writableStackTrace
 	 *            the writable stack trace
 	 */
-	public JKSecurityException(String message, Throwable cause, boolean enableSuppression, boolean writableStackTrace) {
+	public JKXmlException(String message, Throwable cause, boolean enableSuppression, boolean writableStackTrace) {
 		super(message, cause, enableSuppression, writableStackTrace);
 		// TODO Auto-generated constructor stub
 	}
 
 	/**
-	 * Instantiates a new JK security exception.
+	 * Instantiates a new JK xml exception.
 	 *
 	 * @param message
 	 *            the message
 	 * @param cause
 	 *            the cause
 	 */
-	public JKSecurityException(String message, Throwable cause) {
+	public JKXmlException(String message, Throwable cause) {
 		super(message, cause);
 		// TODO Auto-generated constructor stub
 	}
 
 	/**
-	 * Instantiates a new JK security exception.
+	 * Instantiates a new JK xml exception.
 	 *
 	 * @param message
 	 *            the message
 	 */
-	public JKSecurityException(String message) {
+	public JKXmlException(String message) {
 		super(message);
 		// TODO Auto-generated constructor stub
 	}
 
 	/**
-	 * Instantiates a new JK security exception.
+	 * Instantiates a new JK xml exception.
 	 *
 	 * @param cause
 	 *            the cause
 	 */
-	public JKSecurityException(Throwable cause) {
+	public JKXmlException(Throwable cause) {
 		super(cause);
 		// TODO Auto-generated constructor stub
 	}

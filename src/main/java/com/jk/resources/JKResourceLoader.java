@@ -18,13 +18,28 @@ package com.jk.resources;
 import java.io.InputStream;
 import java.net.URL;
 
+/**
+ * The Interface JKResourceLoader.
+ *
+ * @author Jalal Kiswani
+ */
 public interface JKResourceLoader {
 	
 	/**
+	 * Gets the resource as stream.
+	 *
 	 * @param resourceName
-	 * @return
+	 *            the resource name
+	 * @return the resource as stream
 	 */
 	public InputStream getResourceAsStream(String resourceName);
 
+	/**
+	 * Gets the resource url.
+	 *
+	 * @param fileName
+	 *            the file name
+	 * @return the resource url
+	 */
 	public URL getResourceUrl(String fileName);
 }

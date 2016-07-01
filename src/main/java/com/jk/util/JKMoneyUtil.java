@@ -17,21 +17,29 @@ package com.jk.util;
 
 import java.io.FileNotFoundException;
 
+/**
+ * The Class JKMoneyUtil.
+ *
+ * @author Jalal Kiswani
+ */
 public class JKMoneyUtil {
+	
 	/**
+	 * Gets the amount as string.
 	 *
 	 * @param amount
-	 * @return
+	 *            the amount
+	 * @return the amount as string
 	 */
 	public static String getAmountAsString(final int amount) {
 		return NumbersToWords.convert(amount);
 	}
 
 	/**
+	 * The main method.
 	 *
 	 * @param args
-	 * @throws FileNotFoundException
-	 * @throws ApplicationException
+	 *            the arguments
 	 */
 	public static void main(final String[] args) {
 		getAmountAsString(515);

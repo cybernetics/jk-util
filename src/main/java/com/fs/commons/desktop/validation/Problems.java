@@ -29,8 +29,8 @@ public final class Problems {
 	private boolean hasFatal;
 
 	/**
-	 * Add a problem
-	 * 
+	 * Add a problem.
+	 *
 	 * @param problem
 	 *            The problem
 	 */
@@ -41,16 +41,17 @@ public final class Problems {
 	/**
 	 * Convenience method to add a problem with the specified message and
 	 * Severity.FATAL
-	 * 
+	 *
 	 * @param problem
+	 *            the problem
 	 */
 	public final void add(final String problem) {
 		add(problem, Severity.FATAL);
 	}
 
 	/**
-	 * Add a problem with the specified severity
-	 * 
+	 * Add a problem with the specified severity.
+	 *
 	 * @param problem
 	 *            the message
 	 * @param severity
@@ -62,7 +63,7 @@ public final class Problems {
 	}
 
 	/**
-	 * Get the first problem of the highest severity
+	 * Get the first problem of the highest severity.
 	 *
 	 * @return The most severe problem in this set
 	 */
@@ -71,6 +72,11 @@ public final class Problems {
 		return this.problems.isEmpty() ? null : this.problems.get(this.problems.size() - 1);
 	}
 
+	/**
+	 * Gets the problems list.
+	 *
+	 * @return the problems list
+	 */
 	public List<Problem> getProblemsList() {
 		return this.problems;
 	}
@@ -85,8 +91,8 @@ public final class Problems {
 	}
 
 	/**
-	 * Determine if this set of problems is empty
-	 * 
+	 * Determine if this set of problems is empty.
+	 *
 	 * @return true if there are no problems here
 	 */
 	public final boolean isEmpty() {
@@ -106,6 +112,11 @@ public final class Problems {
 		this.problems.addAll(problems.problems);
 	}
 
+	/**
+	 * To mutil line string.
+	 *
+	 * @return the string
+	 */
 	public String toMutilLineString() {
 		final String newLine = System.getProperty("line.separator");
 		final StringBuffer problemStr = new StringBuffer();
@@ -115,6 +126,9 @@ public final class Problems {
 		return problemStr.toString();
 	}
 
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
 	@Override
 	public String toString() {
 		return this.problems.toString();

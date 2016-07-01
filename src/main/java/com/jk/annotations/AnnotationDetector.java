@@ -54,6 +54,15 @@ public class AnnotationDetector {
 		}
 	}
 
+	/**
+	 * Scan as list.
+	 *
+	 * @param clas
+	 *            the clas
+	 * @param basePackage
+	 *            the base package
+	 * @return the list
+	 */
 	public static List<String> scanAsList(final Class<? extends Annotation> clas, final String... basePackage) {
 		final List<String> classes = new ArrayList<>();
 		scan(clas, basePackage, new AnnotationHandler() {

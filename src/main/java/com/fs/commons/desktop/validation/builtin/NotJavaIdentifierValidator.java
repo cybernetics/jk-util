@@ -23,9 +23,16 @@ import com.fs.commons.desktop.validation.Validator;
  * @author Tim Boudreau
  */
 final class NotJavaIdentifierValidator implements Validator<String> {
+	
+	/**
+	 * Instantiates a new not java identifier validator.
+	 */
 	public NotJavaIdentifierValidator() {
 	}
 
+	/* (non-Javadoc)
+	 * @see com.fs.commons.desktop.validation.Validator#validate(com.fs.commons.desktop.validation.Problems, java.lang.String, java.lang.Object)
+	 */
 	@Override
 	public boolean validate(final Problems problems, final String compName, final String text) {
 		if (text.trim().length() == 0) {

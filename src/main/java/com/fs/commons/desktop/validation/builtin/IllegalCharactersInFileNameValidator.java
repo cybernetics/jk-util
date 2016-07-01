@@ -26,6 +26,9 @@ import com.fs.commons.desktop.validation.Validator;
  */
 final class IllegalCharactersInFileNameValidator implements Validator<String> {
 
+	/* (non-Javadoc)
+	 * @see com.fs.commons.desktop.validation.Validator#validate(com.fs.commons.desktop.validation.Problems, java.lang.String, java.lang.Object)
+	 */
 	@Override
 	public boolean validate(final Problems problems, final String compName, final String text) {
 		boolean invalid = text.contains(File.separator) || text.contains(File.pathSeparator);
