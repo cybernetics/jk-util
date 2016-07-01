@@ -43,7 +43,7 @@ import com.jk.resources.JKResourceLoaderFactory;
  */
 public class JKIOUtil {
 	private static final String USER_LOCAL_PATH = System.getProperty("user.home") + System.getProperty("file.separator") + "jk";
-	
+
 	/** The Constant NEW_LINE. */
 	public static final String NEW_LINE = System.getProperty("line.separator");
 	/** The logger. */
@@ -516,7 +516,31 @@ public class JKIOUtil {
 	 * @return the report file as stream
 	 */
 	public static InputStream getReportFileAsStream(String name) {
-		//TODO: make it configurable for both path and extension
+		// TODO: make it configurable for both path and extension
 		return getInputStream("/resources/reports/".concat(name).concat(".jrxml"));
 	}
+	
+
+	/**
+	 * Execute file.
+	 *
+	 * @param fileName
+	 *            String
+	 * @return the process
+	 */
+	public static Process executeFile(final String fileName) {
+		try {
+			final String command = "cmd /c \"" + fileName + "\"";
+			logger.info(command);
+			return Runtime.getRuntime().exec(command);
+		} catch (IOException e) {
+			throw new RuntimeException(e);
+		}
+	}
+
+	public static String getSqlFile(String fileName) {
+		return readFile("/resources/sql/".concat(fileName));
+	}
+
+
 }
