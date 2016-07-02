@@ -27,7 +27,7 @@ import java.util.Random;
  *
  * @author Jalal Kiswani
  */
-public final class JK {
+public final class JKPasswordUtil {
 	//////////////////////////////////////////////////////////////
 
 	/**
@@ -110,6 +110,6 @@ public final class JK {
 	 */
 	//////////////////////////////////////////////////////////////
 	public static void main(final String[] args) {
-		System.err.println(JK.generateMixPassword(8));
+		System.err.println(JKPasswordUtil.generateMixPassword(8));
 	}
 }
