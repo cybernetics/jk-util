@@ -300,6 +300,13 @@ public class JKObjectUtil {
 		return classes;
 	}
 
+	public static String toString(final Object object, boolean useCurrentTostringIfAvailable) {
+		if (useCurrentTostringIfAvailable && isMethodDirectlyExists(object, "toString")) {
+			return object.toString();
+		}
+		return ToStringBuilder.reflectionToString(object, ToStringStyle.SHORT_PREFIX_STYLE);
+	}
+
 	/**
 	 * To string.
 	 *
@@ -308,7 +315,21 @@ public class JKObjectUtil {
 	 * @return the string
 	 */
 	public static String toString(final Object object) {
-		return ToStringBuilder.reflectionToString(object, ToStringStyle.SHORT_PREFIX_STYLE);
+		return toString(object, false);
+	}
+
+	public static boolean isMethodDirectlyExists(Object object, String methodName, Class<?>... params) {
+		try {
+			Method method = object.getClass().getMethod(methodName, params);
+			if (method.getDeclaringClass().equals(object.getClass())) {
+				return true;
+			}
+			return false;
+		} catch (NoSuchMethodException e) {
+			return false;
+		} catch (SecurityException e) {
+			throw new RuntimeException(e);
+		}
 	}
 
 	/**
@@ -321,10 +342,10 @@ public class JKObjectUtil {
 	 * @return true, if successful
 	 */
 	public static boolean equals(final Object source, final Object target) {
-		if(source==null && target!=null){
+		if (source == null && target != null) {
 			return false;
 		}
-		if(source==null && target==null){
+		if (source == null && target == null) {
 			return true;
 		}
 		return JKObjectUtil.toString(source).equals(JKObjectUtil.toString(target));
@@ -599,6 +620,19 @@ public class JKObjectUtil {
 			}
 		}
 		return intArgsClass;
+	}
+
+	public static <T> String getInstanceVariables(Class<T> clas) {
+		StringBuffer fieldsString = new StringBuffer();
+		Field[] fields = clas.getDeclaredFields();
+		int i = 0;
+		for (Field field : fields) {
+			if (i++ > 0) {
+				fieldsString.append(JK.CSV_SEPARATOR);
+			}
+			fieldsString.append(field.getName());
+		}
+		return fieldsString.toString();
 	}
 
 	// //////////////////////////////////////////////////////////////////////////////////////////////////////////////////

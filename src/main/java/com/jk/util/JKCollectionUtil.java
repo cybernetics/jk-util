@@ -25,7 +25,6 @@ import java.util.Map;
 import java.util.Properties;
 import java.util.Map.Entry;
 
-
 /**
  * The Class JKCollectionUtil.
  *
@@ -127,9 +126,12 @@ public class JKCollectionUtil {
 	 */
 	public static String toString(final List<?> list) {
 		final StringBuffer buf = new StringBuffer("[");
+		int i = 0;
 		for (final Object object : list) {
+			if (i++ > 0) {
+				buf.append(",");
+			}
 			buf.append(object == null ? "null" : JKObjectUtil.toString(object));
-			buf.append(",");
 		}
 		buf.append("]");
 		return buf.toString();
