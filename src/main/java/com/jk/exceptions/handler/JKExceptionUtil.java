@@ -16,6 +16,7 @@
 package com.jk.exceptions.handler;
 
 import com.jk.annotations.Author;
+import com.jk.exceptions.JKException;
 
 /**
  * The Class ExceptionUtil.
@@ -54,4 +55,7 @@ public class JKExceptionUtil {
 
 	}
 
+	public static void throww(Throwable t) {
+		throw new JKException(t);
+	}
 }

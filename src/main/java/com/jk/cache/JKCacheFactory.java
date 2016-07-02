@@ -16,11 +16,15 @@
 package com.jk.cache;
 
 import com.jk.cache.simple.JKAbstractCacheManager;
+import com.jk.cache.simple.JKDefaultCacheManager;
+import com.jk.logging.JKLogger;
+import com.jk.logging.JKLoggerFactory;
 
 /**
  * A factory for creating Cache objects.
  */
 public class JKCacheFactory {
+	static JKLogger logger = JKLoggerFactory.getLogger(JKCacheFactory.class);
 
 	/** The default cache manager. */
 	private static JKCacheManager defaultCacheManager;
@@ -32,16 +36,10 @@ public class JKCacheFactory {
 	 */
 	public static JKCacheManager getCacheManager() {
 		if (JKCacheFactory.defaultCacheManager == null) {
-			JKCacheFactory.init();
+			logger.debug("init cacheManager");
+			defaultCacheManager = new JKDefaultCacheManager();
 		}
 		return JKCacheFactory.defaultCacheManager;
 	}
 
-	/**
-	 * Inits the.
-	 */
-	private static void init() {
-		JKCacheFactory.defaultCacheManager = new JKAbstractCacheManager() {
-		};
-	}
 }

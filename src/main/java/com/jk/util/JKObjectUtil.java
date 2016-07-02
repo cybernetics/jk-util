@@ -301,6 +301,9 @@ public class JKObjectUtil {
 	}
 
 	public static String toString(final Object object, boolean useCurrentTostringIfAvailable) {
+		if (object == null) {
+			return "[NULL]";
+		}
 		if (useCurrentTostringIfAvailable && isMethodDirectlyExists(object, "toString")) {
 			return object.toString();
 		}

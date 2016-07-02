@@ -17,9 +17,10 @@ package com.jk.cache.simple;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.logging.Logger;
 
 import com.jk.cache.JKCacheManager;
+import com.jk.logging.JKLogger;
+import com.jk.logging.JKLoggerFactory;
 
 /**
  * The Class AbstractCacheManager.
@@ -32,7 +33,7 @@ public abstract class JKAbstractCacheManager implements JKCacheManager {
 	private static final Class<Object> NULLABLE_MAP_CLASS = Object.class;
 
 	/** The logger. */
-	protected Logger logger = Logger.getLogger(getClass().getName());
+	protected JKLogger logger = JKLoggerFactory.getLogger(getClass());
 
 	/** The cachables maps. */
 	private final Map<Class<?>, Map<Object, Object>> cachablesMaps = new HashMap<>();
@@ -48,20 +49,29 @@ public abstract class JKAbstractCacheManager implements JKCacheManager {
 	 */
 	@Override
 	public void cache(final Object key, final Object object) {
-		this.logger.fine("@cache ");
+		this.logger.debug("@cache ");
 
 		if (object == null) {
 			if (!isAllowNullable()) {
 				return;
 			}
-			this.logger.fine("logging key :".concat(key.toString()).concat(" with null"));
+			this.logger.debug("logging key :", key, " with null");
 			getCachableMap(JKAbstractCacheManager.NULLABLE_MAP_CLASS).put(key, null);
 		} else {
-			this.logger
-					.fine("logging key :".concat(key.toString()).concat(" with object : ".concat(object.toString())));
-			getCachableMap((Class<Object>) object.getClass()).put(key, object);
+			cache(key, object, object.getClass());
 		}
+	}
 
+	@Override
+	public <T> void cache(final Object key, final Object object, Class<T> clas) {
+		this.logger.debug("@cache v2 ");
+
+		if (object == null && !isAllowNullable()) {
+			return;
+		} else {
+			this.logger.debug("logging key :", key, " with object : ", object, " with Class : ", clas);
+			getCachableMap(clas).put(key, object);
+		}
 	}
 
 	/*
@@ -71,10 +81,9 @@ public abstract class JKAbstractCacheManager implements JKCacheManager {
 	 */
 	@Override
 	public void clear(final Class<?> clas) {
-		this.logger.fine("@clear:".concat(clas.getName()));
+		this.logger.debug("@clear:".concat(clas.getName()));
 		getCachableMap(clas).clear();
 	}
-
 
 	/*
 	 * (non-Javadoc)
@@ -83,8 +92,9 @@ public abstract class JKAbstractCacheManager implements JKCacheManager {
 	 */
 	@Override
 	public <T> T get(final Object key, final Class<T> clas) {
-		this.logger.fine("@get :".concat(key.toString()).concat(" with class : ".concat(clas.getName())));
+		this.logger.debug("@get :", key, " with class : ", clas.getName());
 		final T Object = (T) getCachableMap(clas).get(key);
+		logger.debug("Cached object : ", Object);
 		return Object;
 	}
 
@@ -95,14 +105,14 @@ public abstract class JKAbstractCacheManager implements JKCacheManager {
 	 */
 	@Override
 	public Map<Object, Object> getCachableMap(final Class<?> clas) {
-		this.logger.fine("@getCachableMap for class ".concat(clas.getName()));
+		this.logger.debug("@getCachableMap for class ", clas.getName());
 		Map<Object, Object> map = this.cachablesMaps.get(clas);
 		if (map == null) {
-			this.logger.fine("Cachable map not found , create one");
+			this.logger.debug("Cachable map not found , create one");
 			map = new HashMap<>();
 			this.cachablesMaps.put(clas, map);
 		} else {
-			// logger.fine("map found : ".concat(map.keySet().toString()));
+			// logger.debug("map found : ".concat(map.keySet().toString()));
 		}
 		return map;
 	}
@@ -124,15 +134,14 @@ public abstract class JKAbstractCacheManager implements JKCacheManager {
 	 */
 	@Override
 	public boolean isAvailable(final Object key, final Class<?> clas) {
-		this.logger.fine("@isAvailable :".concat(key.toString()).concat(" for class : ".concat(clas.toString())));
+		this.logger.debug("@isAvailable :".concat(key.toString()).concat(" for class : ".concat(clas.toString())));
 		final Object Object = getCachableMap(clas).get(key);
 		if (Object == null) {
-			this.logger.fine("try to find it on the nullable cache");
-			this.logger.fine(getCachableMap(JKAbstractCacheManager.NULLABLE_MAP_CLASS).keySet().toString());
+			this.logger.debug("try to find it on the nullable cache");
+			this.logger.debug(getCachableMap(JKAbstractCacheManager.NULLABLE_MAP_CLASS).keySet().toString());
 			return getCachableMap(JKAbstractCacheManager.NULLABLE_MAP_CLASS).containsKey(key);
 		}
-		this.logger
-				.fine("key ".concat(key.toString()).concat(Object != null ? " is available in the cache" : "is not svailable"));
+		this.logger.debug("key ".concat(key.toString()).concat(Object != null ? " is available in the cache" : "is not svailable"));
 		return Object != null;
 	}
 
@@ -143,7 +152,7 @@ public abstract class JKAbstractCacheManager implements JKCacheManager {
 	 */
 	@Override
 	public void remove(final Object key, final Class<?> clas) {
-		this.logger.fine("@remove :".concat(key.toString()).concat(" with class : ".concat(clas.getName())));
+		this.logger.debug("@remove :".concat(key.toString()).concat(" with class : ".concat(clas.getName())));
 		getCachableMap(clas).remove(key);
 	}
 

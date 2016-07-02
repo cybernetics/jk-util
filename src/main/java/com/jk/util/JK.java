@@ -1,6 +1,9 @@
 package com.jk.util;
 
+import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 import com.jk.exceptions.handler.JKExceptionUtil;
 
@@ -55,5 +58,33 @@ public class JK {
 
 	public static void debug() {
 		System.setProperty("org.slf4j.simpleLogger.defaultLogLevel", "trace");
+	}
+
+	public static void throww(Throwable t) {
+		JKExceptionUtil.handle(t);
+	}
+
+	public static Map toMap(Object[] keys, Object[] values) {
+		Map map = new HashMap<>();
+		int i = 0;
+		for (Object key : keys) {
+			map.put(key, values[i++]);
+		}
+		return map;
+	}
+
+	public static Map<String, Object> toMap(Object... list) {
+		if (list.length % 2 != 0) {
+			throw new IllegalArgumentException("List size should be even");
+		}
+		Map map = new LinkedHashMap();
+		for (int i = 0; i < list.length; i += 2) {
+			map.put(list[i], list[i + 1]);
+		}
+		return map;
+	}
+
+	public static void main(String[] args) {
+		System.out.println(toMap("key1", "value1", "key2", "value2"));
 	}
 }

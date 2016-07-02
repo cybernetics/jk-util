@@ -84,4 +84,6 @@ public interface JKCacheManager {
 	 *            the clas
 	 */
 	public void remove(Object key, Class<?> clas);
+
+	public <T> void cache(Object key, Object object, Class<T> clas);
 }
