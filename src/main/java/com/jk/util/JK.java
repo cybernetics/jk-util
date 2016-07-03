@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.ThreadLocalRandom;
 
 import com.jk.exceptions.handler.JKExceptionUtil;
 
@@ -86,5 +87,13 @@ public class JK {
 
 	public static void main(String[] args) {
 		System.out.println(toMap("key1", "value1", "key2", "value2"));
+	}
+
+	public static int randomNumber() {
+		return randomNumber(0, Integer.MAX_VALUE);
+	}
+
+	public static int randomNumber(int min, int max) {
+		return ThreadLocalRandom.current().nextInt(min,max);
 	}
 }
