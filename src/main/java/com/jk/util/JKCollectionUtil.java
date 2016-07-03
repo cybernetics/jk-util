@@ -131,7 +131,7 @@ public class JKCollectionUtil {
 			if (i++ > 0) {
 				buf.append(",");
 			}
-			buf.append(object == null ? "null" : JKObjectUtil.toString(object));
+			buf.append(object == null ? "null" : JKObjectUtil.toString(object,true));
 		}
 		buf.append("]");
 		return buf.toString();

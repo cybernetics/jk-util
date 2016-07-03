@@ -324,10 +324,7 @@ public class JKObjectUtil {
 	public static boolean isMethodDirectlyExists(Object object, String methodName, Class<?>... params) {
 		try {
 			Method method = object.getClass().getMethod(methodName, params);
-			if (method.getDeclaringClass().equals(object.getClass())) {
-				return true;
-			}
-			return false;
+			return true;
 		} catch (NoSuchMethodException e) {
 			return false;
 		} catch (SecurityException e) {
