@@ -15,6 +15,8 @@
  */
 package com.jk.security;
 
+import com.jk.logging.JKLogger;
+import com.jk.logging.JKLoggerFactory;
 import com.jk.util.JKObjectUtil;
 
 /**
@@ -23,6 +25,7 @@ import com.jk.util.JKObjectUtil;
  * @author Jalal Kiswani
  */
 public class JKSecurityManager {
+	static JKLogger logger = JKLoggerFactory.getLogger(JKSecurityManager.class);
 	static JKAuthenticaor authenticaor;
 
 	static JKAuthorizer authorizer;
@@ -37,7 +40,8 @@ public class JKSecurityManager {
 	 * @throws SecurityException
 	 *             the security exception
 	 */
-	public static void checkAllowedPrivilige(final JKPrivilige privilige)  {
+	public static void checkAllowedPrivilige(final JKPrivilige privilige) {
+		logger.debug("checkAllowedPrivilige() : ", privilige);
 		final JKAuthorizer auth = getAuthorizer();
 		auth.checkAllowed(privilige);
 	}
@@ -141,23 +145,24 @@ public class JKSecurityManager {
 		return JKEncDec.encode(text);
 	}
 
-//	public static JKPrivilige createPrivilige(int id, String name, JKPrivilige parent) {
-//		return new JKPrivilige(id, name,parent);
-//	}
+	// public static JKPrivilige createPrivilige(int id, String name,
+	// JKPrivilige parent) {
+	// return new JKPrivilige(id, name,parent);
+	// }
 
 	/**
- * Creates the privilige.
- *
- * @param name
- *            the name
- * @param parent
- *            the parent
- * @return the JK privilige
- */
-public static JKPrivilige createPrivilige(String name, JKPrivilige parent) {
-		return createPrivilige(name, parent,0);
+	 * Creates the privilige.
+	 *
+	 * @param name
+	 *            the name
+	 * @param parent
+	 *            the parent
+	 * @return the JK privilige
+	 */
+	public static JKPrivilige createPrivilige(String name, JKPrivilige parent) {
+		return createPrivilige(name, parent, 0);
 	}
-	
+
 	/**
 	 * Creates the privilige.
 	 *
@@ -169,10 +174,9 @@ public static JKPrivilige createPrivilige(String name, JKPrivilige parent) {
 	 *            the number
 	 * @return the JK privilige
 	 */
-	public static JKPrivilige createPrivilige(String name, JKPrivilige parent,int number) {
-		int id=JKObjectUtil.hash(parent==null?name:name.concat(parent.getPriviligeName()));
-		JKPrivilige p = new JKPrivilige(id, name,parent);
-		p.setNumber(number);
+	public static JKPrivilige createPrivilige(String name, JKPrivilige parent, int number) {
+		logger.debug("createPriviligeObject(): Id : ", ".name", name, ", Parent:[", parent, "] , ", number);
+		JKPrivilige p = new JKPrivilige(name, parent, number);
 		p.setDesc(p.getFullName());
 		return p;
 	}

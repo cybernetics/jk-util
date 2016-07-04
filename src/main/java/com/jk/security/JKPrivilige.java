@@ -21,6 +21,8 @@ import java.util.Enumeration;
 
 import javax.swing.tree.TreeNode;
 
+import com.jk.util.JK;
+
 /**
  * The Class JKPrivilige.
  *
@@ -34,7 +36,7 @@ public class JKPrivilige {
 	String desc;
 	ArrayList<JKPrivilige> childs = new ArrayList<JKPrivilige>();
 	boolean selected;// to be used on the GUI when selected in the security
-	private boolean editable = true;
+	// private boolean editable = true;
 	private int number;
 
 	// panel
@@ -63,14 +65,22 @@ public class JKPrivilige {
 		this(priviligeId, name, parent, parent == null ? 0 : parent.getChilds().size() + 1);
 	}
 
-	private JKPrivilige(final int priviligeId, final String name, final JKPrivilige parent, final int number) {
+	public JKPrivilige(final int priviligeId, final String name, final JKPrivilige parent, final int number) {
 		this.priviligeId = priviligeId;
 		this.priviligeName = name;
 		this.parentPrivlige = parent;
 		this.number = number;
 	}
 
-	/* (non-Javadoc)
+	public JKPrivilige(String name, JKPrivilige parent, int number) {
+		this.priviligeName = name;
+		this.parentPrivlige = parent;
+		this.number = number;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#equals(java.lang.Object)
 	 */
 	@Override
@@ -121,7 +131,14 @@ public class JKPrivilige {
 	 * @return the priviligeId
 	 */
 	public int getPriviligeId() {
+		if (priviligeId == 0) {
+			priviligeId = calculatePriviligeId();
+		}
 		return this.priviligeId;
+	}
+
+	protected int calculatePriviligeId() {
+		return toString().hashCode();
 	}
 
 	/**
@@ -153,16 +170,16 @@ public class JKPrivilige {
 		this.desc = desc;
 	}
 
-	/**
-	 * Sets the editable.
-	 *
-	 * @param editable
-	 *            the new editable
-	 */
-	public void setEditable(final boolean editable) {
-		this.editable = editable;
-	};
-
+	// /**
+	// * Sets the editable.
+	// *
+	// * @param editable
+	// * the new editable
+	// */
+	// public void setEditable(final boolean editable) {
+	// this.editable = editable;
+	// };
+	//
 	/**
 	 * Sets the number.
 	 *
@@ -189,7 +206,7 @@ public class JKPrivilige {
 	 * @param priviligeId
 	 *            the priviligeId to set
 	 */
-	public void setPriviligeId(final int priviligeId) {
+	public void setPriviligeId(final Integer priviligeId) {
 		this.priviligeId = priviligeId;
 	}
 
@@ -203,12 +220,14 @@ public class JKPrivilige {
 		this.priviligeName = priviligeName;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#toString()
 	 */
 	@Override
 	public String toString() {
-		return toString(false);
+		return getFullName();
 	}
 
 	/**
@@ -219,12 +238,14 @@ public class JKPrivilige {
 	 * @return the string
 	 */
 	public String toString(final boolean deep) {
-		final StringBuffer buf = new StringBuffer(this.getPriviligeName());
+		final StringBuffer buf = new StringBuffer();
 		if (deep) {
 			buf.append(getPriviligeId());
 			buf.append(",");
 		}
-		buf.append(getPriviligeName());
+		buf.append(getNumber());
+		buf.append(" : ");
+		buf.append(getFullName());
 		if (deep && this.childs.size() > 0) {
 			buf.append(this.childs.toString());
 		}
@@ -239,7 +260,7 @@ public class JKPrivilige {
 	public String getFullName() {
 		StringBuffer buf = new StringBuffer();
 		if (getParentPrivlige() != null) {
-			buf.append(parentPrivlige.getFullName().concat(" >"));
+			buf.append(parentPrivlige.getFullName().concat(" > "));
 		}
 		buf.append(getPriviligeName());
 		return buf.toString();

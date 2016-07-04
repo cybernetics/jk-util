@@ -15,25 +15,23 @@
  */
 package com.jk.exceptions;
 
-import com.jk.validation.Problems;
-
 /**
- * The Class JKValidationException.
+ * The Class JKXmlException.
  *
  * @author Jalal Kiswani
  */
-public class JKValidationException extends JKException implements JKNonPrintableException {
-	Problems problems;
+public class JKXmlException extends JKException {
 
 	/**
-	 * Instantiates a new JK validation exception.
+	 * Instantiates a new JK xml exception.
 	 */
-	public JKValidationException() {
+	public JKXmlException() {
 		super();
+		// TODO Auto-generated constructor stub
 	}
 
 	/**
-	 * Instantiates a new JK validation exception.
+	 * Instantiates a new JK xml exception.
 	 *
 	 * @param message
 	 *            the message
@@ -44,59 +42,44 @@ public class JKValidationException extends JKException implements JKNonPrintable
 	 * @param writableStackTrace
 	 *            the writable stack trace
 	 */
-	public JKValidationException(String message, Throwable cause, boolean enableSuppression, boolean writableStackTrace) {
+	public JKXmlException(String message, Throwable cause, boolean enableSuppression, boolean writableStackTrace) {
 		super(message, cause, enableSuppression, writableStackTrace);
+		// TODO Auto-generated constructor stub
 	}
 
 	/**
-	 * Instantiates a new JK validation exception.
+	 * Instantiates a new JK xml exception.
 	 *
 	 * @param message
 	 *            the message
 	 * @param cause
 	 *            the cause
 	 */
-	public JKValidationException(String message, Throwable cause) {
+	public JKXmlException(String message, Throwable cause) {
 		super(message, cause);
+		// TODO Auto-generated constructor stub
 	}
 
 	/**
-	 * Instantiates a new JK validation exception.
+	 * Instantiates a new JK xml exception.
 	 *
 	 * @param message
 	 *            the message
 	 */
-	public JKValidationException(String message) {
+	public JKXmlException(String message) {
 		super(message);
+		// TODO Auto-generated constructor stub
 	}
 
 	/**
-	 * Instantiates a new JK validation exception.
+	 * Instantiates a new JK xml exception.
 	 *
 	 * @param cause
 	 *            the cause
 	 */
-	public JKValidationException(Throwable cause) {
+	public JKXmlException(Throwable cause) {
 		super(cause);
-	}
-
-	/**
-	 * Instantiates a new JK validation exception.
-	 *
-	 * @param problems
-	 *            the problems
-	 */
-	public JKValidationException(Problems problems) {
-		this.problems = problems;
-	}
-	 
- 	/**
-	 * Gets the problems.
-	 *
-	 * @return the problems
-	 */
- 	public Problems getProblems() {
-		return problems;
+		// TODO Auto-generated constructor stub
 	}
 
 }
